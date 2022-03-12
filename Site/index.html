@@ -10,12 +10,15 @@
 
   <!-- CSS links -->
   <link rel="stylesheet" href="css/style.css">
+  <link href="css/scanlines.css">
 
   
 
 </head>
 
 <body>
+
+<canvas id="canvas" width="643" height="714"></canvas>
 
 <div class="content">
 
@@ -29,24 +32,24 @@
 
 
 
-  <div class="main-ui">
+  <center>
+    <div class="main-ui">
+      <center id="fadein" class>
+        <div class="score-ui">
+          <p>Score: <span class="score">0</span></p>
+          <p>Combo: <span class="combo">0</span></p>
+          <p>Miss: <span class="wrong">0</span></p>
+        </div>
 
-    <div class="score-ui">
-      <p>Score: <span class="score">0</span></p>
-      <p>Combo: <span class="combo">0</span></p>
-      <p>Miss: <span class="wrong">0</span></p>
+        <h1 class="kanji"></h1>
+
+        <form action="" class="our-form">
+          <input type ="text" class="our-field"/>
+          <button id="submit-btn">Submit</button>
+        </form>
+      </center>
     </div>
-
-    <p class="kanji"></p>
-    
-    <p class="correct-answer"></p>
-
-    <form action="" class="our-form">
-      <input type ="text" class="our-field"/>
-      <button id="submit-btn">Submit</button>
-    </form>
-
-  </div>
+  </center>
 
 </div>
 
@@ -74,8 +77,10 @@
 
 <!-- JavaScript -->
 <script type="text/javascript" src="/kanji_data/jlpt-5/questions.json"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.js"></script>
 <script src="js/app.js"></script>
-
+<script src="js/space.js"></script>
+<script src="js/gl-matrix.js"></script>
+<script src="js/write.js"></script>
 </body>
 </html>

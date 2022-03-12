@@ -9,6 +9,7 @@
  const scoreMenuX = document.querySelector('#scoreMenuX')
  const tableRef = document.querySelector("#tableau")
  const scoreX = document.querySelector("#scoreRes")
+ const main_ui = document.querySelector(".main-ui")
 
  // File links
  const jlpt5 = '../kanji_data/jlpt-5/questions.json'
@@ -132,7 +133,7 @@
      // WRONG ANSWER --                                                             --
    } else{
      wrongAnsAnim2()
-     revealAnsNoJQ()
+     //revealAnsNoJQ()
      //improve.word.push(state.kanj)
      //improve.read.push(state.hira)
      state.wrongAnswers++
@@ -225,22 +226,26 @@
    setTimeout(() => kanji.classList.remove("right-anim"),331)
  }
 
+
+
  var existingTimeout = null;
 
  function wrongAnsAnim2() {
   // sfx_no.play();
   Pop(state.hira);
 
-  $(".kanji").addClass("shake-no");
+  $(".main-ui").addClass("shake-no");
 
   if (existingTimeout !== null) {
     clearTimeout(existingTimeout);
   }
 
   existingTimeout = setTimeout(function() {
-    $(".kanji").removeClass("shake-no");
+    $(".main-ui").removeClass("shake-no");
   }, 300);
 }
+
+
 
 $(document).ready(function() {
 	$("body").append('<div id="dialogs"></div>');

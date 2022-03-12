@@ -1,38 +1,59 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
-body {
-  background: #000;
-  color: white;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  background-color: #000;
+	color: #FFF;
+	font-family: "Paragraph", sans-serif;
+	font-size: 16px;
+}
+
+body{
+  background: url(../media/flood.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0px -100px;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  line-height: 1; /* Proof that webdev is absolute cancer ? */
 }
 
 body::-webkit-scrollbar {
   width: 1em;
 }
 
-button {
-  cursor: pointer;
-  background: #023349;
-  line-height: 44px;
-  color: white;
-  padding: 0 24px;
-  border-radius: 4px;
-  border: 1px solid #ffffff12;
-  margin: 32px auto;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+canvas {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  opacity: 0.5;
 }
 
-button:hover {
-  border: 1px solid #ffffff16;
-  background: #ededed0f;
+.main-ui {
+  background-color: #000;
+  width: 60em;
+  padding: 1em;
+  overflow-y: hidden;
+  max-height: 100vh;
+  transition: 1s;
+  box-shadow: 0px 0px 256px rgb(255 255 0 / 20%);
+  padding-bottom: 1.2em;
 }
 
-button:active {
-  -webkit-transform: scale(0.96);
-          transform: scale(0.96);
-}
 
 
 .kanji {
@@ -46,14 +67,33 @@ button:active {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color: hsl(186.821, 37.6957%, 60%)
 }
 
-.wrong-anim {
-  color: red;
+.our-field {
+  font-size: 3.45em;
+  width: calc(100% - 2px);
+  background-color: #000;
+  border: 1px solid rgb(0, 238, 255);
+  color: rgb(0, 238, 255);
+  font-family: Heading;
+  letter-spacing: 6px;
+  text-align: center;
+  box-shadow: 0px 4px rgb(0, 238, 255);;
 }
 
-.right-anim {
-  color: #4de04d;
+#submit-btn {
+  font-size: 3em;
+  width: 100%;
+  background-color: #000;
+  border: 1px solid rgb(0, 238, 255);;
+  color: rgb(0, 238, 255);
+  text-align: center;
+  margin-top: 0.4em;
+  cursor: pointer;
+  box-shadow: 0px 8px rgb(0, 238, 255), 0px 8px 32px rgba(0, 225, 255, 0.3), inset 0px 8px 32px rgba(0, 197, 247, 0.3);
+  position: relative;
+  top: 0px;
 }
 
 #tableau th h1 {
@@ -136,7 +176,7 @@ button:active {
 /*# sourceMappingURL=style.css.map */
 
 .shake-no {
-  filter: hue-rotate(80deg) saturate(130%);
+  filter: hue-rotate(360deg) saturate(130%);
   animation: shake 0.2s linear infinite;
 }
 
