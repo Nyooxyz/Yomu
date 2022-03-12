@@ -21,13 +21,14 @@
 
 <div class="content">
 
-  <span class="top-ui"></span>
+    <button onclick="timerStart()" class="timerBtn">START</button>
 
-    <div id="timer">05:00</div>
-
-    <button id="top-btn start-btn" onclick="startTimer(fiveMinutes, display)">Start</button>
-    <button id="top-btn retry-btn" onclick="retryTimer()">Retry</button>
-    <button id="top-btn stop-btn" onclick="stopTimer()">Stop</button>
+    <div id="header">
+      <div id="countdown-number"></div>
+      <svg>
+        <circle r="40" cx="50" cy="50"></circle>
+      </svg>
+    </div>
 
 
 
@@ -39,7 +40,7 @@
 
         <form action="" class="our-form">
           <input type ="text" class="our-field"/>
-          <button id="submit-btn">Submit</button>
+          <button id="submit-btn">Guess</button>
         </form>
       </center>
     </div>

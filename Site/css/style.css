@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
+@font-face {
+  font-family: "script";
+  src: url("../media/font/scriptgame.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +16,7 @@
 html {
   background-color: #000;
 	color: #FFF;
-	font-family: "Paragraph", sans-serif;
+	font-family: "script", sans-serif;
 	font-size: 16px;
 }
 
@@ -28,7 +33,7 @@ body{
   left: 0;
   z-index: -1;
   height: 100%;
-  line-height: 1; /* Proof that webdev is absolute cancer ? */
+  line-height: 1; /* -- Idk at this point  -- */
 }
 
 /* ---      Scanlines      --- */
@@ -94,7 +99,9 @@ canvas {
   padding-bottom: 1.2em;
 }
 
-
+.timerBtn {
+  
+}
 
 .kanji {
   text-transform: uppercase;
@@ -123,6 +130,7 @@ canvas {
 }
 
 #submit-btn {
+  font-family: "script";
   font-size: 3em;
   width: 100%;
   background-color: #000;
@@ -267,4 +275,52 @@ canvas {
 	max-height: 0;
 	padding-top: 0;
 	padding-bottom: 0;
+}
+
+#header {
+  position: relative;
+  margin: auto;
+  margin-top: 45px;
+  margin-bottom: 40px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+#countdown-number {
+  color: white;
+  display: inline-block;
+  line-height: 40px;
+  position: absolute; /* -- I deeply hate css -- */
+  top:50;
+  right:482;
+  z-index: 22;
+  font-size: 20;
+}
+
+svg {
+  position: absolute;
+  top: 20;
+  right: 450;
+  width: 100;
+  height: 100;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg circle {
+  stroke-dasharray: 250px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 3px;
+  stroke: rgb(58, 190, 157);
+  fill: black;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 250px;
+  }
 }

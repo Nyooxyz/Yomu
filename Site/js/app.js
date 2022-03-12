@@ -26,57 +26,6 @@
  updateProblem()
 
 
-
-
- // -- Timer --
-
- const display = document.querySelector('#timer');
- var fiveMinutes = 60 * 5
- let stop = false
-
- function initTimer(duration, display) {
-
-   var timer = duration, minutes, seconds;
-   var refreshInterval = setInterval(updateTimer,1000)
-
-   function updateTimer() {
-       minutes = parseInt(timer / 60, 10);
-       seconds = parseInt(timer % 60, 10);
-
-       minutes = minutes < 10 ? "0" + minutes : minutes;
-       seconds = seconds < 10 ? "0" + seconds : seconds;
-
-       display.textContent = minutes + ":" + seconds;
-
-       if (--timer < 0) {
-           clearInterval(refreshInterval)
-           scoreMenu()
-       }
-       if (stop == true){
-         clearInterval(refreshInterval)
-         scoreMenu()
-       }
-   };
- }
-
- function startTimer(){
-   stop = false
-   initTimer(fiveMinutes,display)
- }
-
- function stopTimer(){
-   stop = true
- } 
-
- function retryTimer(){
-   stopTimer()
-   setTimeout(function(){
-     startTimer()
-   },1000)
- }
-
- // --      -- 
-
  let state = {
    score: 0,
    wrongAnswers: 0,
@@ -133,9 +82,6 @@
      // WRONG ANSWER --                                                             --
    } else{
      wrongAnsAnim2()
-     //revealAnsNoJQ()
-     //improve.word.push(state.kanj)
-     //improve.read.push(state.hira)
      state.wrongAnswers++
      state.combo = 0
      wrong.textContent = state.wrongAnswers
@@ -147,6 +93,8 @@
    }
  }
 
+ // -- Reset -- //
+
 
  function resetGame(){
    state.combo = 0
@@ -154,7 +102,7 @@
    state.score = 0
  }
 
- // Fin de game - Tableau
+ // -- Tableau -- //
 
  function showContent(){
    content.style.display = 'block'
@@ -189,44 +137,9 @@
    }
  }
 
- function revealAns(){
-
-   $button = $('.correct-answer');
-   $button.text("Right answer: "+state.hira)
-
-   $button.show()
-
-   setTimeout(function() {
-
-       $button.fadeOut();
-
-   }, 3000);
-
- }
-
- function revealAnsNoJQ(){
-   var ans = document.querySelector('.correct-answer')
-   ans.textContent = "Right answer: "+state.hira
-   ans.style.display = 'block'
-
-   setTimeout(function() {
-
-     ans.style.display = 'none'
-
- }, 3000);
-
- }
-
- function wrongAnsAnim(){
-   kanji.classList.add("wrong-anim")
-   setTimeout(() => kanji.classList.remove("wrong-anim"),331)
- }
- function rightAnsAnim(){
-   kanji.classList.add("right-anim")
-   setTimeout(() => kanji.classList.remove("right-anim"),331)
- }
 
 
+// -- Wrong Answer Animation -- //
 
  var existingTimeout = null;
 
@@ -245,6 +158,7 @@
   }, 300);
 }
 
+// -- PopUp Right Answer -- //
 
 
 $(document).ready(function() {
@@ -254,7 +168,7 @@ $(document).ready(function() {
 
 
 var popTimer = null;
-function Pop(text, time = 1000) {
+function Pop(text, time = 2000) {
 	$("#jin-pop").html(text);
 	$("#jin-pop").removeClass("hidden");
 
@@ -266,4 +180,22 @@ function Pop(text, time = 1000) {
 		$("#jin-pop").addClass("hidden");
 		popTimer = null;
 	}, time);
+}
+
+// -- Timer -- //
+
+var countdownNumberEl = document.getElementById('countdown-number');
+var countdown = 300;
+
+countdownNumberEl.textContent = countdown;
+
+function timerStart(){
+
+  $("svg circle").css("animation","countdown 300s linear infinite forwards");
+
+  setInterval(function() {
+    countdown = --countdown <= 0 ? 300 : countdown;
+  
+    countdownNumberEl.textContent = countdown;
+  }, 1000);
 }
