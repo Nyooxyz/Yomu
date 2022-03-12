@@ -1,0 +1,81 @@
+<html>
+<head>
+
+  <title>Site</title>
+
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- CSS links -->
+  <link rel="stylesheet" href="css/style.css">
+
+  
+
+</head>
+
+<body>
+
+<div class="content">
+
+  <span class="top-ui"></span>
+
+    <div id="timer">05:00</div>
+
+    <button id="top-btn start-btn" onclick="startTimer(fiveMinutes, display)">Start</button>
+    <button id="top-btn retry-btn" onclick="retryTimer()">Retry</button>
+    <button id="top-btn stop-btn" onclick="stopTimer()">Stop</button>
+
+
+
+  <div class="main-ui">
+
+    <div class="score-ui">
+      <p>Score: <span class="score">0</span></p>
+      <p>Combo: <span class="combo">0</span></p>
+      <p>Miss: <span class="wrong">0</span></p>
+    </div>
+
+    <p class="kanji"></p>
+    
+    <p class="correct-answer"></p>
+
+    <form action="" class="our-form">
+      <input type ="text" class="our-field"/>
+      <button id="submit-btn">Submit</button>
+    </form>
+
+  </div>
+
+</div>
+
+<div id="scoreMenuX" style="display:none;">
+
+  <span id="scoreRes"></span>
+  <table id="tableau">
+    <thead>
+      <tr>
+        <th><h2>Word</h2></th>
+        <th><h2>Reading</h2></th>
+        <th><h2>Misscount</h2></th>
+        <th><h2>Jisho</h2></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="restartButton" onclick="showContent()">Retry</button>
+
+</div>
+
+<!-- JavaScript -->
+<script type="text/javascript" src="/kanji_data/jlpt-5/questions.json"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

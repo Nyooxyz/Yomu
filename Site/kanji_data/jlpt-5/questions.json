@@ -1,0 +1,2351 @@
+[
+    {
+      "question": "学校",
+      "answer": "がっこう"
+    },
+    {
+    "question": "川",
+    "answer": "かわ"
+    },
+    {
+    "question": "手",
+    "answer": "て"
+    },
+    {
+    "question": "戸",
+    "answer": "と"
+    },
+    {
+    "question": "眼鏡",
+    "answer": "めがね"
+    },
+    {
+        "question": "煙草",
+        "answer": "たばこ"
+    },
+    {
+        "question": "赤",
+        "answer": "あか"
+    },
+    {
+        "question": "仕事",
+        "answer": "しごと"
+    },
+    {
+    "question": "英語",
+    "answer": "えいご"
+    },
+    {
+        "question": "問題",
+        "answer": "もんだい"
+    },
+    {
+        "question": "部屋",
+        "answer": "へや"
+    },
+    {
+        "question": "子供",
+        "answer": "こども"
+    },
+    {
+        "question": "雨",
+        "answer": "あめ"
+    },
+    {
+    "question": "先生",
+    "answer": "せんせい"
+    },
+    {
+    "question": "年",
+    "answer": "とし"
+    },
+    {
+    "question": "手紙",
+    "answer": "てがみ"
+    },
+    {
+    "question": "電話",
+    "answer": "でんわ"
+    },
+    {
+        "question": "水",
+        "answer": "みず"
+    },
+    {
+        "question": "病気",
+        "answer": "びょうき"
+    },
+    {
+        "question": "上げる",
+        "answer": "あげる"
+    },
+    {
+        "question": "結婚",
+        "answer": "けっこん"
+    },
+    {
+    "question": "言葉",
+    "answer": "ことば"
+    },
+    {
+    "question": "目",
+    "answer": "め"
+    },
+    {
+    "question": "走る",
+    "answer": "はしる"
+    },
+    {
+        "question": "名前",
+        "answer": "なまえ"
+      },
+  {
+      "question": "旅行",
+      "answer": "りょこう"
+      },
+      {
+      "question": "道",
+      "answer": "みち"
+      },
+      {
+      "question": "飛行機",
+      "answer": "ひこうき"
+      },
+      {
+      "question": "映画",
+      "answer": "えいが"
+      },
+      {
+          "question": "音楽",
+          "answer": "おんがく"
+      },
+      {
+          "question": "木",
+          "answer": "き"
+      },
+      {
+          "question": "大学",
+          "answer": "だいがく"
+      },
+      {
+      "question": "時計",
+      "answer": "とけい"
+      },
+      {
+          "question": "家族",
+          "answer": "かぞく"
+      },
+      {
+          "question": "花",
+          "answer": "はな"
+      },
+      {
+          "question": "猫",
+          "answer": "ねこ"
+      },
+      {
+          "question": "毎日",
+          "answer": "まいにち"
+      },
+      {
+      "question": "宿題",
+      "answer": "しゅくだい"
+      },
+      {
+      "question": "雪",
+      "answer": "ゆき"
+      },
+      {
+      "question": "山",
+      "answer": "やま"
+      },
+      {
+      "question": "窓",
+      "answer": "まど"
+      },
+      {
+          "question": "動物",
+          "answer": "どうぶつ"
+      },
+      {
+          "question": "夜",
+          "answer": "よる"
+      },
+      {
+          "question": "料理",
+          "answer": "りょうり"
+      },
+      {
+          "question": "夏",
+          "answer": "なつ"
+      },
+      {
+      "question": "新聞",
+      "answer": "しんぶん"
+      },
+      {
+      "question": "公園",
+      "answer": "こうえん"
+      },
+      {
+      "question": "意味",
+      "answer": "いみ"
+      },
+      {
+        "question": "自転車",
+        "answer": "じてんしゃ"
+      },
+  {
+      "question": "足",
+      "answer": "あし"
+      },
+      {
+      "question": "電車",
+      "answer": "でんしゃ"
+      },
+      {
+      "question": "散歩",
+      "answer": "さんぽ"
+      },
+      {
+      "question": "声",
+      "answer": "こえ"
+      },
+      {
+          "question": "朝",
+          "answer": "あさ"
+      },
+      {
+          "question": "歌",
+          "answer": "うた"
+      },
+      {
+          "question": "靴",
+          "answer": "くつ"
+      },
+      {
+      "question": "箱",
+      "answer": "はこ"
+      },
+      {
+          "question": "机",
+          "answer": "つくえ"
+      },
+      {
+          "question": "帽子",
+          "answer": "ぼうし"
+      },
+      {
+          "question": "海",
+          "answer": "うみ"
+      },
+      {
+          "question": "授業",
+          "answer": "じゅぎょう"
+      },
+      {
+      "question": "銀行",
+      "answer": "ぎんこう"
+      },
+      {
+      "question": "写真",
+      "answer": "しゃしん"
+      },
+      {
+      "question": "冬",
+      "answer": "ふゆ"
+      },
+      {
+      "question": "村",
+      "answer": "むら"
+      },
+      {
+          "question": "傘",
+          "answer": "かさ"
+      },
+      {
+          "question": "口",
+          "answer": "くち"
+      },
+      {
+          "question": "橋",
+          "answer": "はし"
+      },
+      {
+          "question": "病院",
+          "answer": "びょういん"
+      },
+      {
+      "question": "図書館",
+      "answer": "としょかん"
+      },
+      {
+      "question": "春",
+      "answer": "はる"
+      },
+      {
+      "question": "買い物",
+      "answer": "かいもの"
+      },
+      {
+        "question": "椅子",
+        "answer": "いす"
+      },
+  {
+      "question": "自動車",
+      "answer": "じどうしゃ"
+      },
+      {
+      "question": "色",
+      "answer": "いろ"
+      },
+      {
+      "question": "卵",
+      "answer": "たまご"
+      },
+      {
+        "question": "肉",
+        "answer": "にく"
+        },
+        {
+        "question": "風邪",
+        "answer": "かぜ"
+        },
+        {
+        "question": "掃除",
+        "answer": "そうじ"
+        },
+        {
+        "question": "紙",
+        "answer": "かみ"
+        },
+        {
+        "question": "鍵",
+        "answer": "かぎ"
+        },
+        {
+        "question": "雑誌",
+        "answer": "ざっし"
+        },
+        {
+        "question": "切符",
+        "answer": "きっぷ"
+        },
+        {
+        "question": "外国人",
+        "answer": "がいこくじん"
+        },
+        {
+        "question": "財布",
+        "answer": "さいふ"
+        },
+        {
+        "question": "鉛筆",
+        "answer": "えんぴつ"
+        },
+        {
+        "question": "大人",
+        "answer": "おとな"
+        },
+        {
+        "question": "塩",
+        "answer": "しお"
+        },
+        {
+        "question": "地図",
+        "answer": "ちず"
+        },
+        {
+        "question": "砂糖",
+        "answer": "さとう"
+        },
+        {
+        "question": "夏休み",
+        "answer": "なつやすみ"
+        },
+        {
+        "question": "池",
+        "answer": "いけ"
+        },
+        {
+        "question": "郵便局",
+        "answer": "ゆうびんきょく"
+        },
+        {
+        "question": "教室",
+        "answer": "きょうしつ"
+        },
+        {
+        "question": "耳",
+        "answer": "みみ"
+        },
+        {
+        "question": "切手",
+        "answer": "きって"
+        },
+        {
+        "question": "台所",
+        "answer": "だいどころ"
+        },
+        {
+        "question": "電気",
+        "answer": "でんき"
+        },
+        {
+        "question": "作文",
+        "answer": "さくぶん"
+        },
+        {
+            "question": "作文",
+            "answer": "さくぶん"
+            },
+            {
+            "question": "紅茶",
+            "answer": "こうちゃ"
+            },
+            {
+            "question": "家庭",
+            "answer": "かてい"
+            },
+            {
+            "question": "野菜",
+            "answer": "やさい"
+            },
+            {
+            "question": "風呂",
+            "answer": "ふろ"
+            },
+            {
+            "question": "玄関",
+            "answer": "げんかん"
+            },
+            {
+            "question": "地下鉄",
+            "answer": "ちかてつ"
+            },
+            {
+            "question": "鼻",
+            "answer": "はな"
+            },
+            {
+            "question": "緑",
+            "answer": "みどり"
+            },
+            {
+            "question": "昼",
+            "answer": "ひる"
+            },
+            {
+            "question": "西",
+            "answer": "にし"
+            },
+            {
+            "question": "白",
+            "answer": "しろ"
+            },
+            {
+            "question": "洗濯",
+            "answer": "せんたく"
+            },
+            {
+            "question": "冷蔵庫",
+            "answer": "れいぞうこ"
+            },
+            {
+            "question": "南",
+            "answer": "みなみ"
+            },
+            {
+            "question": "火曜日",
+            "answer": "かようび"
+            },
+            {
+            "question": "北",
+            "answer": "きた"
+            },
+            {
+            "question": "茶色",
+            "answer": "ちゃいろ"
+            },
+            {
+            "question": "黒",
+            "answer": "くろ"
+            },
+            {
+            "question": "喫茶店",
+            "answer": "きっさてん"
+            },
+            {
+                "question": "青",
+                "answer": "あお"
+                },
+                {
+                "question": "靴下",
+                "answer": "くつした"
+                },
+                {
+                "question": "封筒",
+                "answer": "ふうとう"
+                },
+                {
+                "question": "辺",
+                "answer": "へん"
+                },
+                {
+                "question": "黄色",
+                "answer": "きいろ"
+                },
+                {
+                "question": "映画館",
+                "answer": "えいがかん"
+                },
+                {
+                "question": "箸",
+                "answer": "はし"
+                },
+                {
+                "question": "食堂",
+                "answer": "しょくどう"
+                },
+                {
+                "question": "牛肉",
+                "answer": "ぎゅうにく"
+                },
+                {
+                "question": "交差点",
+                "answer": "こうさてん"
+                },
+                {
+                "question": "漢字",
+                "answer": "かんじ"
+                },
+                {
+                "question": "茶わん",
+                "answer": "ちゃわん"
+                },
+                {
+                "question": "曇り",
+                "answer": "くもり"
+                },
+                {
+                "question": "背広",
+                "answer": "せびろ"
+                },
+                {
+                "question": "灰皿",
+                "answer": "はいざら"
+                },
+                {
+                "question": "万年筆",
+                "answer": "まんねんひつ"
+                },
+                {
+                "question": "大使館",
+                "answer": "たいしかん"
+                },
+                {
+                "question": "交番",
+                "answer": "こうばん"
+                },
+                {
+                "question": "豚肉",
+                "answer": "ぶたにく"
+                },
+                {
+                "question": "飲む",
+                "answer": "のむ"
+                },
+                {
+                    "question": "頭-1",
+                    "answer": "あたま"
+                    },
+                    {
+                    "question": "日曜日",
+                    "answer": "にちようび"
+                    },
+                    {
+                    "question": "誕生日",
+                    "answer": "たんじょうび"
+                    },
+                    {
+                    "question": "可愛い",
+                    "answer": "かわいい"
+                    },
+                    {
+                    "question": "鞄",
+                    "answer": "かばん"
+                    },
+                    {
+                    "question": "土曜日",
+                    "answer": "どようび"
+                    },
+                    {
+                    "question": "月曜日",
+                    "answer": "げつようび"
+                    },
+                    {
+                    "question": "金曜日",
+                    "answer": "きんようび"
+                    },
+                    {
+                    "question": "花瓶",
+                    "answer": "かびん"
+                    },
+                    {
+                    "question": "木曜日",
+                    "answer": "もくようび"
+                    },
+                    {
+                    "question": "本棚",
+                    "answer": "ほんだな"
+                    },
+                    {
+                    "question": "石鹸",
+                    "answer": "せっけん"
+                    },
+                    {
+                    "question": "水曜日",
+                    "answer": "すいようび"
+                    },
+                    {
+                    "question": "飴",
+                    "answer": "あめ"
+                    },
+                    {
+                    "question": "八百屋",
+                    "answer": "やおや"
+                    },
+                    {
+                    "question": "成る",
+                    "answer": "なる"
+                    },
+                    {
+                    "question": "より",
+                    "answer": "より"
+                    },
+                    {
+                    "question": "一番",
+                    "answer": "いちばん"
+                    },
+                    {
+                    "question": "私",
+                    "answer": "わたし"
+                    },
+                    {
+                    "question": "外",
+                    "answer": "そと"
+                    },
+                    {
+                        "question": "姉",
+                        "answer": "あね"
+                        },
+                        {
+                        "question": "百",
+                        "answer": "ひゃく"
+                        },
+                        {
+                        "question": "在る",
+                        "answer": "ある"
+                        },
+                        {
+                        "question": "其の",
+                        "answer": "その"
+                        },
+                        {
+                        "question": "言う",
+                        "answer": "いう"
+                        },
+                        {
+                        "question": "出来る",
+                        "answer": "できる"
+                        },
+                        {
+                        "question": "良い",
+                        "answer": "よい"
+                        },
+                        {
+                        "question": "下さい",
+                        "answer": "ください"
+                        },
+                        {
+                        "question": "見る",
+                        "answer": "みる"
+                        },
+                        {
+                        "question": "此の",
+                        "answer": "この"
+                        },
+                        {
+                        "question": "自分",
+                        "answer": "じぶん"
+                        },
+                        {
+                        "question": "知る",
+                        "answer": "しる"
+                        },
+                        {
+                        "question": "持つ",
+                        "answer": "もつ"
+                        },
+                        {
+                        "question": "何",
+                        "answer": "なに"
+                        },
+                        {
+                        "question": "車",
+                        "answer": "くるま"
+                        },
+                        {
+                        "question": "話す",
+                        "answer": "はなす"
+                        },
+                        {
+                        "question": "今",
+                        "answer": "いま"
+                        },
+                        {
+                        "question": "今日",
+                        "answer": "きょう"
+                        },
+                        {
+                        "question": "買う",
+                        "answer": "かう"
+                        },
+                        {
+                        "question": "読む",
+                        "answer": "よむ"
+                        },
+                        {
+                            "question": "皆",
+                            "answer": "みんな"
+                            },
+                            {
+                            "question": "新しい",
+                            "answer": "あたらしい"
+                            },
+                            {
+                            "question": "話",
+                            "answer": "はなし"
+                            },
+                            {
+                            "question": "明日",
+                            "answer": "あした"
+                            },
+                            {
+                            "question": "昨日",
+                            "answer": "きのう"
+                            },
+                            {
+                            "question": "出る",
+                            "answer": "でる"
+                            },
+                            {
+                            "question": "勉強",
+                            "answer": "べんきょう"
+                            },
+                            {
+                            "question": "取る",
+                            "answer": "とる"
+                            },
+                            {
+                            "question": "誰",
+                            "answer": "だれ"
+                            },
+                            {
+                            "question": "お金",
+                            "answer": "おかね"
+                            },
+                            {
+                            "question": "男",
+                            "answer": "おとこ"
+                            },
+                            {
+                            "question": "犬",
+                            "answer": "いぬ"
+                            },
+                            {
+                            "question": "使う",
+                            "answer": "つかう"
+                            },
+                            {
+                            "question": "大変",
+                            "answer": "たいへん"
+                            },
+                            {
+                            "question": "待つ",
+                            "answer": "まつ"
+                            },
+                            {
+                            "question": "作る",
+                            "answer": "つくる"
+                            },
+                            {
+                            "question": "後ろ",
+                            "answer": "うしろ"
+                            },
+                            {
+                            "question": "町",
+                            "answer": "まち"
+                            },
+                            {
+                            "question": "駅",
+                            "answer": "えき"
+                            },
+                            {
+                            "question": "少し",
+                            "answer": "すこし"
+                            },
+                            {
+                                "question": "貴方-1",
+                                "answer": "あなた"
+                                },
+                                {
+                                "question": "欲しい",
+                                "answer": "ほしい"
+                                },
+                                {
+                                "question": "行く",
+                                "answer": "いく"
+                                },
+                                {
+                                "question": "乗る",
+                                "answer": "のる"
+                                },
+                                {
+                                "question": "大きな",
+                                "answer": "おおきな"
+                                },
+                                {
+                                "question": "医者",
+                                "answer": "いしゃ"
+                                },
+                                {
+                                "question": "終わる",
+                                "answer": "おわる"
+                                },
+                                {
+                                "question": "学生",
+                                "answer": "がくせい"
+                                },
+                                {
+                                "question": "長い",
+                                "answer": "ながい"
+                                },
+                                {
+                                "question": "何の",
+                                "answer": "どの"
+                                },
+                                {
+                                "question": "国",
+                                "answer": "くに"
+                                },
+                                {
+                                "question": "又",
+                                "answer": "また"
+                                },
+                                {
+                                "question": "高い",
+                                "answer": "たかい"
+                                },
+                                {
+                                "question": "余り",
+                                "answer": "あまり"
+                                },
+                                {
+                                "question": "難しい",
+                                "answer": "むずかしい"
+                                },
+                                {
+                                "question": "友達",
+                                "answer": "ともだち"
+                                },
+                                {
+                                "question": "本当",
+                                "answer": "ほんとう"
+                                },
+                                {
+                                "question": "一つ",
+                                "answer": "ひとつ"
+                                },
+                                {
+                                "question": "寝る",
+                                "answer": "ねる"
+                                },
+                                {
+                                "question": "生徒",
+                                "answer": "せいと"
+                                },
+                                {
+                                    "question": "忙しい",
+                                    "answer": "いそがしい"
+                                    },
+                                    {
+                                    "question": "両親",
+                                    "answer": "りょうしん"
+                                    },
+                                    {
+                                    "question": "泳ぐ",
+                                    "answer": "およぐ"
+                                    },
+                                    {
+                                    "question": "出す",
+                                    "answer": "だす"
+                                    },
+                                    {
+                                    "question": "立つ",
+                                    "answer": "たつ"
+                                    },
+                                    {
+                                    "question": "早い",
+                                    "answer": "はやい"
+                                    },
+                                    {
+                                    "question": "楽しい",
+                                    "answer": "たのしい"
+                                    },
+                                    {
+                                    "question": "面白い",
+                                    "answer": "おもしろい"
+                                    },
+                                    {
+                                    "question": "絵",
+                                    "answer": "え"
+                                    },
+                                    {
+                                    "question": "女の子",
+                                    "answer": "おんなのこ"
+                                    },
+                                    {
+                                    "question": "着る",
+                                    "answer": "きる"
+                                    },
+                                    {
+                                    "question": "上手",
+                                    "answer": "じょうず"
+                                    },
+                                    {
+                                    "question": "古い",
+                                    "answer": "ふるい"
+                                    },
+                                    {
+                                    "question": "強い",
+                                    "answer": "つよい"
+                                    },
+                                    {
+                                    "question": "全部",
+                                    "answer": "ぜんぶ"
+                                    },
+                                    {
+                                    "question": "呼ぶ",
+                                    "answer": "よぶ"
+                                    },
+                                    {
+                                    "question": "午後",
+                                    "answer": "ごご"
+                                    },
+                                    {
+                                    "question": "掛ける",
+                                    "answer": "かける"
+                                    },
+                                    {
+                                    "question": "辞書",
+                                    "answer": "じしょ"
+                                    },
+                                    {
+                                    "question": "天気",
+                                    "answer": "てんき"
+                                    },
+                                    {
+                                        "question": "体",
+                                        "answer": "からだ"
+                                        },
+                                        {
+                                        "question": "大きい",
+                                        "answer": "おおきい"
+                                        },
+                                        {
+                                        "question": "質問",
+                                        "answer": "しつもん"
+                                        },
+                                        {
+                                        "question": "夕べ",
+                                        "answer": "ゆうべ"
+                                        },
+                                        {
+                                        "question": "有名",
+                                        "answer": "ゆうめい"
+                                        },
+                                        {
+                                        "question": "兄",
+                                        "answer": "あに"
+                                        },
+                                        {
+                                        "question": "歌う",
+                                        "answer": "うたう"
+                                        },
+                                        {
+                                        "question": "上る",
+                                        "answer": "のぼる"
+                                        },
+                                        {
+                                        "question": "鳥",
+                                        "answer": "とり"
+                                        },
+                                        {
+                                        "question": "服",
+                                        "answer": "ふく"
+                                        },
+                                        {
+                                        "question": "時々",
+                                        "answer": "ときどき"
+                                        },
+                                        {
+                                        "question": "妹",
+                                        "answer": "いもうと"
+                                        },
+                                        {
+                                        "question": "二つ",
+                                        "answer": "ふたつ"
+                                        },
+                                        {
+                                        "question": "頼む",
+                                        "answer": "たのむ"
+                                        },
+                                        {
+                                        "question": "今朝",
+                                        "answer": "けさ"
+                                        },
+                                        {
+                                        "question": "お父さん",
+                                        "answer": "おとうさん"
+                                        },
+                                        {
+                                        "question": "遅い",
+                                        "answer": "おそい"
+                                        },
+                                        {
+                                        "question": "借りる",
+                                        "answer": "かりる"
+                                        },
+                                        {
+                                        "question": "薬",
+                                        "answer": "くすり"
+                                        },
+                                        {
+                                        "question": "庭",
+                                        "answer": "にわ"
+                                        },
+                                        {
+                                            "question": "外国",
+                                            "answer": "がいこく"
+                                            },
+                                            {
+                                            "question": "小さい",
+                                            "answer": "ちいさい"
+                                            },
+                                            {
+                                            "question": "元気",
+                                            "answer": "げんき"
+                                            },
+                                            {
+                                            "question": "弟",
+                                            "answer": "おとうと"
+                                            },
+                                            {
+                                            "question": "魚",
+                                            "answer": "さかな"
+                                            },
+                                            {
+                                            "question": "今年",
+                                            "answer": "ことし"
+                                            },
+                                            {
+                                            "question": "お母さん",
+                                            "answer": "おかあさん"
+                                            },
+                                            {
+                                            "question": "男の子",
+                                            "answer": "おとこのこ"
+                                            },
+                                            {
+                                            "question": "飛ぶ",
+                                            "answer": "とぶ"
+                                            },
+                                            {
+                                            "question": "売る",
+                                            "answer": "うる"
+                                            },
+                                            {
+                                            "question": "静か",
+                                            "answer": "しずか"
+                                            },
+                                            {
+                                            "question": "休む",
+                                            "answer": "やすむ"
+                                            },
+                                            {
+                                            "question": "食べ物",
+                                            "answer": "たべもの"
+                                            },
+                                            {
+                                            "question": "大切",
+                                            "answer": "たいせつ"
+                                            },
+                                            {
+                                            "question": "来週",
+                                            "answer": "らいしゅう"
+                                            },
+                                            {
+                                            "question": "警官",
+                                            "answer": "けいかん"
+                                            },
+                                            {
+                                            "question": "建物",
+                                            "answer": "たてもの"
+                                            },
+                                            {
+                                            "question": "暖かい",
+                                            "answer": "あたたかい"
+                                            },
+                                            {
+                                            "question": "降りる",
+                                            "answer": "おりる"
+                                            },
+                                            {
+                                            "question": "止まる",
+                                            "answer": "とまる"
+                                            },
+                                            {
+                                                "question": "一緒",
+                                                "answer": "いっしょ"
+                                                },
+                                                {
+                                                "question": "先週",
+                                                "answer": "せんしゅう"
+                                                },
+                                                {
+                                                "question": "白い",
+                                                "answer": "しろい"
+                                                },
+                                                {
+                                                "question": "二",
+                                                "answer": "に"
+                                                },
+                                                {
+                                                "question": "少ない",
+                                                "answer": "すくない"
+                                                },
+                                                {
+                                                "question": "赤い",
+                                                "answer": "あかい"
+                                                },
+                                                {
+                                                "question": "洗う",
+                                                "answer": "あらう"
+                                                },
+                                                {
+                                                "question": "嫌い",
+                                                "answer": "きらい"
+                                                },
+                                                {
+                                                "question": "立派",
+                                                "answer": "りっぱ"
+                                                },
+                                                {
+                                                "question": "暇",
+                                                "answer": "ひま"
+                                                },
+                                                {
+                                                "question": "お茶",
+                                                "answer": "おちゃ"
+                                                },
+                                                {
+                                                "question": "広い",
+                                                "answer": "ひろい"
+                                                },
+                                                {
+                                                "question": "去年",
+                                                "answer": "きょねん"
+                                                },
+                                                {
+                                                "question": "大好き",
+                                                "answer": "だいすき"
+                                                },
+                                                {
+                                                "question": "隣",
+                                                "answer": "となり"
+                                                },
+                                                {
+                                                "question": "女",
+                                                "answer": "おんな"
+                                                },
+                                                {
+                                                "question": "多分",
+                                                "answer": "たぶん"
+                                                },
+                                                {
+                                                "question": "切る",
+                                                "answer": "きる"
+                                                },
+                                                {
+                                                "question": "嫌",
+                                                "answer": "いや"
+                                                },
+                                                {
+                                                "question": "毎朝",
+                                                "answer": "まいあさ"
+                                                },
+                                                {
+                                                    "question": "荷物",
+                                                    "answer": "にもつ"
+                                                    },
+                                                    {
+                                                    "question": "番号",
+                                                    "answer": "ばんごう"
+                                                    },
+                                                    {
+                                                    "question": "返す",
+                                                    "answer": "かえす"
+                                                    },
+                                                    {
+                                                    "question": "来年",
+                                                    "answer": "らいねん"
+                                                    },
+                                                    {
+                                                    "question": "明るい",
+                                                    "answer": "あかるい"
+                                                    },
+                                                    {
+                                                    "question": "近い",
+                                                    "answer": "ちかい"
+                                                    },
+                                                    {
+                                                    "question": "向こう",
+                                                    "answer": "むこう"
+                                                    },
+                                                    {
+                                                    "question": "始め",
+                                                    "answer": "はじめ"
+                                                    },
+                                                    {
+                                                    "question": "痛い",
+                                                    "answer": "いたい"
+                                                    },
+                                                    {
+                                                    "question": "休み",
+                                                    "answer": "やすみ"
+                                                    },
+                                                    {
+                                                    "question": "練習",
+                                                    "answer": "れんしゅう"
+                                                    },
+                                                    {
+                                                    "question": "十",
+                                                    "answer": "じゅう"
+                                                    },
+                                                    {
+                                                    "question": "上着",
+                                                    "answer": "うわぎ"
+                                                    },
+                                                    {
+                                                    "question": "先月",
+                                                    "answer": "せんげつ"
+                                                    },
+                                                    {
+                                                    "question": "結構",
+                                                    "answer": "けっこう"
+                                                    },
+                                                    {
+                                                    "question": "毎年",
+                                                    "answer": "まいとし"
+                                                    },
+                                                    {
+                                                    "question": "兄弟",
+                                                    "answer": "きょうだい"
+                                                    },
+                                                    {
+                                                    "question": "来月",
+                                                    "answer": "らいげつ"
+                                                    },
+                                                    {
+                                                    "question": "五",
+                                                    "answer": "ご"
+                                                    },
+                                                    {
+                                                    "question": "飲み物",
+                                                    "answer": "のみもの"
+                                                    },
+                                                    {
+                                                        "question": "弱い",
+                                                        "answer": "よわい"
+                                                        },
+                                                        {
+                                                        "question": "牛乳",
+                                                        "answer": "ぎゅうにゅう"
+                                                        },
+                                                        {
+                                                        "question": "三",
+                                                        "answer": "さん"
+                                                        },
+                                                        {
+                                                        "question": "大丈夫",
+                                                        "answer": "だいじょうぶ"
+                                                        },
+                                                        {
+                                                        "question": "黒い",
+                                                        "answer": "くろい"
+                                                        },
+                                                        {
+                                                        "question": "皆さん",
+                                                        "answer": "みなさん"
+                                                        },
+                                                        {
+                                                        "question": "半分",
+                                                        "answer": "はんぶん"
+                                                        },
+                                                        {
+                                                        "question": "押す",
+                                                        "answer": "おす"
+                                                        },
+                                                        {
+                                                        "question": "勤める",
+                                                        "answer": "つとめる"
+                                                        },
+                                                        {
+                                                        "question": "熱い",
+                                                        "answer": "あつい"
+                                                        },
+                                                        {
+                                                        "question": "三つ",
+                                                        "answer": "みっつ"
+                                                        },
+                                                        {
+                                                        "question": "果物",
+                                                        "answer": "くだもの"
+                                                        },
+                                                        {
+                                                        "question": "今週",
+                                                        "answer": "こんしゅう"
+                                                        },
+                                                        {
+                                                        "question": "右",
+                                                        "answer": "みぎ"
+                                                        },
+                                                        {
+                                                        "question": "甘い",
+                                                        "answer": "あまい"
+                                                        },
+                                                        {
+                                                        "question": "晩",
+                                                        "answer": "ばん"
+                                                        },
+                                                        {
+                                                        "question": "幾つ",
+                                                        "answer": "いくつ"
+                                                        },
+                                                        {
+                                                        "question": "階段",
+                                                        "answer": "かいだん"
+                                                        },
+                                                        {
+                                                        "question": "大勢",
+                                                        "answer": "おおぜい"
+                                                        },
+                                                        {
+                                                        "question": "張る",
+                                                        "answer": "はる"
+                                                        },
+                                                        {
+                                                            "question": "夕方",
+                                                            "answer": "ゆうがた"
+                                                            },
+                                                            {
+                                                            "question": "低い",
+                                                            "answer": "ひくい"
+                                                            },
+                                                            {
+                                                            "question": "左",
+                                                            "answer": "ひだり"
+                                                            },
+                                                            {
+                                                            "question": "毎週",
+                                                            "answer": "まいしゅう"
+                                                            },
+                                                            {
+                                                            "question": "下手",
+                                                            "answer": "へた"
+                                                            },
+                                                            {
+                                                            "question": "千",
+                                                            "answer": "せん"
+                                                            },
+                                                            {
+                                                            "question": "渡す",
+                                                            "answer": "わたす"
+                                                            },
+                                                            {
+                                                            "question": "午前",
+                                                            "answer": "ごぜん"
+                                                            },
+                                                            {
+                                                            "question": "丸い",
+                                                            "answer": "まるい"
+                                                            },
+                                                            {
+                                                            "question": "便利",
+                                                            "answer": "べんり"
+                                                            },
+                                                            {
+                                                            "question": "今月",
+                                                            "answer": "こんげつ"
+                                                            },
+                                                            {
+                                                            "question": "浴びる",
+                                                            "answer": "あびる"
+                                                            },
+                                                            {
+                                                            "question": "半",
+                                                            "answer": "はん"
+                                                            },
+                                                            {
+                                                            "question": "洋服",
+                                                            "answer": "ようふく"
+                                                            },
+                                                            {
+                                                            "question": "撮る",
+                                                            "answer": "とる"
+                                                            },
+                                                            {
+                                                            "question": "締める",
+                                                            "answer": "しめる"
+                                                            },
+                                                            {
+                                                            "question": "文章",
+                                                            "answer": "ぶんしょう"
+                                                            },
+                                                            {
+                                                            "question": "薄い",
+                                                            "answer": "うすい"
+                                                            },
+                                                            {
+                                                            "question": "八",
+                                                            "answer": "はち"
+                                                            },
+                                                            {
+                                                            "question": "横",
+                                                            "answer": "よこ"
+                                                            },
+                                                            {
+                                                                "question": "六",
+                                                                "answer": "ろく"
+                                                                },
+                                                                {
+                                                                "question": "四つ",
+                                                                "answer": "よっつ"
+                                                                },
+                                                                {
+                                                                "question": "丈夫",
+                                                                "answer": "じょうぶ"
+                                                                },
+                                                                {
+                                                                "question": "毎晩",
+                                                                "answer": "まいばん"
+                                                                },
+                                                                {
+                                                                "question": "東",
+                                                                "answer": "ひがし"
+                                                                },
+                                                                {
+                                                                "question": "五つ",
+                                                                "answer": "いつつ"
+                                                                },
+                                                                {
+                                                                "question": "晴れ",
+                                                                "answer": "はれ"
+                                                                },
+                                                                {
+                                                                "question": "細い",
+                                                                "answer": "ほそい"
+                                                                },
+                                                                {
+                                                                "question": "廊下",
+                                                                "answer": "ろうか"
+                                                                },
+                                                                {
+                                                                "question": "太い",
+                                                                "answer": "ふとい"
+                                                                },
+                                                                {
+                                                                "question": "縦",
+                                                                "answer": "たて"
+                                                                },
+                                                                {
+                                                                "question": "七つ",
+                                                                "answer": "ななつ"
+                                                                },
+                                                                {
+                                                                "question": "九つ",
+                                                                "answer": "ここのつ"
+                                                                },
+                                                                {
+                                                                "question": "留学生",
+                                                                "answer": "りゅうがくせい"
+                                                                },
+                                                                {
+                                                                "question": "一昨年",
+                                                                "answer": "おととし"
+                                                                },
+                                                                {
+                                                                "question": "人",
+                                                                "answer": "ひと"
+                                                                },
+                                                                {
+                                                                "question": "居る",
+                                                                "answer": "いる"
+                                                                },
+                                                                {
+                                                                "question": "其れ",
+                                                                "answer": "それ"
+                                                                },
+                                                                {
+                                                                "question": "物",
+                                                                "answer": "もの"
+                                                                },
+                                                                {
+                                                                "question": "家",
+                                                                "answer": "いえ"
+                                                                },
+                                                                {
+                                                                    "question": "本",
+                                                                    "answer": "ほん"
+                                                                    },
+                                                                    {
+                                                                    "question": "迚も",
+                                                                    "answer": "とても"
+                                                                    },
+                                                                    {
+                                                                    "question": "会う",
+                                                                    "answer": "あう"
+                                                                    },
+                                                                    {
+                                                                    "question": "好き",
+                                                                    "answer": "すき"
+                                                                    },
+                                                                    {
+                                                                    "question": "分かる",
+                                                                    "answer": "わかる"
+                                                                    },
+                                                                    {
+                                                                    "question": "此れ",
+                                                                    "answer": "これ"
+                                                                    },
+                                                                    {
+                                                                    "question": "聞く",
+                                                                    "answer": "きく"
+                                                                    },
+                                                                    {
+                                                                    "question": "所",
+                                                                    "answer": "ところ"
+                                                                    },
+                                                                    {
+                                                                    "question": "先",
+                                                                    "answer": "さき"
+                                                                    },
+                                                                    {
+                                                                    "question": "何時も",
+                                                                    "answer": "いつも"
+                                                                    },
+                                                                    {
+                                                                    "question": "書く",
+                                                                    "answer": "かく"
+                                                                    },
+                                                                    {
+                                                                    "question": "沢山",
+                                                                    "answer": "たくさん"
+                                                                    },
+                                                                    {
+                                                                    "question": "入る",
+                                                                    "answer": "はいる"
+                                                                    },
+                                                                    {
+                                                                    "question": "置く",
+                                                                    "answer": "おく"
+                                                                    },
+                                                                    {
+                                                                    "question": "何処",
+                                                                    "answer": "どこ"
+                                                                    },
+                                                                    {
+                                                                    "question": "住む",
+                                                                    "answer": "すむ"
+                                                                    },
+                                                                    {
+                                                                    "question": "食べる",
+                                                                    "answer": "たべる"
+                                                                    },
+                                                                    {
+                                                                    "question": "歩く",
+                                                                    "answer": "あるく"
+                                                                    },
+                                                                    {
+                                                                    "question": "働く",
+                                                                    "answer": "はたらく"
+                                                                    },
+                                                                    {
+                                                                    "question": "着く",
+                                                                    "answer": "つく"
+                                                                    },
+                                                                    {
+                                                                        "question": "上",
+                                                                        "answer": "うえ"
+                                                                        },
+                                                                        {
+                                                                        "question": "悪い",
+                                                                        "answer": "わるい"
+                                                                        },
+                                                                        {
+                                                                        "question": "教える",
+                                                                        "answer": "おしえる"
+                                                                        },
+                                                                        {
+                                                                        "question": "降る",
+                                                                        "answer": "ふる"
+                                                                        },
+                                                                        {
+                                                                        "question": "死ぬ",
+                                                                        "answer": "しぬ"
+                                                                        },
+                                                                        {
+                                                                        "question": "帰る",
+                                                                        "answer": "かえる"
+                                                                        },
+                                                                        {
+                                                                        "question": "忘れる",
+                                                                        "answer": "わすれる"
+                                                                        },
+                                                                        {
+                                                                        "question": "多い",
+                                                                        "answer": "おおい"
+                                                                        },
+                                                                        {
+                                                                        "question": "出掛ける",
+                                                                        "answer": "でかける"
+                                                                        },
+                                                                        {
+                                                                        "question": "若い",
+                                                                        "answer": "わかい"
+                                                                        },
+                                                                        {
+                                                                        "question": "掛かる",
+                                                                        "answer": "かかる"
+                                                                        },
+                                                                        {
+                                                                        "question": "同じ",
+                                                                        "answer": "おなじ"
+                                                                        },
+                                                                        {
+                                                                        "question": "起きる",
+                                                                        "answer": "おきる"
+                                                                        },
+                                                                        {
+                                                                        "question": "座る",
+                                                                        "answer": "すわる"
+                                                                        },
+                                                                        {
+                                                                        "question": "店",
+                                                                        "answer": "みせ"
+                                                                        },
+                                                                        {
+                                                                        "question": "入れる",
+                                                                        "answer": "いれる"
+                                                                        },
+                                                                        {
+                                                                        "question": "何方",
+                                                                        "answer": "どなた"
+                                                                        },
+                                                                        {
+                                                                        "question": "一寸",
+                                                                        "answer": "ちょっと"
+                                                                        },
+                                                                        {
+                                                                        "question": "疲れる",
+                                                                        "answer": "つかれる"
+                                                                        },
+                                                                        {
+                                                                        "question": "開ける",
+                                                                        "answer": "あける"
+                                                                        },
+                                                                        {
+                                                                            "question": "何故",
+                                                                            "answer": "なぜ"
+                                                                            },
+                                                                            {
+                                                                            "question": "一日",
+                                                                            "answer": "いちにち"
+                                                                            },
+                                                                            {
+                                                                            "question": "寒い",
+                                                                            "answer": "さむい"
+                                                                            },
+                                                                            {
+                                                                            "question": "見せる",
+                                                                            "answer": "みせる"
+                                                                            },
+                                                                            {
+                                                                            "question": "違う",
+                                                                            "answer": "ちがう"
+                                                                            },
+                                                                            {
+                                                                            "question": "如何して",
+                                                                            "answer": "どうして"
+                                                                            },
+                                                                            {
+                                                                            "question": "付ける",
+                                                                            "answer": "つける"
+                                                                            },
+                                                                            {
+                                                                            "question": "覚える",
+                                                                            "answer": "おぼえる"
+                                                                            },
+                                                                            {
+                                                                            "question": "近く",
+                                                                            "answer": "ちかく"
+                                                                            },
+                                                                            {
+                                                                            "question": "風",
+                                                                            "answer": "かぜ"
+                                                                            },
+                                                                            {
+                                                                            "question": "困る",
+                                                                            "answer": "こまる"
+                                                                            },
+                                                                            {
+                                                                            "question": "生まれる",
+                                                                            "answer": "うまれる"
+                                                                            },
+                                                                            {
+                                                                            "question": "丁度",
+                                                                            "answer": "ちょうど"
+                                                                            },
+                                                                            {
+                                                                            "question": "初めて",
+                                                                            "answer": "はじめて"
+                                                                            },
+                                                                            {
+                                                                            "question": "始まる",
+                                                                            "answer": "はじまる"
+                                                                            },
+                                                                            {
+                                                                            "question": "貸す",
+                                                                            "answer": "かす"
+                                                                            },
+                                                                            {
+                                                                            "question": "奇麗",
+                                                                            "answer": "きれい"
+                                                                            },
+                                                                            {
+                                                                            "question": "幾ら",
+                                                                            "answer": "いくら"
+                                                                            },
+                                                                            {
+                                                                            "question": "空",
+                                                                            "answer": "そら"
+                                                                            },
+                                                                            {
+                                                                            "question": "弾く",
+                                                                            "answer": "ひく"
+                                                                            },
+                                                                            {
+                                                                                "question": "暑い",
+                                                                                "answer": "あつい"
+                                                                                },
+                                                                                {
+                                                                                "question": "遊ぶ",
+                                                                                "answer": "あそぶ"
+                                                                                },
+                                                                                {
+                                                                                "question": "然し",
+                                                                                "answer": "しかし"
+                                                                                },
+                                                                                {
+                                                                                "question": "無くす",
+                                                                                "answer": "なくす"
+                                                                                },
+                                                                                {
+                                                                                "question": "色々",
+                                                                                "answer": "いろいろ"
+                                                                                },
+                                                                                {
+                                                                                "question": "渡る",
+                                                                                "answer": "わたる"
+                                                                                },
+                                                                                {
+                                                                                "question": "暗い",
+                                                                                "answer": "くらい"
+                                                                                },
+                                                                                {
+                                                                                "question": "此方",
+                                                                                "answer": "こちら"
+                                                                                },
+                                                                                {
+                                                                                "question": "重い",
+                                                                                "answer": "おもい"
+                                                                                },
+                                                                                {
+                                                                                "question": "今晩",
+                                                                                "answer": "こんばん"
+                                                                                },
+                                                                                {
+                                                                                "question": "美味しい",
+                                                                                "answer": "おいしい"
+                                                                                },
+                                                                                {
+                                                                                "question": "消す",
+                                                                                "answer": "けす"
+                                                                                },
+                                                                                {
+                                                                                "question": "易しい",
+                                                                                "answer": "やさしい"
+                                                                                },
+                                                                                {
+                                                                                "question": "閉める",
+                                                                                "answer": "しめる"
+                                                                                },
+                                                                                {
+                                                                                "question": "安い",
+                                                                                "answer": "やすい"
+                                                                                },
+                                                                                {
+                                                                                "question": "遠い",
+                                                                                "answer": "とおい"
+                                                                                },
+                                                                                {
+                                                                                "question": "短い",
+                                                                                "answer": "みじかい"
+                                                                                },
+                                                                                {
+                                                                                "question": "晴れる",
+                                                                                "answer": "はれる"
+                                                                                },
+                                                                                {
+                                                                                "question": "曲がる",
+                                                                                "answer": "まがる"
+                                                                                },
+                                                                                {
+                                                                                "question": "消える",
+                                                                                "answer": "きえる"
+                                                                                },
+                                                                                {
+                                                                                    "question": "冷たい",
+                                                                                    "answer": "つめたい"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "青い",
+                                                                                    "answer": "あおい"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "吹く",
+                                                                                    "answer": "ふく"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "頁",
+                                                                                    "answer": "ページ"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "奥さん",
+                                                                                    "answer": "おくさん"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "引く",
+                                                                                    "answer": "ひく"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "段々",
+                                                                                    "answer": "だんだん"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "習う",
+                                                                                    "answer": "ならう"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "彼処",
+                                                                                    "answer": "あそこ"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "狭い",
+                                                                                    "answer": "せまい"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "軽い",
+                                                                                    "answer": "かるい"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "脱ぐ",
+                                                                                    "answer": "ぬぐ"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "万",
+                                                                                    "answer": "まん"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "煩い",
+                                                                                    "answer": "うるさい"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "並ぶ",
+                                                                                    "answer": "ならぶ"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "吸う",
+                                                                                    "answer": "すう"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "詰らない",
+                                                                                    "answer": "つまらない"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "閉まる",
+                                                                                    "answer": "しまる"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "咲く",
+                                                                                    "answer": "さく"
+                                                                                    },
+                                                                                    {
+                                                                                    "question": "真っ直ぐ",
+                                                                                    "answer": "まっすぐ"
+                                                                                    },
+                                                                                    {
+                                                                                        "question": "一",
+                                                                                        "answer": "いち"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "お祖母さん",
+                                                                                        "answer": "おばあさん"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "涼しい",
+                                                                                        "answer": "すずしい"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "其方",
+                                                                                        "answer": "そちら"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "厚い",
+                                                                                        "answer": "あつい"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "お兄さん",
+                                                                                        "answer": "おにいさん"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "お姉さん",
+                                                                                        "answer": "おねえさん"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "汚い",
+                                                                                        "answer": "きたない"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "危ない",
+                                                                                        "answer": "あぶない"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "並べる",
+                                                                                        "answer": "ならべる"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "お腹",
+                                                                                        "answer": "おなか"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "不味い",
+                                                                                        "answer": "まずい"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "曇る",
+                                                                                        "answer": "くもる"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "ご飯",
+                                                                                        "answer": "ごはん"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "黄色い",
+                                                                                        "answer": "きいろい"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "お菓子",
+                                                                                        "answer": "おかし"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "磨く",
+                                                                                        "answer": "みがく"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "賑やか",
+                                                                                        "answer": "にぎやか"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "鳴く",
+                                                                                        "answer": "なく"
+                                                                                        },
+                                                                                        {
+                                                                                        "question": "夕飯",
+                                                                                        "answer": "ゆうはん"
+                                                                                        },
+                                                                                        {
+                                                                                            "question": "葉書",
+                                                                                            "answer": "はがき"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "朝ご飯",
+                                                                                            "answer": "あさごはん"
+                                                                                            },
+                                                                                            
+                                                                                            {
+                                                                                            "question": "六つ",
+                                                                                            "answer": "むっつ"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "お手洗い",
+                                                                                            "answer": "おてあらい"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "お巡りさん",
+                                                                                            "answer": "おまわりさん"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "差す",
+                                                                                            "answer": "さす"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "零",
+                                                                                            "answer": "れい"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "二十日",
+                                                                                            "answer": "はつか"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "粁",
+                                                                                            "answer": "キロメートル"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "八つ",
+                                                                                            "answer": "やっつ"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "再来年",
+                                                                                            "answer": "さらいねん"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "燐寸",
+                                                                                            "answer": "マッチ"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "良く",
+                                                                                            "answer": "よく"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "其処",
+                                                                                            "answer": "そこ"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "小さな",
+                                                                                            "answer": "ちいさな"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "答える",
+                                                                                            "answer": "こたえる"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "もう一度",
+                                                                                            "answer": "もういちど"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "要る",
+                                                                                            "answer": "いる"
+                                                                                            },
+                                                                                            {
+                                                                                            "question": "背",
+                                                                                            "answer": "せ"
+                                                                                            },
+                                                                                            {
+                                                                                                "question": "お弁当",
+                                                                                                "answer": "おべんとう"
+                                                                                                },
+                                                                                                {
+                                                                                                "question": "晩御飯",
+                                                                                                "answer": "ばんごはん"
+                                                                                                },
+                                                                                                {
+                                                                                                "question": "昼ご飯",
+                                                                                                "answer": "ひるごはん"
+                                                                                                },
+                                                                                                {
+                                                                                                "question": "等",
+                                                                                                "answer": "など"
+                                                                                                },
+                                                                                                {
+                                                                                                "question": "中",
+                                                                                                "answer": "なか"
+                                                                                                },
+                                                                                                    {
+                                                                                                    "question": "米",
+                                                                                                    "answer": "メートル"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "question": "一昨日",
+                                                                                                        "answer": "おととい"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "醤油",
+                                                                                                        "answer": "しょうゆ"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "はい",
+                                                                                                        "answer": "はい"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "為る",
+                                                                                                        "answer": "する"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "彼",
+                                                                                                        "answer": "あれ"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "一日",
+                                                                                                        "answer": "ついたち"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "三日",
+                                                                                                        "answer": "みっか"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "二日",
+                                                                                                        "answer": "ふつか"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "五日",
+                                                                                                        "answer": "いつか"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "十日",
+                                                                                                        "answer": "とおか"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "六日",
+                                                                                                        "answer": "むいか"
+                                                                                                        },
+                                                                                                        {
+                                                                                                        "question": "八日",
+                                                                                                        "answer": "ようか"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "question": "九日",
+                                                                                                            "answer": "ここのか"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "来る",
+                                                                                                            "answer": "くる"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "後",
+                                                                                                            "answer": "あと"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "会社",
+                                                                                                            "answer": "かいしゃ"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "一人",
+                                                                                                            "answer": "ひとり"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "二人",
+                                                                                                            "answer": "ふたり"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "側",
+                                                                                                            "answer": "そば"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "否",
+                                                                                                            "answer": "いいえ"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "辛い",
+                                                                                                            "answer": "からい"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "門",
+                                                                                                            "answer": "もん"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "角",
+                                                                                                            "answer": "かど"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "毎月",
+                                                                                                            "answer": "まいつき"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "七",
+                                                                                                            "answer": "しち"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "伯母さん",
+                                                                                                            "answer": "おばさん"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "四",
+                                                                                                            "answer": "し"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "お風呂",
+                                                                                                            "answer": "おふろ"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "お酒",
+                                                                                                            "answer": "おさけ"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "入口",
+                                                                                                            "answer": "いりぐち"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "出口",
+                                                                                                            "answer": "でぐち"
+                                                                                                            },
+                                                                                                            {
+                                                                                                            "question": "お皿",
+                                                                                                            "answer": "おさら"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "question": "此処",
+                                                                                                                "answer": "ここ"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "前",
+                                                                                                                "answer": "まえ"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "如何",
+                                                                                                                "answer": "どう"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "方",
+                                                                                                                "answer": "かた"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "未だ",
+                                                                                                                "answer": "まだ"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "何時",
+                                                                                                                "answer": "いつ"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "他",
+                                                                                                                "answer": "ほか"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "次",
+                                                                                                                "answer": "つぎ"
+                                                                                                                }, 
+                                                                                                                {
+                                                                                                                "question": "何方",
+                                                                                                                "answer": "どちら"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "誰か",
+                                                                                                                "answer": "だれか"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "開く",
+                                                                                                                "answer": "あく"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "下",
+                                                                                                                "answer": "した"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                "question": "然して",
+                                                                                                                "answer": "そして"
+                                                                                                                },  
+                                                                                                                    {
+                                                                                                                    "question": "其れから",
+                                                                                                                    "answer": "それから"
+                                                                                                                    },  
+                                                                                                                    {
+                                                                                                                    "question": "其れでは",
+                                                                                                                    "answer": "それでは"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "明後日",
+                                                                                                                    "answer": "あさって"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "何れ",
+                                                                                                                    "answer": "どれ"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "二十歳",
+                                                                                                                    "answer": "はたち"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "彼方",
+                                                                                                                    "answer": "あちら"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "温い",
+                                                                                                                    "answer": "ぬるい"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "四日",
+                                                                                                                    "answer": "よっか"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                    "question": "七日",
+                                                                                                                    "answer": "なのか"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "question": "然うして",
+                                                                                                                        "answer": "そうして"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "瓦",
+                                                                                                                        "answer": "グラム"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "瓩",
+                                                                                                                        "answer": "キログラム"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "直ぐに",
+                                                                                                                        "answer": "すぐに"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "一月",
+                                                                                                                        "answer": "ひとつき"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "秋",
+                                                                                                                        "answer": "あき"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "字引",
+                                                                                                                        "answer": "じびき"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "咖哩",
+                                                                                                                        "answer": "カレー"
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                        "question": "三",
+                                                                                                                        "answer": "サン"
+                                                                                                                        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+  ]
