@@ -1,4 +1,8 @@
- // HTML links
+  // -- First time Im spending this much time on a project without dropping  -- //
+    // -- Really hope to see it being useful to somebody at least not only for me  -- //
+      // -- And sorry again If my terrible coding is making alot of people cringe this is horrible I know me and my few neurons did our best -- //
+ 
+ // First mess
  const ourForm = document.querySelector(".our-form")
  const ourField = document.querySelector(".our-field")
  const score = document.querySelector(".score")
@@ -18,15 +22,15 @@
  const jlpt2 = ''
  const jlpt1 = ''
 
- const diff = 1 // Difficulté choisie
-
-
- 
+ // const diff = 1 // Game Difficulty WIP
 
 
 
- updateProblem()
+ updateProblem() // json nightmare begins
 
+
+
+ // -- Game state -- //
 
  let state = {
    score: 0,
@@ -36,13 +40,10 @@
    hira: null
  }
 
- /* let improve = {
-   word: [],
-   read: []
- } */
+  // -- Initialisation -- //
 
  function initProblem(data){
-   let i = randomIntFromInterval(0,587)
+   let i = randomIntFromInterval(0,587) // Choosing random word
    
    state.kanj = data[i]["question"]
    state.hira = data[i]["answer"]
@@ -52,12 +53,13 @@
    ourField.focus()
  }
 
- function updateProblem(){
+
+ function updateProblem(){ 
    fetch(jlpt5)
-   .then(response => response.json())
+   .then(response => response.json()) 
    .then(function(data){
      initProblem(data)
-     console.log(state.hira)
+     console.log(state.hira) // Coz Im dumb
    })
  }
 
@@ -65,19 +67,21 @@
    return Math.floor(Math.random() * (max - min + 1) + min)
  }
 
- ourForm.addEventListener("submit", handleSubmit)
+ // -- Handling input -- //
+
+ ourForm.addEventListener("submit", handleSubmit) 
 
  function handleSubmit(e){
    e.preventDefault()
 
 
-     // RIGHT ANSWER --                                                              --
+     // RIGHT ANSWER --                                                              
    if (ourField.value === state.hira){
 
     rightAnsAnim2()
     setTimeout("rightAns()", 300)
     
-     // WRONG ANSWER --                                                             --
+     // WRONG ANSWER --                                                             
    } else{
      wrongAnsAnim2()
      wrongAns()
