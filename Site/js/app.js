@@ -19,6 +19,8 @@
  const jlpt1 = ''
 
  const diff = 1 // Difficulté choisie
+
+
  
 
 
@@ -69,29 +71,39 @@
    e.preventDefault()
 
 
-   // RIGHT ANSWER --                                                              --
+     // RIGHT ANSWER --                                                              --
    if (ourField.value === state.hira){
-     rightAnsAnim()
-     state.combo++
-     state.score += 300 + ((300 * state.combo * diff)/15)
-     score.textContent = state.score
-     combo.textContent = state.combo
-     updateProblem()
-     
 
+    rightAnsAnim2()
+    setTimeout("rightAns()", 300)
+    
      // WRONG ANSWER --                                                             --
    } else{
      wrongAnsAnim2()
-     state.wrongAnswers++
-     state.combo = 0
-     wrong.textContent = state.wrongAnswers
-     combo.textContent = state.combo
-
-     addRow(state.kanj,state.hira)
-
-     updateProblem()
+     wrongAns()
    }
  }
+
+ function rightAns(){
+  state.combo++
+  state.score += 300 + ((300 * state.combo * diff)/15)
+  score.textContent = state.score
+  combo.textContent = state.combo
+  updateProblem()
+ }
+
+ function wrongAns(){
+  state.wrongAnswers++
+  state.combo = 0
+  wrong.textContent = state.wrongAnswers
+  combo.textContent = state.combo
+
+  addRow(state.kanj,state.hira)
+
+  updateProblem()
+
+ }
+
 
  // -- Reset -- //
 
@@ -139,7 +151,7 @@
 
 
 
-// -- Wrong Answer Animation -- //
+// -- Answers Animations -- //
 
  var existingTimeout = null;
 
@@ -155,6 +167,20 @@
 
   existingTimeout = setTimeout(function() {
     $(".main-ui").removeClass("shake-no");
+  }, 300);
+}
+
+function rightAnsAnim2() {
+  // sfx_no.play();
+
+  $(".main-ui").addClass("yes");
+
+  if (existingTimeout !== null) {
+    clearTimeout(existingTimeout);
+  }
+
+  existingTimeout = setTimeout(function() {
+    $(".main-ui").removeClass("yes");
   }, 300);
 }
 
@@ -184,18 +210,53 @@ function Pop(text, time = 2000) {
 
 // -- Timer -- //
 
-var countdownNumberEl = document.getElementById('countdown-number');
-var countdown = 300;
+var initial = 30000;
+var count = initial;
+var counter; // 10 will  run it every 100th of a second
+var initialMillis;
+var timerEL = document.getElementById("timer")
 
-countdownNumberEl.textContent = countdown;
-
-function timerStart(){
-
-  $("svg circle").css("animation","countdown 300s linear infinite forwards");
-
-  setInterval(function() {
-    countdown = --countdown <= 0 ? 300 : countdown;
-  
-    countdownNumberEl.textContent = countdown;
-  }, 1000);
+function timer() {
+    if (count <= 0) {  //  end of game
+        clearInterval(counter);
+        scoreMenu()
+        timerEL.style.display = "none";
+        return;
+    }
+    var current = Date.now();
+    
+    count = count - (current - initialMillis);
+    initialMillis = current;
+    displayCount(count);
 }
+
+function displayCount(count) {
+  let res = Math.floor(count / 1000);
+  let milliseconds = count.toString().substring(3,4);
+  let seconds = res % 60;
+  let minutes = (res - seconds) / 60;
+
+  timerEL.innerHTML =
+      minutes + ':' + seconds  + "<span id='ms'>" +  milliseconds + "</span>";
+}
+
+$('#start').on('click', function () {
+    clearInterval(counter);
+    timerEL.style.display = "block";
+    initialMillis = Date.now();
+    counter = setInterval(timer, 1);
+});
+
+$('#stop').on('click', function () {
+    clearInterval(counter);
+});
+
+$('#reset').on('click', function () {
+    clearInterval(counter);
+    count = initial;
+    displayCount(count);
+});
+
+displayCount(initial);
+
+// -- ??? -- //

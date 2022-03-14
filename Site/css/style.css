@@ -4,6 +4,11 @@
   font-family: "script";
   src: url("../media/font/scriptgame.ttf");
 }
+@font-face {
+  font-family: "CNT";
+  src: url("../media/font/Square.ttf");
+}
+
 
 * {
   margin: 0;
@@ -99,7 +104,7 @@ canvas {
   padding-bottom: 1.2em;
 }
 
-.timerBtn {
+#start {
   
 }
 
@@ -228,6 +233,11 @@ canvas {
   animation: shake 0.2s linear infinite;
 }
 
+.yes {
+  filter: blur(10px);
+  background-color: rgba(9, 255, 0,0.7);
+}
+
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -279,48 +289,41 @@ canvas {
 
 #header {
   position: relative;
+  width: 90;
+  height: 90;
   margin: auto;
-  margin-top: 45px;
-  margin-bottom: 40px;
-  height: 40px;
-  width: 40px;
   text-align: center;
 }
 
-#countdown-number {
-  color: white;
+
+
+#timer {
+  font-family: CNT;
+  position: fixed;
+  text-align: center;
+  top: 40vh;
+  width: 100vw;
+  font-size: 8vw;
+  margin: 0;
+  color: rgba(255, 0, 0, 0.7);
+  text-shadow: 0px 1vh rgb(255 0 0 / 40%), 0px 1vh 5vh rgb(255 0 0 / 40%);
+  z-index: 1000;
+  mix-blend-mode: lighten;
+  animation: Tilt 2s ease-in-out infinite alternate;
+}
+
+#ms {
+  font-size: 0.6em;
   display: inline-block;
-  line-height: 40px;
-  position: absolute; /* -- I deeply hate css -- */
-  top:50;
-  right:482;
-  z-index: 22;
-  font-size: 20;
+  width: 1em;
+  text-align: left;
 }
 
-svg {
-  position: absolute;
-  top: 20;
-  right: 450;
-  width: 100;
-  height: 100;
-  transform: rotateY(-180deg) rotateZ(-90deg);
-}
-
-svg circle {
-  stroke-dasharray: 250px;
-  stroke-dashoffset: 0px;
-  stroke-linecap: round;
-  stroke-width: 3px;
-  stroke: rgb(58, 190, 157);
-  fill: black;
-}
-
-@keyframes countdown {
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 250px;
-  }
+@keyframes Tilt {
+	0% {
+		transform: rotate(-15deg);
+	}
+	100% {
+		transform: rotate(15deg);
+	}
 }
