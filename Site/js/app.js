@@ -214,7 +214,7 @@ function Pop(text, time = 2000) {
 
 // -- Timer -- //
 
-var initial = 30000;
+var initial = 300000;
 var count = initial;
 var counter; // 10 will  run it every 100th of a second
 var initialMillis;
@@ -236,7 +236,7 @@ function timer() {
 
 function displayCount(count) {
   let res = Math.floor(count / 1000);
-  let milliseconds = count.toString().substring(3,4);
+  let milliseconds = count.toString().substring(3,5);
   let seconds = res % 60;
   let minutes = (res - seconds) / 60;
 
@@ -251,14 +251,22 @@ $('#start').on('click', function () {
     counter = setInterval(timer, 1);
 });
 
-$('#stop').on('click', function () {
-    clearInterval(counter);
-});
-
 $('#reset').on('click', function () {
+  
     clearInterval(counter);
+    scoreMenu()
+    timerEL.style.display = "none";
     count = initial;
     displayCount(count);
+});
+
+$('.restartButton').on('click', function () {
+  clearInterval(counter);
+  count = initial;
+  displayCount(count);
+  initialMillis = Date.now();
+  counter = setInterval(timer, 1);
+  timerEL.style.display = "block";
 });
 
 displayCount(initial);
