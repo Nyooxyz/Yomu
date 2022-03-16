@@ -26,7 +26,7 @@
 
 
 
- updateProblem() // json nightmare begins
+ updateProblem() 
 
 
 
@@ -42,7 +42,8 @@
 
   // -- Array loop -- //
 
-  const arrAnki = []
+  const tabRes = []  // Array of results [0] = kanji -  [1] = hira  - [2] = misscount
+  const arrAnki = [] // Anki array [0] = kanji -  [1] = hira  - [2] = i value
 
   // -- Initialisation -- //
 
@@ -67,6 +68,8 @@
    })
  }
 
+
+
   // -- Anki -- //
 
  function callAnkiOopa(){
@@ -76,7 +79,7 @@
  }
 
  function callAnki(){
-  console.log(arrAnki[0]["kanj"])
+  
 
   state.kanj = arrAnki[0]["kanj"]
   state.hira = arrAnki[0]["hira"]
@@ -118,6 +121,36 @@
    return Math.floor(Math.random() * (max - min + 1) + min)
  }
 
+
+
+ function arrRes(){
+
+  if (tabRes.some(e => e.kanj === state.kanj)) {
+
+    const foundkanj = tabRes.find(k => {
+    return k.kanj === state.kanj
+    })
+    foundkanj.miss++
+  }
+
+  else{
+    tabRes.push({
+      kanj: state.kanj, 
+      hira: state.hira,
+      miss: 1
+    })
+  }
+ }
+
+ function arrToTab(){
+  tabRes.forEach((item) => {
+    addRow(item.kanj,item.hira,item.miss)
+  });
+
+ }
+
+
+
  // -- Handling input -- //
 
  ourForm.addEventListener("submit", handleSubmit) 
@@ -154,13 +187,15 @@
   wrong.textContent = state.wrongAnswers
   combo.textContent = state.combo
 
-  addRow(state.kanj,state.hira)
+  arrRes()
 
   addAnki()
 
   doAnki()
 
  }
+
+
 
 
  // -- Reset -- //
@@ -188,15 +223,24 @@
    scoreX.textContent = "Score: "+state.score+"Miss: "+state.wrongAnswers
  }
 
- function addRow(kanj,hira) {
+ function addRow(kanj,hira,miss) {
+
    let newRow = tableRef.insertRow(-1)
    let newCell1 = newRow.insertCell(0)
    let newCell2 = newRow.insertCell(1)
+   let newCell3 = newRow.insertCell(2)
+   let newCell4 = newRow.insertCell(3)
    let newText1 = document.createTextNode(kanj)
    let newText2 = document.createTextNode(hira)
+   let newText3 = document.createTextNode(miss)
+   let newText4 = document.createTextNode("Click for infos")
+
+   newCell4.addEventListener("click",() => {window.open("https://jisho.org/word/"+kanj, "_blank");})
 
    newCell1.appendChild(newText1)
    newCell2.appendChild(newText2)
+   newCell3.appendChild(newText3)
+   newCell4.appendChild(newText4)
 
  }
 
@@ -277,6 +321,7 @@ var timerEL = document.getElementById("timer")
 function timer() {
     if (count <= 0) {  //  end of game
         clearInterval(counter);
+        arrToTab()
         scoreMenu()
         timerEL.style.display = "none";
         return;
@@ -308,6 +353,7 @@ $('#start').on('click', function () {
 $('#reset').on('click', function () {
   
     clearInterval(counter);
+    arrToTab()
     scoreMenu()
     timerEL.style.display = "none";
     count = initial;

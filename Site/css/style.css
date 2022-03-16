@@ -213,6 +213,7 @@ button {
 }
 
 #tableau {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: left;
   overflow: hidden;
   width: 80%;
