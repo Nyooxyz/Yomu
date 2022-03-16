@@ -344,10 +344,13 @@ function displayCount(count) {
 }
 
 $('#start').on('click', function () {
+
+    $(".content").removeClass("tokiWoTomare");
     clearInterval(counter);
     timerEL.style.display = "block";
     initialMillis = Date.now();
     counter = setInterval(timer, 1);
+    $( "#start" ).hide();
 });
 
 $('#reset').on('click', function () {
