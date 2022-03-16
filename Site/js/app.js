@@ -22,7 +22,7 @@
  const jlpt2 = ''
  const jlpt1 = ''
 
- // const diff = 1 // Game Difficulty WIP
+ const diff = 1 // Game Difficulty WIP
 
 
 
@@ -39,6 +39,10 @@
    kanj: null,
    hira: null
  }
+
+  // -- Array loop -- //
+
+  const arrAnki = []
 
   // -- Initialisation -- //
 
@@ -62,6 +66,53 @@
      console.log(state.hira) // Coz Im dumb
    })
  }
+
+  // -- Anki -- //
+
+ function callAnkiOopa(){
+  if(arrAnki.length != 0){
+    return arrAnki[0].i === 0
+  }
+ }
+
+ function callAnki(){
+  console.log(arrAnki[0]["kanj"])
+
+  state.kanj = arrAnki[0]["kanj"]
+  state.hira = arrAnki[0]["hira"]
+  
+
+  kanji.innerHTML = state.kanj
+  ourField.value = ""
+  ourField.focus()
+ }
+
+ function addAnki(){
+   arrAnki.push({
+    kanj: state.kanj, 
+    hira: state.hira,
+    i: 6
+  })
+ }
+
+ function doAnki(){
+  // - Optimisation of function in progress - //
+
+  if(arrAnki.length != 0){
+    arrAnki.forEach(item => item.i--)
+  }
+
+  if (callAnkiOopa()){
+    callAnki()
+    arrAnki.shift()
+  }
+  else{
+    updateProblem()
+  }
+ }
+
+  // --         -- //
+
 
  function randomIntFromInterval(min, max) { 
    return Math.floor(Math.random() * (max - min + 1) + min)
@@ -93,7 +144,8 @@
   state.score += 300 + ((300 * state.combo * diff)/15)
   score.textContent = state.score
   combo.textContent = state.combo
-  updateProblem()
+
+  doAnki()
  }
 
  function wrongAns(){
@@ -104,7 +156,9 @@
 
   addRow(state.kanj,state.hira)
 
-  updateProblem()
+  addAnki()
+
+  doAnki()
 
  }
 
