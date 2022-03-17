@@ -14,6 +14,8 @@
  const tableRef = document.querySelector("#tableau")
  const scoreX = document.querySelector("#scoreRes")
  const main_ui = document.querySelector(".main-ui")
+ const counters = document.querySelectorAll('.score')
+ const acc = document.querySelector('.acc')
 
  // File links
  const jlpt5 = '../kanji_data/jlpt-5/questions.json'
@@ -36,6 +38,7 @@
    score: 0,
    wrongAnswers: 0,
    combo: 0,
+   i:0,
    kanj: null,
    hira: null
  }
@@ -157,6 +160,7 @@
 
  function handleSubmit(e){
    e.preventDefault()
+   state.i++
 
 
      // RIGHT ANSWER --                                                              
@@ -175,7 +179,8 @@
  function rightAns(){
   state.combo++
   state.score += 300 + ((300 * state.combo * diff)/15)
-  score.textContent = state.score
+  scoreUpdate()
+  acc.textContent = accCalc()
   combo.textContent = state.combo
 
   doAnki()
@@ -184,6 +189,7 @@
  function wrongAns(){
   state.wrongAnswers++
   state.combo = 0
+  acc.textContent = accCalc()
   wrong.textContent = state.wrongAnswers
   combo.textContent = state.combo
 
@@ -350,7 +356,7 @@ $('#start').on('click', function () {
     timerEL.style.display = "block";
     initialMillis = Date.now();
     counter = setInterval(timer, 1);
-    $( "#start" ).hide();
+    $( "#rules" ).hide();
 });
 
 $('#reset').on('click', function () {
@@ -374,4 +380,30 @@ $('.restartButton').on('click', function () {
 
 displayCount(initial);
 
-// -- ??? -- //
+// -- Score animation -- //
+
+const scoreAnimSpeed = 200;
+
+function scoreUpdate(){
+  counters.forEach( counter => {
+    const animate = () => {
+       const value = +state.score;
+       const data = +counter.innerText;
+      
+       const time = value / scoreAnimSpeed;
+      if(data < value) {
+           counter.innerText = Math.ceil(data + time);
+           setTimeout(animate, 1);
+         }else{
+           counter.innerText = value;
+         }
+      
+    }
+    
+    animate();
+ });
+}
+
+function accCalc(){
+  return (((state.i-state.wrongAnswers)/state.i)*100).toPrecision(3)
+}

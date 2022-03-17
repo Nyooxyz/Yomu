@@ -18,8 +18,15 @@
 
 <body>
 
-<button id="start">pekou</button>
-
+<div id="rules">
+  <p>
+    You have 5 minutes to guess the reading of as many words as possible<br>
+    Your guesses must all be written in plain <b style="color:red;">ひらがな</b><br>
+    If your guess is wrong, the word will then reappear after 5 words and you will have to guess it again<br>
+    The correct reading is displayed as a pop-up after a wrong guess on top of the page
+  </p>
+  <button id="start">Start</button>
+</div>
 
 <canvas id="canvas" width="643" height="714"></canvas>
 
@@ -34,9 +41,7 @@
 
 <div class="content tokiWoTomare">
 
-  <div class="timerBtn">
-    <button id="reset">give up</button>
-  </div>
+  
 
   <h2 id="timer" style="display:none;"></h2>
 
@@ -44,7 +49,12 @@
     <div class="main-ui">
       <center id="fadein" class>
 
+        <div class="score hud">0</div>
+        <div class="acc-mark hud">%</div><div class="acc hud">0</div>
+
         <h1 class="kanji"></h1>
+
+        <div class="combo-mark hud">x</div><div class="combo hud">0</div>
 
         <form action="" class="our-form">
           <input type ="text" class="our-field"/>
@@ -54,10 +64,12 @@
     </div>
   </center>
 
-  <div class="score-ui">
-    <p>Score: <span class="score">0</span></p>
-    <p>Combo: <span class="combo">0</span></p>
-    <p>Miss: <span class="wrong">0</span></p>
+  
+  <div class="wrong hud">0</div>
+  
+
+  <div class="timerBtn">
+    <button id="reset">GIVE UP</button>
   </div>
 
 </div>
