@@ -409,11 +409,13 @@ button {
 
 
 .score{
+  font-family: 'PPP';
   text-align: right;
 }
 
 .acc{
-  float: right;
+  display:inline;
+  float:right;
 }
 
 .combo{
@@ -427,16 +429,20 @@ button {
 
 .combo-mark{
   float: left;
-
 }
 
 .acc-mark{
+  display: inline;
   float: right;
+}
+
+.rank {
+  float:right;
+  margin-right: 1vw;
 }
 
 .hud{
   z-index: 2222;
-  font-family: 'PPP';
   font-size: 30px;
 }
 
@@ -456,3 +462,9 @@ button {
   color: rgb(255, 255, 0);
   box-shadow: 0px 8px rgb(255, 255, 0), 0px 8px 32px rgba(255, 225, 0, 0.3), inset 0px 8px 32px rgba(255, 255, 0, 0.3);
 }
+
+#resultScreen{
+  width: 100%;
+  height: 100%;
+}
+

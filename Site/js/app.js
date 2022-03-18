@@ -16,6 +16,14 @@
  const main_ui = document.querySelector(".main-ui")
  const counters = document.querySelectorAll('.score')
  const acc = document.querySelector('.acc')
+ const rank = document.querySelector('.rank')
+ const finalMiss = document.querySelector('#finalMiss')
+ const finalScore = document.querySelector('#finalScore')
+ const finalRight = document.querySelector('#finalRight')
+ const finalAcc = document.querySelector('#finalAcc')
+ const finalCombo = document.querySelector('#highCombo')
+ const finalRank = document.querySelector('#finalRank')
+
 
  // File links
  const jlpt5 = '../kanji_data/jlpt-5/questions.json'
@@ -38,10 +46,15 @@
    score: 0,
    wrongAnswers: 0,
    combo: 0,
+   rightAnswers:0,
    i:0,
+   highCombo:0,
+   rank:'',
    kanj: null,
    hira: null
  }
+
+
 
   // -- Array loop -- //
 
@@ -178,9 +191,12 @@
 
  function rightAns(){
   state.combo++
+  state.rightAnswers++
   state.score += 300 + ((300 * state.combo * diff)/15)
   scoreUpdate()
+  rankCalc()
   acc.textContent = accCalc()
+  rank.textContent = state.rank
   combo.textContent = state.combo
 
   doAnki()
@@ -188,10 +204,18 @@
 
  function wrongAns(){
   state.wrongAnswers++
+  if(state.combo > state.highCombo){
+    state.highCombo = state.combo
+  }
   state.combo = 0
+  rankCalc()
   acc.textContent = accCalc()
+  rank.textContent = state.rank
   wrong.textContent = state.wrongAnswers
   combo.textContent = state.combo
+  
+
+
 
   arrRes()
 
@@ -211,6 +235,9 @@
    state.combo = 0
    state.wrongAnswers = 0
    state.score = 0
+   state.rightAnswers = 0
+   state.i = 0
+   state.highCombo = 0
  }
 
  // -- Tableau -- //
@@ -226,7 +253,12 @@
    content.style.display = 'none'
    scoreMenuX.style.display = 'block'
 
-   scoreX.textContent = "Score: "+state.score+"Miss: "+state.wrongAnswers
+   finalAcc.textContent = state.acc, '%'
+   finalCombo.textContent = state.highCombo
+   finalMiss.textContent = state.wrongAnswers
+   finalRight.textContent = state.rightAnswers
+   finalScore.textContent = state.score
+   finalRank.textContent = state.rank
  }
 
  function addRow(kanj,hira,miss) {
@@ -406,4 +438,52 @@ function scoreUpdate(){
 
 function accCalc(){
   return (((state.i-state.wrongAnswers)/state.i)*100).toPrecision(3)
+}
+
+function rankCalc(){
+
+  /* Oofie warning */
+
+  if(state.i >= 50 && state.wrongAnswers == 0){
+    state.rank = 'SSS'
+  }
+  else if(state.i >= 20 && state.wrongAnswers === 0){
+    state.rank = 'SS'
+  }
+  else if(state.i >= 50 && state.wrongAnswers > 0 && state.wrongAnswers <= 5){
+    state.rank = 'A'
+  }
+  else if(state.i >= 50 && state.wrongAnswers > 5 && state.wrongAnswers <= 20){
+    state.rank = 'B'
+  }
+  else if(state.i >= 50 && state.wrongAnswers > 20 && state.wrongAnswers <= 50){
+    state.rank = 'C'
+  }
+  else if(state.i >= 20 && state.wrongAnswers === 0){
+    state.rank = 'S'
+  }
+  else if(state.i >= 20 && state.wrongAnswers > 0 && state.wrongAnswers <= 2){
+    state.rank = 'A'
+  }
+  else if(state.i >= 20 && state.wrongAnswers > 2 && state.wrongAnswers <= 10){
+    state.rank = 'B'
+  }
+  else if(state.i >= 20 && state.wrongAnswers > 10 && state.wrongAnswers <= 20){
+    state.rank = 'C'
+  }
+  else if(state.i < 20 && state.wrongAnswers === 0){
+    state.rank = 'S'
+  }
+  else if(state.i < 20 && state.wrongAnswers > 0 && state.wrongAnswers <= 1){
+    state.rank = 'A'
+  }
+  else if(state.i < 20 && state.wrongAnswers > 1 && state.wrongAnswers <= 5){
+    state.rank = 'B'
+  }
+  else if(state.i < 20 && state.wrongAnswers > 5 && state.wrongAnswers <= 15){
+    state.rank = 'C'
+  }
+  else{
+    state.rank = 'D'
+  }
 }
