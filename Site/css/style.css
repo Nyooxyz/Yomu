@@ -28,15 +28,15 @@
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   vertical-align: baseline;
 }
 
 html {
-  background-color: #000;
+
 	color: #FFF;
 	font-family: "script", sans-serif;
-	font-size: 1.6vh;
+	font-size: 12px;
+  background:hsla(200, 88%, 13%, 1);
 }
 
 a {
@@ -46,11 +46,6 @@ a {
 
 
 body{
-  
-  background: url(../media/flood.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 0px -100px;
   opacity: 1;
   position: absolute;
   top: 0;
@@ -125,7 +120,7 @@ header{
   width: 100%;
   top: 0;
 	left: 0;
-  font-size: 5vh;
+  font-size: 1.8rem;
 }
 .g-nav{
   width: 100%;
@@ -142,16 +137,11 @@ header{
   line-height: 40px;
 }
 
-.timerBtn {
-  font-size: 3vw;
-  text-align: center;
-}
-
 
 #reset{
  
   bottom:10%;
-  font-size: 5vh;
+  font-size: 2rem;
   padding-top: 1vh;
   padding-left: 2vh;
   padding-right: 2vh;
@@ -162,17 +152,16 @@ header{
   padding:1.5vh;
   margin-top: 5vh;
   z-index: 222;
-  font-size: 4vw;
+  font-size: 4rem;
   font-family: 'CCC';
 }
 
 #rules {
   position: absolute;
   text-align: center;
-  font-size: 1.5vw;
-  bottom:45vh;
+  font-size: 1.8rem;
+  bottom:40vh;
   z-index: 221;
-  right:11vw;
 }
 
 .main-ui {
@@ -193,7 +182,7 @@ header{
   text-align: center;
   padding-top: 50px;
   padding-bottom: 50px;
-  font-size: 6vw;
+  font-size: 6rem;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -382,10 +371,10 @@ button {
   text-align: center;
   top: 10vh;
   width: 100vw;
-  font-size: 6vw;
+  font-size: 6em;
   margin: 0;
-  color: rgba(0, 255, 255, 0.7);
-  text-shadow: 0px 1vh rgba(0, 255, 255, 0.4), 0px 1vh 5vh rgb(0 255 255 / 40%);
+  color: rgba(255, 255, 0, 0.7);
+  text-shadow: 0px 1vh rgba(255, 255, 0, 0.4), 0px 1vh 5vh rgb(255 255 0 / 40%);
   z-index: 1000;
   mix-blend-mode: lighten;
   animation: Tilt 2s ease-in-out infinite alternate;
@@ -448,7 +437,7 @@ button {
 
 .restartButton{
   width: 30%;
-  font-size: 2vw;
+  font-size: 2em;
   margin-left: 70vh;
   transition: 0.3s;
   border: 1px solid #323C50;
