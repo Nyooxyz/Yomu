@@ -69,31 +69,31 @@
   <div class="wrong hud">0</div>
   
 
-  <div class="timerBtn">
-    <button id="reset">GIVE UP</button> 
-  </div>
+ 
+  <button id="reset">GIVE UP</button> 
+  
 
 </div>
 
 <div id="scoreMenuX" style="display:none;">
 
+  <div id="finalRank">D</div>
+
   <div id="resultScreen">
 
     <div id="scoreRes">
-      <div id="finalScore">0</div>
+      <h2>Score </h2><h1 id="finalScore">0</h1><br>
 
-      <div id="finalMiss">0</div>
-      <div id="finalRight">0</div>
+      <h2>Miss </h2><h1 id="finalMiss">0</h1><br>
+      <h2>Correct </h2><h1 id="finalRight">0</h1><br>
 
-      <div id="highCombo">0</div>
-      <div id="finalAcc">0</div>
+      <h2>Highest combo </h2><h1 id="highCombo">0</h1><br>
+      <h2>Accuracy </h2><h1 id="finalAcc">0</h1>
 
-      <div id="finalRank">D</div>
+      
     </div>
 
-    <button class="restartButton" onclick="showContent()">Retry</button>
-
-    <div id="seeBelow">Check wrong answers</div>
+    <h1 id="seeBelow">↓      Check wrong answers      ↓</h1>
     
 
   </div>
@@ -112,6 +112,8 @@
       </tr>
     </tbody>
   </table>
+
+  <button class="restartButton" onclick="showContent()">Retry</button>
 </div>
 
 <!-- JavaScript -->

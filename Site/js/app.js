@@ -253,7 +253,7 @@
    content.style.display = 'none'
    scoreMenuX.style.display = 'block'
 
-   finalAcc.textContent = state.acc, '%'
+   finalAcc.textContent = accCalc() + '%'
    finalCombo.textContent = state.highCombo
    finalMiss.textContent = state.wrongAnswers
    finalRight.textContent = state.rightAnswers
