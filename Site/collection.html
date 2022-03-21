@@ -1,0 +1,141 @@
+<html>
+<head>
+
+  <title>Furo - Collection</title>
+
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- CSS links -->
+  <link rel="stylesheet" href="css/style.css">
+
+  
+
+</head>
+
+<body>
+
+  <style>
+
+    #card-container {
+      width: 90%;
+      height: 80%;
+      margin: auto;
+      margin-top: 100;
+      display: flex;
+      flex-direction: column;   
+      flex-wrap: wrap;   
+      justify-content: space-evenly;
+      gap:20;
+    }
+
+    .card {
+      width: 10vw;
+      height: 14vh;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #696969;
+      border-radius:20px;
+      box-shadow:4px 7px 19px rgba(255, 0, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      background-color: rgba(255, 0, 255, 0.1);
+      transition: .3s linear;
+    }
+
+    .kanji-smol {
+      font-size: 4em;
+      margin-bottom: 10;
+    }
+
+    .hira-smol {
+      font-size: 1.4em;
+      margin-bottom: 10;
+    }
+
+
+    .translation {
+      font-size: 1.4em;
+      margin-bottom: 10;
+    }
+
+    .progress-bar-smol {
+      font-size: 1.6em;
+      margin-bottom: 10;
+    }
+
+    .percent-bar {
+      width: 21.01%;
+      height: 30px;
+      background-color: #04AA6D;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+
+    .swiper-container {
+      width: 600px;
+      max-width: 500px;
+      width: 100%;
+      height: 300px;
+      margin-top: 200px;
+  }
+  
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .arrow {
+      border: solid rgb(255, 255, 255);
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 20px;
+      margin-left:610px;
+      margin-top:20px;
+    }
+    
+    .right {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+    
+    .left {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+    }
+
+    
+
+  </style>
+
+  <canvas id="canvas" width="643" height="714"></canvas>
+
+  <header>
+    <nav class="g-nav">
+      <ul class="g-nav-menu">
+        <li><a href="index.html">GAME</a></li>
+        <li><a href="collection.html">COLLECTION</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="card-container"></div>
+
+  <i class="arrow left"></i>
+  <i class="arrow right"></i>
+
+
+<!-- JavaScript -->
+<script type="text/javascript" src="/kanji_data/jlpt-5/questions.json"></script>
+<script src="js/jquery.js"></script>
+<script src="js/collection.js"></script>
+<script src="js/space.js"></script>
+<script src="js/gl-matrix.js"></script>
+<script src="js/write.js"></script>
+</body>
+</html>
