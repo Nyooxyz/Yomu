@@ -4,7 +4,7 @@ const previous = document.querySelector(".arrow.left")
 
 
 $(document).ready(function () {
-	$('#card-container').load('../page1.html');
+	$('#card-container').load('../../common/page1.html');
 });
 
 window.onload = function(){ 
@@ -13,7 +13,7 @@ window.onload = function(){
   previous.onclick = function(){
   if(page != 1){
     page--
-    let linkPage = '../page' + page + '.html' 
+    let linkPage = '../../common/page' + page + '.html' 
     console.log(page)
 
     $('#card-container').empty()
@@ -29,7 +29,7 @@ window.onload = function(){
   next.onclick = function(){
     if(page != 32){
       page++
-      let linkPage = '../page' + page + '.html' 
+      let linkPage = '../../common/page' + page + '.html' 
       console.log(page)
     
       $('#card-container').empty()

@@ -1,2 +1,0 @@
-all words in one page with a success bar => [0%     ] or [ --- ------ 70% --- ] for each one encountered;
-5 pages in total => jlpt5 - 4 - 3 - 2 - 1

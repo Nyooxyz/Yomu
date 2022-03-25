@@ -2,26 +2,26 @@
 
 @font-face {
   font-family: "script";
-  src: url("../media/font/scriptgame.ttf");
+  src: url("../font/scriptgame.ttf");
 }
 @font-face {
   font-family: "CNT";
-  src: url("../media/font/Square.ttf");
+  src: url("../font/Square.ttf");
 }
 
 @font-face {
   font-family: "CCC";
-  src: url("../media/font/Squared\ Display.ttf");
+  src: url("../font/Squared\ Display.ttf");
 }
 
 @font-face {
   font-family: "AAA";
-  src: url("../media/font/AldotheApache.ttf");
+  src: url("../font/AldotheApache.ttf");
 }
 
 @font-face {
   font-family: "PPP";
-  src: url("../media/font/PixelSplitter-Bold.ttf");
+  src: url("../font/PixelSplitter-Bold.ttf");
 }
 
 * {
@@ -112,6 +112,15 @@ canvas {
 .tokiWoTomare{
   pointer-events:none;
   filter: blur(20px);
+}
+
+.hidden {
+  display: none;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
 }
 
 header{

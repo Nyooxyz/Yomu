@@ -1,6 +1,4 @@
-  // -- First time Im spending this much time on a project without dropping  -- //
-    // -- Really hope to see it being useful to somebody at least not only for me  -- //
-      // -- And sorry again If my terrible coding is making alot of people cringe this is horrible I know me and my few neurons did our best -- //
+
  
  // First mess
  const ourForm = document.querySelector(".our-form")
