@@ -24,7 +24,7 @@
 
 
  // File links
- const jlpt5 = '../kanji_data/jlpt-5/questions.json'
+ const jlpt5 = 'public/kanji_data/jlpt-5/questions.json'
  const jlpt4 = ''
  const jlpt3 = ''
  const jlpt2 = ''

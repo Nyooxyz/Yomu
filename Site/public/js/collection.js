@@ -4,7 +4,7 @@ const previous = document.querySelector(".arrow.left")
 
 
 $(document).ready(function () {
-	$('#card-container').load('../../common/page1.html');
+	$('#card-container').load('common/page1.html');
 });
 
 window.onload = function(){ 
