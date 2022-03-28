@@ -12,6 +12,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 
+
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false}))
 
@@ -42,9 +43,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
-
-app.get('/',  (req, res) => {
+app.get('/', (req, res) => {
   res.render('index.ejs')
 })
 
@@ -52,16 +56,12 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
   res.render('login.ejs')
 })
 
-app.get('/collection', checkNotAuthenticated, (req, res) => {
+app.get('/collection', checkAuthenticated, (req, res) => {
   res.render('collection.ejs')
 })
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
   res.render('register.ejs')
-})
-
-app.get('/users', (req,res)=>{
-  res.json(users)
 })
 
 
@@ -81,7 +81,7 @@ app.post('/register', checkNotAuthenticated, async (req,res)=>{
       email: req.body.email,
       password: hashedPassword
     })
-    res.redirect('/login')
+    res.redirect('/login')  
    }catch{
      res.redirect('/register')
 
@@ -90,11 +90,12 @@ app.post('/register', checkNotAuthenticated, async (req,res)=>{
 
 app.delete('/logout', (req, res) => {
   req.logOut()
-  res.redirect('/login')
+  res.redirect('/')
 })
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
+    
     return next()
   }
 
@@ -107,6 +108,9 @@ function checkNotAuthenticated(req, res, next) {
   }
   next()
 }
+
+
+
 
 app.listen(PORT, 'localhost', () => {
   console.log(`Server running on port ${PORT}`)

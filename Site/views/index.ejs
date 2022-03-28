@@ -35,11 +35,17 @@
 <header>
   <nav class="g-nav">
     <ul class="g-nav-menu">
-      <li><a href="/index">GAME</a></li>
+      <li><a href="/">GAME</a></li>
       <li><a href="/collection">COLLECTION</a></li>
     </ul>
-    <button id="btn-login" disabled="true" onclick="login()">Log in</button>
-    <button id="btn-logout" disabled="true" onclick="logout()">Log out</button>
+    
+    <form action="/login" method="POST">
+      <button type="submit" class="btn-login">Log in</button>
+    </form>
+      
+    <form action="/logout?_method=DELETE" method="POST">
+      <button type="submit" class="btn-logout">Log Out</button>
+    </form>
   </nav>
 </header>
 
