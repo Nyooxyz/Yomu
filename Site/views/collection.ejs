@@ -109,6 +109,17 @@
       -webkit-transform: rotate(135deg);
     }
 
+    #auth {
+      float:none;
+      width: 7%;
+    }
+
+    #views {
+      float:none;
+      width: 7%;
+      margin-left: 0;
+    }
+
     
 
   </style>
@@ -117,10 +128,23 @@
 
   <header>
     <nav class="g-nav">
-      <ul class="g-nav-menu">
-        <li><a href="/">GAME</a></li>
-        <li><a href="/collection">COLLECTION</a></li>
-      </ul>
+  
+      <div id="views">
+        <form action="/" method="GET">
+          <button type="submit" class="btn-home">Game</button>
+        </form>
+  
+        <form action="/collection" method="GET">
+          <button type="submit" class="btn-collection">Collection</button>
+        </form>
+      </div>
+  
+  
+      <div id="auth">
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit" class="btn-logout">Log Out</button>
+        </form>
+      </div>          
     </nav>
   </header>
 

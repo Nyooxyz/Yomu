@@ -124,11 +124,13 @@ function checkNotAuthenticated(req, res, next) {
 function checkLogin(req, res, next) {
   if (req.isAuthenticated()) {
     
-    res.session.loggedin = true
+    req.session.loggedin = true
+    console.log(req)
     next()
     
   }
-  res.session.loggedin = false
+  req.session.loggedin = false
+  console.log(req)
   next()
 
 }

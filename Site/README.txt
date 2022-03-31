@@ -4,12 +4,10 @@ It is achieved with the help of a video game like user interface and a progress 
 It is as much as a japanese learning tool as a web app developpement practice tool for me
 Hope some people find it as useful as I do
 I did my very best
+νύξ
 
 
 
-
-
-<=> Kanji_data <=>
 
 All the data used to run the app has been 
 Fetched on the jisho.org website
