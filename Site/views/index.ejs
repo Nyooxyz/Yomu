@@ -39,13 +39,19 @@
       <li><a href="/collection">COLLECTION</a></li>
     </ul>
     
-    <form action="/login" method="POST">
-      <button type="submit" class="btn-login">Log in</button>
-    </form>
       
+    <%if (locals.session.loggedin) { %>
     <form action="/logout?_method=DELETE" method="POST">
       <button type="submit" class="btn-logout">Log Out</button>
     </form>
+    <% } else{ %>  
+    <form action="/login" method="POST">
+      <button type="submit" class="btn-login">Log in</button>
+    </form>
+    <form action="/register" method="POST">
+      <button type="submit" class="btn-login">Register</button>
+    </form>
+    <% } %>
   </nav>
 </header>
 

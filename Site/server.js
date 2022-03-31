@@ -3,15 +3,21 @@ if (process.env.NODE_ENV !== 'production'){
 }
 
 
+
 const express = require('express')
 const app = express()
 app.use(express.json())
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 
+
+if (app.get("env") === "production") {
+  // Serve secure cookies, requires HTTPS
+  session.cookie.secure = true;
+}
 
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false}))
@@ -43,12 +49,15 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
+
 app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
 });
 
-app.get('/', (req, res) => {
+
+
+app.get('/', checkLogin, (req, res) => {
   res.render('index.ejs')
 })
 
@@ -65,7 +74,7 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 
-app.post('/login', checkNotAuthenticated,  passport.authenticate('local', {
+app.post('/login', checkNotAuthenticated, checkLogin,  passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true
@@ -95,6 +104,7 @@ app.delete('/logout', (req, res) => {
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
+    //req.isAuthenticated() will return true if user is logged in
     
     return next()
   }
@@ -102,14 +112,26 @@ function checkAuthenticated(req, res, next) {
   res.redirect('/login')
 }
 
+
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
+    
     return res.redirect('/')
   }
   next()
 }
 
+function checkLogin(req, res, next) {
+  if (req.isAuthenticated()) {
+    
+    res.session.loggedin = true
+    next()
+    
+  }
+  res.session.loggedin = false
+  next()
 
+}
 
 
 app.listen(PORT, 'localhost', () => {

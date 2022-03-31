@@ -178,7 +178,7 @@
    if (ourField.value === state.hira){
 
     rightAnsAnim2()
-    setTimeout("rightAns()", 300)
+    setTimeout("rightAns()", 600)
     
      // WRONG ANSWER --                                                             
    } else{
@@ -319,7 +319,12 @@ function rightAnsAnim2() {
 
   existingTimeout = setTimeout(function() {
     $(".main-ui").removeClass("yes");
+    $(".main-ui").addClass("pulsing");
+    setTimeout(function () {
+      $(".main-ui").removeClass("pulsing");
+    }, 500);
   }, 300);
+
 }
 
 // -- PopUp Right Answer -- //

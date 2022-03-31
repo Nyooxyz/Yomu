@@ -195,7 +195,7 @@ header{
   overflow-y: hidden;
   max-height: 100vh;
   transition: 1s;
-  box-shadow: 0px 0px 256px rgb(255 255 0 / 20%);
+  box-shadow: 0px 0px 256px rgba(255, 255, 255, 0.2);
   padding-bottom: 1.2em;
 }
 
@@ -210,29 +210,29 @@ header{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  color: hsl(186.821, 37.6957%, 60%)
+  color: rgb(255, 255, 255);
 }
 
 .our-field {
   font-size: 3.45em;
   width: calc(100% - 2px);
   background-color: #000;
-  border: 1px solid rgb(0, 238, 255);
-  color: rgb(0, 238, 255);
+  border: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   font-family: Heading;
   letter-spacing: 6px;
   text-align: center;
-  box-shadow: 0px 4px rgb(0, 238, 255);
+  box-shadow: 0px 4px rgb(255, 255, 255);
 }
 
 button {
   font-family: 'AAA';
   background-color: #000;
-  border: 1px solid rgb(0, 238, 255);;
-  color: rgb(0, 238, 255);
+  border: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   text-align: center;
   cursor: pointer;
-  box-shadow: 0px 8px rgb(0, 238, 255), 0px 8px 32px rgba(0, 225, 255, 0.3), inset 0px 8px 32px rgba(0, 197, 247, 0.3);
+  box-shadow: 0px 8px rgb(255, 255, 255);
 }
 
 
@@ -332,11 +332,8 @@ button {
 }
 
 .yes {
-  filter: hue-rotate(-0.25turn) saturate(130%);
-}
-
-.pulsing {
-  animation: pulse 0.5s; 
+  filter: blur(10px);
+  background-color: rgba(53, 255, 46, 0.7);
 }
 
 @keyframes shake {
@@ -353,18 +350,6 @@ button {
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-@keyframes pulse{
-  0%, 100%{
-    transform: scale(1);
-      opacity: 1;
-  }
-  50%{
-    transform: scale(0);
-    opacity: 0.1;
-      
-  }
-}
-
 @keyframes Static {
 	0% { background-position: 0px 0px; }
 	100% { background-position: 0px 4px; }
@@ -376,7 +361,7 @@ button {
 	left: 0;
 	top: 20%;
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(66, 66, 66, 0.8);
 	border-top: 2px solid var(--inverse-color);
 	border-bottom: 2px solid var(--inverse-color);
 	font-size: 2em;
@@ -410,8 +395,8 @@ button {
   width: 100vw;
   font-size: 6em;
   margin: 0;
-  color: rgba(255, 255, 0, 0.7);
-  text-shadow: 0px 1vh rgba(255, 255, 0, 0.4), 0px 1vh 5vh rgb(255 255 0 / 40%);
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0px 1vh rgba(255, 255, 255, 0.4), 0px 1vh 5vh rgba(255, 255, 255, 0.4);
   z-index: 1000;
   mix-blend-mode: lighten;
 }
