@@ -34,8 +34,6 @@
 
 <header>
   <nav class="g-nav">
-
-    <div id="views">
       <form action="/" method="GET">
         <button type="submit" class="btn-home">Game</button>
       </form>
@@ -43,10 +41,6 @@
       <form action="/collection" method="GET">
         <button type="submit" class="btn-collection">Collection</button>
       </form>
-    </div>
-
-
-    <div id="auth">
       <%if (locals.session.loggedin) { %>
       <form action="/logout?_method=DELETE" method="POST">
         <button type="submit" class="btn-logout">Log Out</button>
@@ -58,8 +52,7 @@
       <form action="/register" method="POST">
         <button type="submit" class="btn-register">Register</button>
       </form>
-      <% } %>
-    </div>          
+      <% } %>         
   </nav>
 </header>
 

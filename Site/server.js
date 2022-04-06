@@ -125,12 +125,12 @@ function checkLogin(req, res, next) {
   if (req.isAuthenticated()) {
     
     req.session.loggedin = true
-    console.log(req)
+    
     next()
     
   }
   req.session.loggedin = false
-  console.log(req)
+  
   next()
 
 }

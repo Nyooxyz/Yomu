@@ -49,11 +49,11 @@
     }
     
     h3,h5 {
-      color: rgb(0, 238, 255);
+      color: rgba(255, 255, 255, 0.8);
     }
     
     label {
-      color: rgba(0, 238, 255,0.8);
+      color: rgba(255, 255, 255, 0.8);
     }
     
     .background-container{
@@ -129,25 +129,30 @@
     
     .form-control  {
       background-color: #000;
-      border: 1px solid rgba(0, 238, 255,0.4);
-      color: rgb(0, 238, 255);
+      border: 1px solid rgb(255 255 0 / 20%);
+      color: rgba(255, 255, 255, 0.8);;
       font-family: Heading;
      
       letter-spacing: 6px;
       text-align: center;
       
       font-size: 1.15em;
-        }
+      }
     
     .btn {
       background-color: #000;
-      border: 1px solid rgb(0, 238, 255);;
-      color: rgb(0, 238, 255);
+      border: 1px solid rgb(255 255 0 / 20%);
+      color: rgb(255 255 0 / 20%);
       font-size: 1.2em;
       text-align: center;
       cursor: pointer;
       transition:0.3s;
-      box-shadow: 0px 8px rgb(0, 238, 255), 0px 8px 32px rgba(0, 225, 255, 0.3), inset 0px 8px 32px rgba(0, 197, 247, 0.3); 
+      box-shadow: 0px 8px rgb(255 255 0 / 20%), 0px 8px 32px rgb(255 255 0 / 20%), inset 0px 8px 32px rgb(255 255 0 / 20%); 
+  
+    }
+
+    .btn:hover {
+      color: rgba(255, 255, 255, 0.8);
     }
 
     #error-message {
@@ -195,14 +200,14 @@
         <button
           type="submit"
           id="btn-login"
-          class="btn btn-primary btn-block">
+          class="btn btn-block">
             Log In
         </button>
-        <hr>
+        <hr style="border-top: 1px dashed rgb(255 255 0 / 20%);">
         <a href="/register"><button
           type="button"
           id="btn-signup"
-          class="btn btn-default btn-block">
+          class="btn btn-block">
             Sign Up
         </button></a>
         
