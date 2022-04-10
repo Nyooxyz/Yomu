@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "devStart2": "nodemon serverTest.js"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +14,15 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "express-dynamic-helpers-patch": "^0.0.2",
     "express-ejs-layouts": "^2.5.1",
     "express-flash": "^0.0.2",
+    "express-mysql-session": "^2.1.7",
     "express-openid-connect": "^2.7.1",
     "express-session": "^1.17.2",
     "method-override": "^3.0.0",

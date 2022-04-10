@@ -41,15 +41,15 @@
       <form action="/collection" method="GET">
         <button type="submit" class="btn-collection">Collection</button>
       </form>
-      <%if (locals.session.loggedin) { %>
-      <form action="/logout?_method=DELETE" method="POST">
+      <%if (logged) { %>
+      <form action="/logout" method="GET">
         <button type="submit" class="btn-logout">Log Out</button>
       </form>
       <% } else{ %>  
       <form action="/login" method="POST">
         <button type="submit" class="btn-login">Log in</button>
       </form>
-      <form action="/register" method="POST">
+      <form action="/register">
         <button type="submit" class="btn-register">Register</button>
       </form>
       <% } %>         

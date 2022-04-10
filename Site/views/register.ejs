@@ -168,33 +168,24 @@
         <h3>Register</h3>
       </div>
       <div id="error-message" class="alert alert-danger"></div>
-      <form action="/register" method="POST">
+      <form action="register" method="post">
         <div class="form-group">
          
             <input
-              type="name"
+              type="text"
               class="form-control"
-              id="name"
-              name="name"
-              placeholder="Choose your username">
+              id="uname"
+              name="uname"
+              placeholder="Choose your username" required>
           </div>
-        <div class="form-group">
-         
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="Enter your email">
-        </div>
         <div class="form-group">
          
           <input
             type="password"
             class="form-control"
-            id="password"
-            name="password"
-            placeholder="Enter your password">
+            id="pw"
+            name="pw"
+            placeholder="Enter your password" required>
         </div>
         <div class="captcha-container form-group"></div>
         
