@@ -125,7 +125,7 @@ passport.serializeUser((user,done)=>{
 });
 
 passport.deserializeUser(function(userId,done){
-  console.log('deserializeUser'+ userId);
+  console.log('deserializeUser '+ userId);
   connection.query('SELECT * FROM users where id = ?',[userId], function(error, results) {
           done(null, results[0]);    
   });
@@ -201,6 +201,41 @@ function userExists(req,res,next)
     });
 }
 
+function checkCollection(req,res,next)
+{
+    connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.body.uname,req.body.id], function(error, results, fields) {
+        if (error) 
+            {
+                console.log("Error idk why");
+            }
+        else if(results.length>0)
+        {
+          connection.query(`SET SQL_SAFE_UPDATES = 0;
+          UPDATE user.collections SET count = count + 1 WHERE user_id=? AND word_id=?;
+          SET SQL_SAFE_UPDATES = 1;`, [req.body.uname,req.body.id], function(error, results, fields){
+            if (error) 
+            {
+                console.log("Error idk why but progress ig");
+            } else {
+              next()
+            }
+          })
+        }
+        else {
+          connection.query('INSERT INTO user.collections (user_id,word_id,count) VALUES (?,?,1)', [req.body.uname,req.body.id], function(error, results, fields){
+            if (error) 
+            {
+                console.log("Error idk why but still progress");
+            } else {
+              next()
+            }
+
+          })
+        }
+       
+    })
+}
+
 function checkLogin(req, res, next) {
   if (req.isAuthenticated()) {
     
@@ -225,8 +260,7 @@ function checkLogin(req, res, next) {
 
 
 app.get('/', checkLogin, (req, res) => {
-  console.log(loggedin)
-  res.render('index.ejs',{logged : loggedin})
+  res.render('index.ejs',{logged : loggedin, db : resultData})
 })
 
 app.get('/login', isNotAuth, (req, res) => {
@@ -299,10 +333,76 @@ app.post('/register',isNotAuth,userExists,(req,res,next)=>{
   res.redirect('/login');
 });
 
+app.post('/send',(req,res,next)=>{
+  
+  connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+    if (error) 
+        {
+            console.log("Error idk why");
+        }
+    else if(results.length>0)
+    {
+      connection.query(`SET SQL_SAFE_UPDATES = 0;
+      UPDATE user.collections SET count = count + 1 WHERE user_id=? AND word_id=?;
+      SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+        if (error) 
+        {
+            console.log("Error idk why but progress ig");
+        } else {
+          next()
+        }
+      })
+    }
+    else {
+      connection.query('INSERT INTO user.collections (user_id,word_id,count) VALUES (?,?,1)', [req.user.id,req.body.id], function(error, results, fields){
+        if (error) 
+        {
+            console.log("Error idk why but still progress");
+        } else {
+          next()
+        }
+
+      })
+    }
+   
+  })
+
+  res.status(200).send("ok");
+  res.end();
+
+})
+
+
+
+// trying my best //
+
+var resultData = ''
+
+connection.query("SELECT * FROM jlpt.n5", function (err, result, fields) {
+  if (err) throw err;
+  resultData = result
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// server //
 
 
 app.listen(PORT, 'localhost', () => {
   console.log(`Server running on port ${PORT}`)
 })
 
-module.exports = connection

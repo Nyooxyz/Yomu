@@ -1,5 +1,5 @@
 
- 
+
  // First mess
  const ourForm = document.querySelector(".our-form")
  const ourField = document.querySelector(".our-field")
@@ -61,13 +61,16 @@
 
   // -- Initialisation -- //
 
+
+
+
  function initProblem(data){
    let i = randomIntFromInterval(0,587) // Choosing random word
    
    state.kanj = data[i]["question"]
    state.hira = data[i]["answer"]
 
-   kanji.innerHTML = state.kanj
+   //kanji.innerHTML = state.kanj
    ourField.value = ""
    ourField.focus()
  }
