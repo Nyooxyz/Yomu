@@ -10,6 +10,8 @@
 
   <!-- CSS links -->
   <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
 
   
 
@@ -38,10 +40,10 @@
       text-align: center;
       border: 1px solid #696969;
       border-radius:20px;
-      box-shadow:4px 7px 19px rgba(255, 0, 255, 0.5);
+      box-shadow:4px 7px 19px rgba(0, 0, 255, 0.5);
       position: relative;
       overflow: hidden;
-      background-color: rgba(255, 0, 255, 0.1);
+      background-color: rgba(0, 0, 255, 0.1);
       transition: .3s linear;
     }
 
@@ -67,7 +69,6 @@
     }
 
     .percent-bar {
-      width: 21.01%;
       height: 30px;
       background-color: #04AA6D;
       text-align: center;
@@ -75,40 +76,36 @@
       color: white;
     }
 
-    .swiper-container {
-      width: 600px;
-      max-width: 500px;
-      width: 100%;
-      height: 300px;
-      margin-top: 200px;
-  }
-  
-    .swiper-slide {
+    .selectedLink{
+      color:red;
+      z-index: 222;
+    }
+    
+    .break {
+      margin: 50px 0;
+    }
+
+    .pageNav {
+      font-size: 3em;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 2rem;
+  
+      overflow: hidden;
     }
 
-    .arrow {
-      border: solid rgb(255, 255, 255);
-      border-width: 0 3px 3px 0;
-      display: inline-block;
-      padding: 20px;
-      margin-left:610px;
-      margin-top:20px;
-    }
-    
-    .right {
-      transform: rotate(-45deg);
-      -webkit-transform: rotate(-45deg);
-    }
-    
-    .left {
-      transform: rotate(135deg);
-      -webkit-transform: rotate(135deg);
+    .pageNav a{
+      width: 100px;
+
+      text-align: center;
+      font-weight: 700;
+      transition: .3s linear;
     }
 
+    .pageNav a:hover{
+
+      color:rgba(0, 128, 255, 1);
+      transform: scale(0.8)
+    }
     
 
   </style>
@@ -118,7 +115,7 @@
   <header>
     <nav class="g-nav">
   
-      <div id="views">
+      
         <form action="/" method="GET">
           <button type="submit" class="btn-home">Game</button>
         </form>
@@ -126,27 +123,102 @@
         <form action="/collection" method="GET">
           <button type="submit" class="btn-collection">Collection</button>
         </form>
-      </div>
+      
   
   
-      <div id="auth">
-        <form action="/logout?_method=DELETE" method="POST">
+      
+        <form action="/logout" method="GET">
           <button type="submit" class="btn-logout">Log Out</button>
         </form>
-      </div>          
+             
     </nav>
   </header>
 
-  <div id="card-container"></div>
+  <div id="card-container">
+    <% db.forEach(entry => { %>
+    <div class="card">
+      <div class="kanji-smol">
+        <%=entry.kanj %>
+      </div>
+      <div class="hira-smol">
+        <%=entry.hira %>
+      </div>
+      <div class="translation">
+        <%=entry.eng %>
+      </div>
+      <div class="progress-bar-smol">
+        <div class="percent-progress">
+          <% let counted = 0 %>
+          <% for (var i = 0; i < counter.length; i++){ %>
+            <% if (counter[i].word_id == entry.word_id){ %>
+              <% counted = counter[i].count%>
+            <% } %>
+          <% } %>
+          <%=counted%>
+          <div class="percent-bar" style="width:<%=counted%>%;"></div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
 
-  <i class="arrow left"></i>
-  <i class="arrow right"></i>
+  <div class="break"></div>
 
+  <!-- Display links to the pages -->
+
+  <div class="pageNav">
+
+  <% if (page > 1) {  %> <a href="/collection?page=<%=page-1%>"><i class="fas fa-chevron-left"></i></a><% } %>
+  <% for (let i = iterator; i <= endingLink; i++) { %>
+    <% if (i === page) { %>
+      <a class="selectedLink" href="/collection?page=<%=i%>"><%=i%></a>
+      <% continue; %>
+
+  <% } %>
+      <a href="/collection?page=<%=i%>"><%=i%></a>
+      <% } %>
+      <% if (page < numOfPages) { %> <a href="/collection?page=<%=page+1%>"><i class="fas fa-chevron-right"></i></a> <% } %>
+
+
+  </div>
 
 <!-- JavaScript -->
-<script type="text/javascript" src="../kanji_data/jlpt-5/questions.json"></script>
+<!-- <script type="text/javascript" src="../kanji_data/jlpt-5/questions.json"></script> -->
 <script src="public/js/jquery.js"></script>
-<script src="public/js/collection.js"></script>
+<!-- <script src="public/js/collection.js"></script> -->
+
+
+
+<script>
+
+// -- Progress bar for later animations -- //
+
+
+
+function move() {
+  var i = 0;
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width  + "%";
+      }
+    }
+  }
+}
+
+
+</script>
+
+
 <script src="public/js/space.js"></script>
 <script src="public/js/gl-matrix.js"></script>
 <script src="public/js/write.js"></script>

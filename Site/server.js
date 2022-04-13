@@ -17,6 +17,7 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var flash = require('express-flash');
 const { builtinModules } = require('module');
+const e = require('express');
 
 
 
@@ -32,11 +33,11 @@ app.use(session({
 	key: 'session_cookie_name',
 	secret: 'session_cookie_secret',
 	store: new MySQLStore({
-        host:'localhost',
-        port:3306,
-        user:'root',
-        password: 'root',
-        database:'cookie_user'
+        host:process.env.DB_HOST,
+        port:process.env.DB_PORT,
+        user:process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database:process.env.DB_DATABASE
     }),
 	resave: false,
     saveUninitialized: false,
@@ -201,41 +202,6 @@ function userExists(req,res,next)
     });
 }
 
-function checkCollection(req,res,next)
-{
-    connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.body.uname,req.body.id], function(error, results, fields) {
-        if (error) 
-            {
-                console.log("Error idk why");
-            }
-        else if(results.length>0)
-        {
-          connection.query(`SET SQL_SAFE_UPDATES = 0;
-          UPDATE user.collections SET count = count + 1 WHERE user_id=? AND word_id=?;
-          SET SQL_SAFE_UPDATES = 1;`, [req.body.uname,req.body.id], function(error, results, fields){
-            if (error) 
-            {
-                console.log("Error idk why but progress ig");
-            } else {
-              next()
-            }
-          })
-        }
-        else {
-          connection.query('INSERT INTO user.collections (user_id,word_id,count) VALUES (?,?,1)', [req.body.uname,req.body.id], function(error, results, fields){
-            if (error) 
-            {
-                console.log("Error idk why but still progress");
-            } else {
-              next()
-            }
-
-          })
-        }
-       
-    })
-}
-
 function checkLogin(req, res, next) {
   if (req.isAuthenticated()) {
     
@@ -260,7 +226,10 @@ function checkLogin(req, res, next) {
 
 
 app.get('/', checkLogin, (req, res) => {
-  res.render('index.ejs',{logged : loggedin, db : resultData})
+  connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
+    if (err) throw err;
+    res.render('index.ejs',{logged : loggedin, db : result})
+  })
 })
 
 app.get('/login', isNotAuth, (req, res) => {
@@ -268,7 +237,42 @@ app.get('/login', isNotAuth, (req, res) => {
 })
 
 app.get('/collection', isAuth, (req, res) => {
-  res.render('collection.ejs')
+  connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
+    if (err) throw err;
+    const resPerPages = 20 
+
+    const numOfResults = result.length
+    const numOfPages = Math.ceil(numOfResults / resPerPages)
+    let page = req.query.page ? Number(req.query.page) : 1
+    
+    if (page > numOfPages){
+      res.redirect('/?page='+encodeURIComponent(numOfPages))
+    } else if (page < 1){
+      res.redirect('/?page='+encodeURIComponent('1'))
+    }
+    // SQL LIMIT starting num
+    const startingLimit = (page - 1) * resPerPages
+
+    // GET the relevant number of POSTS for starting page
+
+    connection.query("SELECT * FROM jlpt.n5 LIMIT ?,?", [startingLimit,resPerPages] ,(err, result) => {
+      if (err) throw err
+      let iterator = ( page - 5 ) < 1 ? 1 : page - 5
+      let endingLink = (iterator + 9) <= numOfPages ? (iterator + 9) : page + (numOfPages - page)
+      if (endingLink < (page + 4)){
+        iterator -= (page + 4) - numOfPages
+      }
+
+      connection.query("SELECT word_id, count FROM user.collections WHERE user_id=?",[req.user.id], (err, counter) => {
+        if (err) throw err
+
+        res.render('collection.ejs', {db : result, page, iterator, endingLink, numOfPages, counter: counter})
+      })
+     
+    })
+
+    
+  })
 })
 
 app.get('/register', isNotAuth,userExists, (req, res) => {
@@ -333,70 +337,48 @@ app.post('/register',isNotAuth,userExists,(req,res,next)=>{
   res.redirect('/login');
 });
 
-app.post('/send',(req,res,next)=>{
+
+
+app.post('/send', checkLogin, (req,res,next)=>{
+
+  if (loggedin) {
+    connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+      if (error) 
+          {
+              console.log("Error query");
+          }
+      else if(results.length>0)
+      {
+        connection.query(`SET SQL_SAFE_UPDATES = 0;
+        UPDATE user.collections SET count = count + 1 WHERE user_id=? AND word_id=?;
+        SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+          if (error) 
+          {
+              console.log("Error update");
+          } else {
+            next()
+          }
+        })
+      }
+      else {
+        connection.query('INSERT INTO user.collections (user_id,word_id,count) VALUES (?,?,1)', [req.user.id,req.body.id], function(error, results, fields){
+          if (error) 
+          {
+              console.log("Error Insert");
+          } else {
+            next()
+          }
   
-  connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
-    if (error) 
-        {
-            console.log("Error idk why");
-        }
-    else if(results.length>0)
-    {
-      connection.query(`SET SQL_SAFE_UPDATES = 0;
-      UPDATE user.collections SET count = count + 1 WHERE user_id=? AND word_id=?;
-      SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
-        if (error) 
-        {
-            console.log("Error idk why but progress ig");
-        } else {
-          next()
-        }
-      })
-    }
-    else {
-      connection.query('INSERT INTO user.collections (user_id,word_id,count) VALUES (?,?,1)', [req.user.id,req.body.id], function(error, results, fields){
-        if (error) 
-        {
-            console.log("Error idk why but still progress");
-        } else {
-          next()
-        }
-
-      })
-    }
-   
-  })
-
+        })
+      }
+     
+    })
+  }
+  
   res.status(200).send("ok");
   res.end();
 
 })
-
-
-
-// trying my best //
-
-var resultData = ''
-
-connection.query("SELECT * FROM jlpt.n5", function (err, result, fields) {
-  if (err) throw err;
-  resultData = result
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // server //
