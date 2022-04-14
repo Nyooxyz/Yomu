@@ -266,7 +266,14 @@ app.get('/collection', isAuth, (req, res) => {
       connection.query("SELECT word_id, count FROM user.collections WHERE user_id=?",[req.user.id], (err, counter) => {
         if (err) throw err
 
-        res.render('collection.ejs', {db : result, page, iterator, endingLink, numOfPages, counter: counter})
+        connection.query("SELECT SUM(count) AS total FROM user.collections where user_id=?", [req.user.id], (err,sum) => {
+          if (err) throw err
+         
+  
+          res.render('collection.ejs', {db : result, page, iterator, endingLink, numOfPages, counter, sum, numOfResults})
+
+        })
+        
       })
      
     })

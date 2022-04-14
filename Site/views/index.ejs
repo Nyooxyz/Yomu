@@ -23,7 +23,7 @@
   <p>
     <h1>Hi</h1>
     You have 5 minutes to guess the reading of as many words as possible<br>
-    Your guesses must all be written in plain <b style="color:red;">ひらがな</b><br>
+    Your guesses must all be written in plain <b style="color:red;font-family:'yasashisa'";>ひらがな</b><br>
     If your guess is wrong, the word will then reappear after 5 words and you will have to guess it again<br>
     The correct reading is displayed as a pop-up after a wrong guess on top of the page
   </p>
@@ -212,6 +212,7 @@
    state.hira = data[i].hira
    state.id = data[i].word_id
 
+   kanji.style.fontFamily = "yasashisa"
    kanji.innerHTML = state.kanj
    ourField.value = ""
    ourField.focus()
@@ -242,7 +243,7 @@
   state.hira = arrAnki[0]["hira"]
   state.id = arrAnki[0]["id"]
   
-
+  kanji.style.fontFamily = "zero"
   kanji.innerHTML = state.kanj
   ourField.value = ""
   ourField.focus()
@@ -387,14 +388,16 @@
    state.id = 0
    tabRes = [] 
    arrAnki = [] 
+   
  }
 
  // -- Tableau -- //
 
  function showContent(){
+   resetGame()
+   updateProblem() 
    content.style.display = 'block'
    scoreMenuX.style.display = 'none'
-   resetGame()
    clearTab()
    }
 

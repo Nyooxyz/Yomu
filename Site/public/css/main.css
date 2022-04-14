@@ -24,6 +24,21 @@
   src: url("../font/PixelSplitter-Bold.ttf");
 }
 
+@font-face {
+  font-family: "jp_1";
+  src: url("../font/851Gkktt_005.ttf");
+}
+
+@font-face {
+  font-family: "yasashisa";
+  src: url("../font/YasashisaGothicBold-V2.otf");
+}
+
+@font-face {
+  font-family: "zero";
+  src: url("../font/ZeroGothic.otf");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -47,6 +62,7 @@ a {
 
 body{
   opacity: 1;
+  font-family: 'jp_1';
   position: absolute;
   top: 0;
   bottom: 0;
@@ -124,7 +140,7 @@ label {
 }
 
 header{
-  font-family: 'CCC';
+  font-family: 'jp_1';
   position: fixed;
   width: 100%;
   top: 0;
@@ -187,7 +203,7 @@ header button:hover {
   margin-top: 5vh;
   z-index: 222;
   font-size: 4rem;
-  font-family: 'CCC';
+  font-family: 'jp_1';
 }
 
 #rules {
@@ -214,7 +230,6 @@ header button:hover {
 }
 
 .kanji {
-  text-transform: uppercase;
   text-align: center;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -240,11 +255,12 @@ header button:hover {
 }
 
 button {
-  font-family: 'AAA';
+  font-family: 'jp_1';
   background-color: #000;
   border: 1px solid rgb(0, 238, 255);;
   color: rgb(0, 238, 255);
   text-align: center;
+  line-height: 1.2em;
   cursor: pointer;
   box-shadow: 0px 8px rgb(0, 238, 255), 0px 8px 32px rgba(0, 225, 255, 0.3), inset 0px 8px 32px rgba(0, 197, 247, 0.3);
 }
@@ -274,14 +290,16 @@ button {
 }
 
 #tableau {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: left;
+  font-family: "yasashisa";
+  font-size: 1.5em;
+  text-align: center;
   overflow: hidden;
   width: 80%;
   margin-top: 10vh;
   margin-left: 20vh;
   display: table;
   padding: 0 0 8em 0;
+
 }
 
 #tableau td, #tableau th {
@@ -289,6 +307,7 @@ button {
   padding-top: 2%;
   padding-left: 2%;
 }
+
 
 /* Background-color of the odd rows */
 #tableau tr:nth-child(odd) {
@@ -306,6 +325,8 @@ button {
 
 #tableau td:first-child {
   color: #FB667A;
+
+  font-size: 1.8em;
 }
 
 #tableau tr:hover {
@@ -439,7 +460,7 @@ button {
 
 
 .score{
-  font-family: 'PPP';
+  font-family: 'jp_1';
   text-align: right;
 }
 
