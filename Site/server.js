@@ -236,7 +236,74 @@ app.get('/login', isNotAuth, (req, res) => {
   res.render('login.ejs')
 })
 
-app.get('/collection', isAuth, (req, res) => {
+app.get('/collection/home', isAuth, (req, res) => {
+  connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
+    if (err) throw err;
+    const numOfResults = result.length
+    connection.query("SELECT word_id, count FROM user.collections WHERE user_id=?",[req.user.id], (err, counter) => {
+      if (err) throw err
+      connection.query("SELECT SUM(count) AS total FROM user.collections where user_id=?", [req.user.id], (err,sum) => {
+        if (err) throw err
+          connection.query(`SELECT word_id,count AS HighestCount
+          FROM user.collections WHERE user_id=?
+          ORDER BY count DESC
+          LIMIT 6`, [req.user.id], (err,topHighest) => {
+            if (err) throw err
+            console.log(topHighest)
+            res.render('collection.ejs',{db : result, page: 0, sum, counter, numOfResults, topHighest})
+        })
+      })
+    })
+  })
+})
+
+app.get('/collection/n4', isAuth, (req, res) => {
+  connection.query("SELECT * FROM jlpt.n4 LIMIT 0, 1622", (err, result, fields) => {
+    if (err) throw err;
+    const resPerPages = 20 
+
+    const numOfResults = result.length
+    const numOfPages = Math.ceil(numOfResults / resPerPages)
+    let page = req.query.page ? Number(req.query.page) : 1
+    
+    if (page > numOfPages){
+      res.redirect('/?page='+encodeURIComponent(numOfPages))
+    } else if (page < 1){
+      res.redirect('/?page='+encodeURIComponent('1'))
+    }
+    // SQL LIMIT starting num
+    const startingLimit = (page - 1) * resPerPages
+
+    // GET the relevant number of POSTS for starting page
+
+    connection.query("SELECT * FROM jlpt.n4 LIMIT ?,?", [startingLimit,resPerPages] ,(err, result) => {
+      if (err) throw err
+      let iterator = ( page - 5 ) < 1 ? 1 : page - 5
+      let endingLink = (iterator + 9) <= numOfPages ? (iterator + 9) : page + (numOfPages - page)
+      if (endingLink < (page + 4)){
+        iterator -= (page + 4) - numOfPages
+      }
+
+      connection.query("SELECT word_id, count FROM user.collections WHERE user_id=?",[req.user.id], (err, counter) => {
+        if (err) throw err
+
+        connection.query("SELECT SUM(count) AS total FROM user.collections where user_id=?", [req.user.id], (err,sum) => {
+          if (err) throw err
+         
+  
+          res.render('collection.ejs', {db : result, page, iterator, endingLink, numOfPages, counter, sum, numOfResults, n : 'n4'})
+
+        })
+        
+      })
+     
+    })
+
+    
+  })
+})
+
+app.get('/collection/n5', isAuth, (req, res) => {
   connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
     if (err) throw err;
     const resPerPages = 20 
@@ -270,7 +337,7 @@ app.get('/collection', isAuth, (req, res) => {
           if (err) throw err
          
   
-          res.render('collection.ejs', {db : result, page, iterator, endingLink, numOfPages, counter, sum, numOfResults})
+          res.render('collection.ejs', {db : result, page, iterator, endingLink, numOfPages, counter, sum, numOfResults, n : 'n5'})
 
         })
         

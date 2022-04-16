@@ -38,7 +38,7 @@
         <button type="submit" class="btn-home">Game</button>
       </form>
 
-      <form action="/collection" method="GET">
+      <form action="/collection/home" method="GET">
         <button type="submit" class="btn-collection">Collection</button>
       </form>
       <%if (logged) { %>
@@ -161,13 +161,6 @@
  const finalRank = document.querySelector('#finalRank')
 
 
- // File links
- const jlpt5 = 'public/kanji_data/jlpt-5/questions.json'
- const jlpt4 = ''
- const jlpt3 = ''
- const jlpt2 = ''
- const jlpt1 = ''
-
  const diff = 1 // Game Difficulty WIP
 
 
@@ -206,11 +199,15 @@
 
 
  function initProblem(data){
-   let i = randomIntFromInterval(0,587) // Choosing random word
+   let i = randomIntFromInterval(0,558) // hardcoded range number should be replaced by value from 'SELECT COUNT(*) FROM ?' query 
+
+   console.log(i)
 
    state.kanj = data[i].kanj
    state.hira = data[i].hira
    state.id = data[i].word_id
+
+   
 
    kanji.style.fontFamily = "yasashisa"
    kanji.innerHTML = state.kanj
@@ -242,6 +239,7 @@
   state.kanj = arrAnki[0]["kanj"]
   state.hira = arrAnki[0]["hira"]
   state.id = arrAnki[0]["id"]
+  
   
   kanji.style.fontFamily = "zero"
   kanji.innerHTML = state.kanj

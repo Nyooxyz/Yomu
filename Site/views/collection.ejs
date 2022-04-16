@@ -50,6 +50,28 @@
       transition: .3s linear;
     }
 
+    .topCard-container{
+      margin-top: 5vh;
+      box-sizing: border-box;
+      text-align: center;
+
+    }
+    .topCard {
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      z-index: 0;
+      width: 10vw;
+      height: 14vh;
+      padding: 1rem;
+      border: 1px solid #696969;
+      border-radius:20px;
+      box-shadow:4px 7px 19px rgba(0, 0, 255, 0.5);
+      overflow: hidden;
+      background-color: rgba(0, 0, 255, 0.1);
+      transition: .3s linear;
+      text-align: center;
+      display: inline-block;
+    }
+
     #barTotal {
       width: 0%;
       height: 2.2vh;
@@ -69,29 +91,57 @@
       text-align: center;
       line-height: 8vh;
       color: white;
-      margin-top:7vh;
-      margin-left: 5vw;
+      margin-top:3vh;
+      margin-left: 10vw;
       margin-right: 12vw;
       
     }
 
+    #seeFull {
+      font-size:3em;
+      text-align: center;
+      position: relative;
+      transition: 0.5s;
+    }
+    #seeFull:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255,255,0);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    #seeFull:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .see-cont{
+      margin-top: 10vh;
+      width: 50%;
+      margin: auto;
+    }
 
     .kanji-smol {
-      font-size: 3em;
+      font-size: 2.2em;
       margin-bottom: 10;
       font-family: "yasashisa";
     }
 
     .hira-smol {
-      font-size: 1.5em;
+      font-size: 1em;
       font-family: "yasashisa";
       margin-bottom: 10;
     }
 
 
     .translation {
-      font-size: 1.4em;
-      margin-bottom: 10;
+      font-size: 1.2em;
+      margin-bottom: 2;
     }
 
     .progress-bar-smol {
@@ -100,11 +150,18 @@
     }
 
     .percent-bar {
-      height: 30px;
+      height:1.1vh;
+      margin-top: 5px;
       background-color: #04AA6D;
       text-align: center;
       line-height: 30px;
       color: white;
+    }
+
+    .percent-bar-full{
+      margin-top: 5px;
+      height: 1.1vh;
+      background-color: rgba(255,255,255,0.2);
     }
 
     .selectedLink{
@@ -151,7 +208,7 @@
           <button type="submit" class="btn-home">Game</button>
         </form>
   
-        <form action="/collection" method="GET">
+        <form action="/collection/home" method="GET">
           <button type="submit" class="btn-collection">Collection</button>
         </form>
       
@@ -165,7 +222,38 @@
     </nav>
   </header>
 
-  <% if (page == 1) { %><p style="position:absolute;top:5vh;left:1%;font-size:2em;">Total:</p> <div id="barTotalFull"><div id="barTotal"></div></div><% } else { %><div id="barTotalFull" style="visibility:hidden;"><div id="barTotal" style="visibility:hidden;"></div></div><% } %>
+  <% if (page < 1) { %><p style="font-size:3em;text-align:center;margin-top:5%">Total</p> <div id="barTotalFull"><div id="barTotal"></div></div>
+  <p style="font-size:3em;text-align:center;margin-top:2%">Top 6</p>
+          <div class="topCard-container">
+           <% for (var i = 0; i < topHighest.length; i++){ %>
+            <% let obj = db.find(o => o.word_id === topHighest[i].word_id) %>
+            <div class="topCard">
+              <div class="kanji-smol">
+                <%=obj.kanj %>
+              </div>
+              <div class="hira-smol">
+                <%=obj.hira %>
+              </div>
+              <div class="translation">
+                <%=obj.eng %>
+              </div>
+              <div class="progress-bar-smol">
+                <div class="percent-progress">
+                  <%=topHighest[i].HighestCount%>
+                  <div class="percent-bar-full"><div class="percent-bar" style="width:<%=topHighest[i].HighestCount%>;"></div></div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        
+        <p style="text-align:center;margin-top:10vh;font-size:2.5em;margin-bottom:10vh">↓      See full collections      ↓</p>
+  <div class="see-cont">
+    <a id="seeFull" style="float:left" href="/collection/n5?page=1">JLPT N5</a>
+    <a id="seeFull" style="float:right" href="/collection/n4?page=1">JLPT N4</a>
+  </div>
+  
+  <% } else { %><div id="barTotalFull" style="visibility:hidden;"><div id="barTotal" style="visibility:hidden;"></div></div>
 
   <div id="card-container">
     <% db.forEach(entry => { %>
@@ -188,11 +276,12 @@
             <% } %>
           <% } %>
           <%=counted%>%
-          <div class="percent-bar" style="width:<%=counted%>%;"></div>
+          <div class="percent-bar-full"><div class="percent-bar" style="width:<%=counted%>%;"></div></div>
         </div>
       </div>
     </div>
     <% }) %>
+  
   </div>
 
   <div class="break"></div>
@@ -203,18 +292,18 @@
 
   
 
-  <% if (page > 1) {  %> <a href="/collection?page=<%=page-1%>"><i class="fas fa-chevron-left"></i></a><% } %>
+  <% if (page > 1) {  %> <a href="/collection/<%=n%>?page=<%=page-1%>"><i class="fas fa-chevron-left"></i></a><% } %>
   <% for (let i = iterator; i <= endingLink; i++) { %>
     <% if (i === page) { %>
-      <a class="selectedLink" href="/collection?page=<%=i%>"><%=i%></a>
+      <a class="selectedLink" href="/collection/<%=n%>?page=<%=i%>"><%=i%></a>
       <% continue; %>
 
   <% } %>
-      <a href="/collection?page=<%=i%>"><%=i%></a>
+      <a href="/collection/<%=n%>?page=<%=i%>"><%=i%></a>
       <% } %>
-      <% if (page < numOfPages) { %> <a href="/collection?page=<%=page+1%>"><i class="fas fa-chevron-right"></i></a> <% } %>
+      <% if (page < numOfPages) { %> <a href="/collection/<%=n%>?page=<%=page+1%>"><i class="fas fa-chevron-right"></i></a> <% } %>
 
-
+  <% } %>
   </div>
 
 <!-- JavaScript -->
@@ -238,7 +327,7 @@
     console.log(('<%=sum[0].total%>'/'<%=numOfResults%>')*100)
     var id = setInterval(frame, 35)
     function frame() {
-      if (width >= ('<%=sum[0].total%>'/'<%=numOfResults%>')*100) {
+      if (width >= ('<%=sum[0].total%>'/'<%=numOfResults%>')) {
         clearInterval(id)
         i = 0
       } else {
