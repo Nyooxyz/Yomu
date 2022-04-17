@@ -10,5 +10,7 @@ I did my very best
 
 
 All the data used to run the app has been 
-Fetched on the jisho.org website
+Fetched from the jisho.org website
+UI inspired by Tsuki
+
 

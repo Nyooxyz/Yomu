@@ -126,7 +126,6 @@ passport.serializeUser((user,done)=>{
 });
 
 passport.deserializeUser(function(userId,done){
-  console.log('deserializeUser '+ userId);
   connection.query('SELECT * FROM users where id = ?',[userId], function(error, results) {
           done(null, results[0]);    
   });
@@ -155,7 +154,7 @@ function genPassword(password)
     }
     else
     {
-        res.redirect('/notAuthorized');
+        res.redirect('/403');
     }
 }
 
@@ -163,7 +162,7 @@ function isNotAuth(req,res,next)
 {
     if(req.isAuthenticated())
     {
-      res.redirect('/notAuthorized');
+      res.redirect('/403');
     }
     else
     {
@@ -179,7 +178,7 @@ function isAdmin(req,res,next)
     }
     else
     {
-        res.redirect('/notAuthorizedAdmin');
+        res.redirect('/403');
     }   
 }
 
@@ -226,10 +225,31 @@ function checkLogin(req, res, next) {
 
 
 app.get('/', checkLogin, (req, res) => {
-  connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
-    if (err) throw err;
-    res.render('index.ejs',{logged : loggedin, db : result})
-  })
+  res.render('index.ejs',{logged : loggedin})
+})
+
+app.get('/game', checkLogin, (req, res) => {
+
+ 
+
+  if (req.query.jlpt === 'n5'){
+    connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
+      if (err) throw err;
+      const numOfResults = result.length
+      const startId = 0
+      
+      res.render('game.ejs',{logged : loggedin, db : result, numOfResults, startId})
+    })
+  } else {
+    connection.query("SELECT * FROM jlpt.n4 LIMIT 0, 1622", (err, result, fields) => {
+      if (err) throw err;
+      const numOfResults = result.length
+      const startId = 600
+      
+      res.render('game.ejs',{logged : loggedin, db : result, numOfResults, startId})
+    })
+  }
+  
 })
 
 app.get('/login', isNotAuth, (req, res) => {
@@ -360,20 +380,13 @@ app.get('/admin-route',isAdmin,(req, res, next) => {
 });
 
 app.get('/userAlreadyExists', (req, res, next) => {
-  console.log("Inside get");
   res.send('<h1>Sorry This username is taken </h1><p><a href="/register">Register with different username</a></p>');
   
 });
 
-app.get('/notAuthorizedAdmin', (req, res, next) => {
-  console.log("Inside get");
-  res.send('<h1>You are not authorized to view the resource as you are not the admin of the page  </h1><p><a href="/login">Retry to Login as admin</a></p>');
-  
-});
+app.get('/403', (req, res, next) => {
 
-app.get('/notAuthorized', (req, res, next) => {
-  console.log("Inside get");
-  res.send('<h1>You are not authorized to view the resource </h1><p><a href="/login">Retry Login</a></p>');
+  res.render('403.ejs')
   
 }); 
 

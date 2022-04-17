@@ -1,0 +1,677 @@
+<html>
+<head>
+
+  <title>Furo</title>
+
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- CSS links -->
+  <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
+
+
+  
+
+</head>
+
+
+<body>
+<canvas id="canvas" width="643" height="714"></canvas>
+
+<header>
+  <nav class="g-nav">
+      <form action="/" method="GET">
+        <button type="submit" class="btn-home">Game</button>
+      </form>
+
+      <form action="/collection/home" method="GET">
+        <button type="submit" class="btn-collection">Collection</button>
+      </form>
+      <%if (logged) { %>
+      <form action="/logout" method="GET">
+        <button type="submit" class="btn-logout">Log Out</button>
+      </form>
+      <% } else{ %>  
+      <form action="/login" method="POST">
+        <button type="submit" class="btn-login">Log in</button>
+      </form>
+      <form action="/register">
+        <button type="submit" class="btn-register">Register</button>
+      </form>
+      <% } %>         
+  </nav>
+</header>
+<h1 id="countdown"></h1>
+<div class="content tokiWoTomare">
+  
+
+  <h2 id="timer" style="display:none;"></h2>
+
+  <center>
+    <div class="main-ui">
+      <center id="fadein" class>
+
+        <div class="score hud">0</div>
+        <div class="acc-mark hud">%</div><div class="acc hud">0</div>
+        <div class="rank hud">0</div>
+
+        <h1 class="kanji"></h1>
+
+        <div class="combo-mark hud">x</div><div class="combo hud">0</div>
+
+        <form action="" class="our-form" method="">
+          <input type="text" class="our-field" name="guess">
+          <button id="submit-btn" type="submit">Guess</button>
+        </form>
+      </center>
+    </div>
+  </center>
+
+  
+  <div class="wrong hud">0</div>
+  
+
+ 
+  <button id="reset">GIVE UP</button> 
+  
+
+</div>
+
+<div id="scoreMenuX" style="display:none;">
+
+  <div id="finalRank">D</div>
+
+  <div id="resultScreen">
+
+    <div id="scoreRes">
+      <h2>Score </h2><h1 id="finalScore">0</h1><br>
+
+      <h2>Miss </h2><h1 id="finalMiss">0</h1><br>
+      <h2>Correct </h2><h1 id="finalRight">0</h1><br>
+
+      <h2>Highest combo </h2><h1 id="highCombo">0</h1><br>
+      <h2>Accuracy </h2><h1 id="finalAcc">0</h1>
+
+      
+    </div>
+
+    <h1 id="seeBelow">↓      Check wrong answers      ↓</h1>
+    
+
+  </div>
+
+  <table id="tableau">
+    <thead>
+      <tr>
+        <th><h2>Word</h2></th>
+        <th><h2>Reading</h2></th>
+        <th><h2>Misscount</h2></th>
+        <th><h2>Jisho</h2></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="restartButton" onclick="showContent()">Retry</button>
+</div>
+
+<!-- JavaScript -->
+<script src="public/js/jquery.js"></script>
+<script>
+
+
+ // First mess
+ const ourForm = document.querySelector(".our-form")
+ const ourField = document.querySelector(".our-field")
+ const score = document.querySelector(".score")
+ const wrong = document.querySelector(".wrong")
+ const combo = document.querySelector(".combo")
+ const kanji = document.querySelector('.kanji')
+ const content = document.querySelector('.content')
+ const scoreMenuX = document.querySelector('#scoreMenuX')
+ const tableRef = document.querySelector("#tableau")
+ const scoreX = document.querySelector("#scoreRes")
+ const main_ui = document.querySelector(".main-ui")
+ const counters = document.querySelectorAll('.score')
+ const acc = document.querySelector('.acc')
+ const rank = document.querySelector('.rank')
+ const finalMiss = document.querySelector('#finalMiss')
+ const finalScore = document.querySelector('#finalScore')
+ const finalRight = document.querySelector('#finalRight')
+ const finalAcc = document.querySelector('#finalAcc')
+ const finalCombo = document.querySelector('#highCombo')
+ const finalRank = document.querySelector('#finalRank')
+
+
+ const diff = 1 // Game Difficulty WIP
+
+
+
+
+
+
+
+ // -- Game state -- //
+
+ let state = {
+   score: 0,
+   wrongAnswers: 0,
+   combo: 0,
+   rightAnswers:0,
+   i:0,
+   highCombo:0,
+   rank:'',
+   kanj: null,
+   hira: null,
+   id: 0
+ }
+
+
+
+
+  // -- Array loop -- //
+
+  let tabRes = []  // Array of results [0] = kanji -  [1] = hira  - [2] = misscount
+  let arrAnki = [] // Anki array [0] = kanji -  [1] = hira  - [2] = i value
+
+  // -- Initialisation -- //
+
+ 
+    console.log('<%=startId%>')
+
+
+
+ function initProblem(data){
+   let i = randomIntFromInterval('<%=startId%>','<%=numOfResults%>') 
+
+   console.log(i)
+
+   state.kanj = data[i].kanj
+   state.hira = data[i].hira
+   state.id = data[i].word_id
+
+   
+
+   kanji.style.fontFamily = "yasashisa"
+   kanji.innerHTML = state.kanj
+   ourField.value = ""
+   ourField.focus()
+ }
+
+
+ function updateProblem(){ 
+  let data = '<%- JSON.stringify(db) %>'
+  let data2 = JSON.parse(data)
+  initProblem(data2) 
+  console.log(state.hira) // Coz Im dumb
+ }
+
+
+
+  // -- Anki -- //
+
+ function callAnkiOopa(){
+  if(arrAnki.length != 0){
+    return arrAnki[0].i === 0
+  }
+ }
+
+ function callAnki(){
+  
+
+  state.kanj = arrAnki[0]["kanj"]
+  state.hira = arrAnki[0]["hira"]
+  state.id = arrAnki[0]["id"]
+  
+  
+  kanji.style.fontFamily = "zero"
+  kanji.innerHTML = state.kanj
+  ourField.value = ""
+  ourField.focus()
+ }
+
+ function addAnki(){
+   arrAnki.push({
+    kanj: state.kanj, 
+    hira: state.hira,
+    id: state.id,
+    i: 6
+  })
+ }
+
+ function doAnki(){
+  // - Optimisation of function in progress - //
+
+  if(arrAnki.length != 0){
+    arrAnki.forEach(item => item.i--)
+  }
+
+  if (callAnkiOopa()){
+    callAnki()
+    arrAnki.shift()
+  }
+  else{
+    updateProblem()
+  }
+ }
+
+  // --         -- //
+
+
+ function randomIntFromInterval(min, max) { 
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+ }
+
+
+
+ function arrRes(){
+
+  if (tabRes.some(e => e.kanj === state.kanj)) {
+
+    const foundkanj = tabRes.find(k => {
+    return k.kanj === state.kanj
+    })
+    foundkanj.miss++
+  }
+
+  else{
+    tabRes.push({
+      kanj: state.kanj, 
+      hira: state.hira,
+      miss: 1
+    })
+  }
+ }
+
+ function arrToTab(){
+  tabRes.forEach((item) => {
+    addRow(item.kanj,item.hira,item.miss)
+  });
+
+ }
+
+
+
+ // -- Handling input -- //
+
+ ourForm.addEventListener("submit", handleSubmit) 
+
+ function handleSubmit(e){
+   e.preventDefault()
+   state.i++
+
+
+     // RIGHT ANSWER --                                                              
+   if (ourField.value === state.hira){
+
+    rightAnsAnim2()
+    setTimeout("rightAns()", 600)
+    
+     // WRONG ANSWER --                                                             
+   } else{
+     wrongAnsAnim2()
+     wrongAns()
+   }
+ }
+
+ function rightAns(){
+
+  $.post('/send', { id: state.id });
+  
+  state.combo++
+  state.rightAnswers++
+  state.score += 300 + ((300 * state.combo * diff)/15)
+  scoreUpdate()
+  rankCalc()
+  acc.textContent = accCalc()
+  rank.textContent = state.rank
+  combo.textContent = state.combo
+
+  doAnki()
+ }
+
+ function wrongAns(){
+  state.wrongAnswers++
+  if(state.combo > state.highCombo){
+    state.highCombo = state.combo
+  }
+  state.combo = 0
+  rankCalc()
+  acc.textContent = accCalc()
+  rank.textContent = state.rank
+  wrong.textContent = state.wrongAnswers
+  combo.textContent = state.combo
+  
+
+
+
+  arrRes()
+
+  addAnki()
+
+  doAnki()
+
+ }
+
+
+
+
+ // -- Reset -- //
+
+
+ function resetGame(){
+   state.combo = 0
+   state.wrongAnswers = 0
+   state.score = 0
+   state.rightAnswers = 0
+   state.i = 0
+   state.highCombo = 0
+   state.id = 0
+   tabRes = [] 
+   arrAnki = [] 
+   
+ }
+
+ // -- Tableau -- //
+
+ function showContent(){
+   resetGame()
+   updateProblem() 
+   content.style.display = 'block'
+   scoreMenuX.style.display = 'none'
+   clearTab()
+   }
+
+ function scoreMenu(){
+   content.style.display = 'none'
+   scoreMenuX.style.display = 'block'
+
+
+   finalAcc.textContent = accCalc() + '%'
+   finalCombo.textContent = state.highCombo
+   finalMiss.textContent = state.wrongAnswers
+   finalRight.textContent = state.rightAnswers
+   finalScore.textContent = state.score
+   finalRank.textContent = state.rank
+ }
+
+ function addRow(kanj,hira,miss) {
+
+   let newRow = tableRef.insertRow(-1)
+   let newCell1 = newRow.insertCell(0)
+   let newCell2 = newRow.insertCell(1)
+   let newCell3 = newRow.insertCell(2)
+   let newCell4 = newRow.insertCell(3)
+   let newText1 = document.createTextNode(kanj)
+   let newText2 = document.createTextNode(hira)
+   let newText3 = document.createTextNode(miss)
+   let newText4 = document.createTextNode("Click for infos")
+
+   newCell4.addEventListener("click",() => {window.open("https://jisho.org/word/"+kanj, "_blank");})
+
+   newCell1.appendChild(newText1)
+   newCell2.appendChild(newText2)
+   newCell3.appendChild(newText3)
+   newCell4.appendChild(newText4)
+
+ }
+
+ function clearTab(){
+
+   while (tableRef.rows.length > 1) {
+     tableRef.deleteRow(1)
+   }
+ }
+
+
+
+// -- Answers Animations -- //
+
+ var existingTimeout = null;
+
+ function wrongAnsAnim2() {
+  // sfx_no.play();
+  Pop(state.hira);
+
+  $(".main-ui").addClass("shake-no");
+
+  if (existingTimeout !== null) {
+    clearTimeout(existingTimeout);
+  }
+
+  existingTimeout = setTimeout(function() {
+    $(".main-ui").removeClass("shake-no");
+  }, 300);
+}
+
+function rightAnsAnim2() {
+  // sfx_no.play();
+
+  $(".main-ui").addClass("yes");
+
+  if (existingTimeout !== null) {
+    clearTimeout(existingTimeout);
+  }
+
+  existingTimeout = setTimeout(function() {
+    $(".main-ui").removeClass("yes");
+    $(".main-ui").addClass("pulsing");
+    setTimeout(function () {
+      $(".main-ui").removeClass("pulsing");
+    }, 500);
+  }, 300);
+
+}
+
+// -- PopUp Right Answer -- //
+
+
+$(document).ready(function() {
+	$("body").append('<div id="dialogs"></div>');
+	$("body").append('<div id="jin-pop" class="hidden">Test pop</div>');
+});
+
+
+var popTimer = null;
+function Pop(text, time = 2000) {
+	$("#jin-pop").html(text);
+	$("#jin-pop").removeClass("hidden");
+
+	if (popTimer !== null) {
+		clearTimeout(popTimer);
+		popTimer = null;
+	}
+	popTimer = setTimeout(function() {
+		$("#jin-pop").addClass("hidden");
+		popTimer = null;
+	}, time);
+}
+
+// -- Timer -- //
+
+var initial = 300000
+var count = initial
+var countdownT = initial / 100
+var counter // 10 will  run it every 100th of a second
+var initialMillis
+var timerEL = document.getElementById("timer")
+var countdown = document.getElementById("countdown")
+
+function countdownTimer(){
+    if (countdownT <= 1000 && countdownT > 0) {
+        countdown.innerHTML = "始め"
+        var current = Date.now()
+        countdownT = countdownT - (current - initialMillis)
+        initialMillis = current
+        return
+    } else if (countdownT <= 0) {
+        updateProblem()
+        countdown.style.display = "none"
+        $(".content").removeClass("tokiWoTomare")
+        clearInterval(counter)
+        timerEL.style.display = "block"
+        initialMillis = Date.now()
+        counter = setInterval(timer, 1)
+        return
+    } else {
+    var current = Date.now()
+
+    countdownT = countdownT - (current - initialMillis)
+    initialMillis = current
+    
+    displayCountdown(countdownT)
+    }
+    
+}
+
+
+function timer() {
+    if (count <= 0) {  //  end of game
+        clearInterval(counter)
+        arrToTab()
+        scoreMenu()
+        timerEL.style.display = "none"
+        return
+    }
+    var current = Date.now()
+    
+    count = count - (current - initialMillis)
+    initialMillis = current
+    displayCount(count)
+}
+
+function displayCount(count) {
+  let res = Math.floor(count / 1000)
+  let milliseconds = count.toString().substring(3,5)
+  let seconds = res % 60
+  let minutes = (res - seconds) / 60
+
+  timerEL.innerHTML =
+      minutes + ':' + seconds  + "<span id='ms'>" +  milliseconds + "</span>"
+}
+
+function displayCountdown(count) {
+    let res = Math.floor(count / 1000)
+    let milliseconds = count.toString().substring(3,5)
+    let seconds = res % 60
+    let minutes = (res - seconds) / 60
+  
+    countdown.innerHTML = seconds
+  }
+
+$('#reset').on('click', function () {
+  
+    clearInterval(counter);
+    arrToTab()
+    scoreMenu()
+    timerEL.style.display = "none";
+    count = initial;
+    displayCount(count);
+});
+
+$('.restartButton').on('click', function () {
+  clearInterval(counter);
+  count = initial;
+  displayCount(count);
+  initialMillis = Date.now();
+  counter = setInterval(timer, 1);
+  timerEL.style.display = "block";
+});
+
+displayCountdown(countdownT)
+initialMillis = Date.now();
+counter = setInterval(countdownTimer, 1);
+displayCount(initial)
+
+// -- Score animation -- //
+
+const scoreAnimSpeed = 200;
+
+function scoreUpdate(){
+  counters.forEach( counter => {
+    const animate = () => {
+       const value = +state.score;
+       const data = +counter.innerText;
+      
+       const time = value / scoreAnimSpeed;
+      if(data < value) {
+           counter.innerText = Math.ceil(data + time);
+           setTimeout(animate, 1);
+         }else{
+           counter.innerText = value;
+         }
+      
+    }
+    
+    animate();
+ });
+}
+
+function accCalc(){
+  return (((state.i-state.wrongAnswers)/state.i)*100).toPrecision(3)
+}
+
+function rankCalc(){
+
+  /* Oofie warning */
+
+  if(state.i >= 50 && state.wrongAnswers == 0){
+    state.rank = 'SSS'
+  }
+  else if(state.i >= 20 && state.wrongAnswers === 0){
+    state.rank = 'SS'
+  }
+  else if(state.i >= 50 && state.wrongAnswers > 0 && state.wrongAnswers <= 5){
+    state.rank = 'A'
+  }
+  else if(state.i >= 50 && state.wrongAnswers > 5 && state.wrongAnswers <= 20){
+    state.rank = 'B'
+  }
+  else if(state.i >= 50 && state.wrongAnswers > 20 && state.wrongAnswers <= 50){
+    state.rank = 'C'
+  }
+  else if(state.i >= 20 && state.wrongAnswers === 0){
+    state.rank = 'S'
+  }
+  else if(state.i >= 20 && state.wrongAnswers > 0 && state.wrongAnswers <= 2){
+    state.rank = 'A'
+  }
+  else if(state.i >= 20 && state.wrongAnswers > 2 && state.wrongAnswers <= 10){
+    state.rank = 'B'
+  }
+  else if(state.i >= 20 && state.wrongAnswers > 10 && state.wrongAnswers <= 20){
+    state.rank = 'C'
+  }
+  else if(state.i < 20 && state.wrongAnswers === 0){
+    state.rank = 'S'
+  }
+  else if(state.i < 20 && state.wrongAnswers > 0 && state.wrongAnswers <= 1){
+    state.rank = 'A'
+  }
+  else if(state.i < 20 && state.wrongAnswers > 1 && state.wrongAnswers <= 5){
+    state.rank = 'B'
+  }
+  else if(state.i < 20 && state.wrongAnswers > 5 && state.wrongAnswers <= 15){
+    state.rank = 'C'
+  }
+  else{
+    state.rank = 'D'
+  }
+}
+
+
+
+</script>
+<!-- <script src="public/js/index.js"></script> -->
+<script src="public/js/space.js"></script>
+<script src="public/js/gl-matrix.js"></script>
+<script src="public/js/write.js"></script>
+</body>
+</html>
