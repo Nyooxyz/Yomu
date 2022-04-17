@@ -1,0 +1,218 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Yoむ の Log In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+  <style>
+    
+    @keyframes move-background {
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+    @-webkit-keyframes move-background {
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+
+    @-moz-keyframes move-background {    
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+
+        @-webkit-keyframes move-background {
+      from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+
+    
+    body, html {
+      height: 100%;
+    }
+    
+    h3,h5 {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .background-container{
+      position: fixed;
+      top: 0;
+      left:0;
+      bottom: 0;
+      right: 0;
+    }
+    
+    .stars {
+     background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+     position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+        z-index: 0;
+    }
+    
+    .twinkling{
+      width:10000px;
+      height: 100%;
+      background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+      background-size: 1000px 1000px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+
+        -moz-animation:move-background 70s linear infinite;
+      -ms-animation:move-background 70s linear infinite;
+      -o-animation:move-background 70s linear infinite;
+      -webkit-animation:move-background 70s linear infinite;
+      animation:move-background 70s linear infinite;
+
+    }
+
+    .login-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .login-box {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 1em;
+      
+      overflow-y: hidden;
+      max-height: 100vh;
+      
+ 		
+      box-shadow: 0px 0px 256px rgb(255 255 0 / 20%);
+  		padding-bottom: 1.2em;
+ 
+      
+      background-color: #000;
+  		
+      
+      z-index:3;
+    }
+
+    .login-header {
+      text-align: center;
+    }
+
+    .login-header img {
+      width: 75px;
+    }
+    
+    .form-control  {
+      background-color: #000;
+      border: 1px solid rgb(255 255 0 / 20%);
+      color: rgba(255, 255, 255, 0.8);;
+      font-family: Heading;
+     
+      letter-spacing: 6px;
+      text-align: center;
+      
+      font-size: 1.15em;
+      }
+    
+    .btn {
+      background-color: #000;
+      border: 1px solid rgb(255 255 0 / 20%);
+      color: rgb(255 255 0 / 20%);
+      font-size: 1.2em;
+      text-align: center;
+      cursor: pointer;
+      transition:0.3s;
+      box-shadow: 0px 8px rgb(255 255 0 / 20%), 0px 8px 32px rgb(255 255 0 / 20%), inset 0px 8px 32px rgb(255 255 0 / 20%); 
+  
+    }
+
+    .btn:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    #error-message {
+      display: none;
+      white-space: break-spaces;
+   
+    }
+  </style>
+<body>
+  <div class="login-container">
+    
+    <div class="background-container">
+    <div class="stars"></div>
+		<div class="twinkling"></div>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 login-box">
+      <div class="login-header">
+        <img src="https://i.postimg.cc/CKrmTymq/logo-Furo-Smol.png"/>
+        <h3>Welcome</h3>
+        <h5>PLEASE LOG IN</h5>
+        <% if (messages.error){ %>
+          <h5 style="color:red;"><%= messages.error %></h5>
+          <% } %>
+      </div>
+      <div id="error-message" class="alert alert-danger"></div>
+      <form action="/login" method="POST">
+        <div class="form-group">
+         
+          <input
+            type="text"
+            class="form-control"
+            id="uname"
+            name="uname"
+            placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+         
+          <input
+            type="password"
+            class="form-control"
+            id="pw"
+            name="pw"
+            placeholder="Enter your password">
+        </div>
+        <div class="captcha-container form-group"></div>
+        <button
+          type="submit"
+          id="btn-login"
+          class="btn btn-block">
+            Log In
+        </button>
+        <hr style="border-top: 1px dashed rgb(255 255 0 / 20%);">
+        <a href="/register"><button
+          type="button"
+          id="btn-signup"
+          class="btn btn-block">
+            Sign Up
+        </button></a>
+        
+      </form>
+    </div>
+  </div>
+</body>
+</html>

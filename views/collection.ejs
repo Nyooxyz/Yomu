@@ -1,0 +1,353 @@
+<html>
+<head>
+
+  <title>Yoむ の Collection</title>
+
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- CSS links -->
+  <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+
+
+  
+
+</head>
+
+<body>
+
+  <style>
+    
+
+    #card-container {
+      width: 90%;
+      height: 80%;
+      margin: auto;
+      margin-top: 10;
+      display: flex;
+      flex-direction: column;   
+      flex-wrap: wrap;   
+      justify-content: space-evenly;
+      gap:20;
+    }
+
+    .card {
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      z-index: 0;
+      width: 10vw;
+      height: 14vh;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #696969;
+      border-radius:20px;
+      box-shadow:4px 7px 19px rgba(0, 0, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      background-color: rgba(0, 0, 255, 0.1);
+      transition: .3s linear;
+    }
+
+    .topCard-container{
+      margin-top: 5vh;
+      box-sizing: border-box;
+      text-align: center;
+
+    }
+    .topCard {
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      z-index: 0;
+      width: 10vw;
+      height: 14vh;
+      padding: 1rem;
+      border: 1px solid #696969;
+      border-radius:20px;
+      box-shadow:4px 7px 19px rgba(0, 0, 255, 0.5);
+      overflow: hidden;
+      background-color: rgba(0, 0, 255, 0.1);
+      transition: .3s linear;
+      text-align: center;
+      display: inline-block;
+    }
+
+    #barTotal {
+      width: 0%;
+      height: 2.2vh;
+      font-size: 1.5em;
+      background-color: #4CAF50;
+      text-align: center;
+      line-height: 8vh;
+      color: white;
+    }
+
+
+    #barTotalFull {
+
+      height: 2.2vh;
+      font-size: 1.5em;
+      background-color: rgba(255, 255, 255, 0.2);
+      text-align: center;
+      line-height: 8vh;
+      color: white;
+      margin-top:3vh;
+      margin-left: 10vw;
+      margin-right: 12vw;
+      
+    }
+
+    #seeFull {
+      font-size:3em;
+      text-align: center;
+      position: relative;
+      transition: 0.5s;
+    }
+    #seeFull:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255,255,0);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    #seeFull:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    .see-cont{
+      margin-top: 10vh;
+      width: 50%;
+      margin: auto;
+    }
+
+    .kanji-smol {
+      font-size: 2.2em;
+      margin-bottom: 10;
+      font-family: "yasashisa";
+    }
+
+    .hira-smol {
+      font-size: 1em;
+      font-family: "yasashisa";
+      margin-bottom: 10;
+    }
+
+
+    .translation {
+      font-size: 1.2em;
+      margin-bottom: 2;
+    }
+
+    .progress-bar-smol {
+      font-size: 1.6em;
+      margin-bottom: 10;
+    }
+
+    .percent-bar {
+      height:1.1vh;
+      margin-top: 5px;
+      background-color: #04AA6D;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+    }
+
+    .percent-bar-full{
+      margin-top: 5px;
+      height: 1.1vh;
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .selectedLink{
+      color:red;
+      z-index: 222;
+    }
+    
+    .break {
+      margin: 50px 0;
+    }
+
+    .pageNav {
+      font-size: 3em;
+      display: flex;
+      justify-content: center;
+  
+      overflow: hidden;
+    }
+
+    .pageNav a{
+      width: 100px;
+
+      text-align: center;
+      font-weight: 700;
+      transition: .3s linear;
+    }
+
+    .pageNav a:hover{
+
+      color:rgba(0, 128, 255, 1);
+      transform: scale(0.8)
+    }
+    
+
+  </style>
+
+  <canvas id="canvas" width="643" height="714"></canvas>
+
+  <header>
+    <nav class="g-nav">
+  
+      
+        <form action="/" method="GET">
+          <button type="submit" class="btn-home">Game</button>
+        </form>
+  
+        <form action="/collection/home" method="GET">
+          <button type="submit" class="btn-collection">Collection</button>
+        </form>
+      
+  
+  
+      
+        <form action="/logout" method="GET">
+          <button type="submit" class="btn-logout">Log Out</button>
+        </form>
+             
+    </nav>
+  </header>
+
+  <% if (page < 1) { %><p style="font-size:3em;text-align:center;margin-top:5%">Total</p> <div id="barTotalFull"><div id="barTotal"></div></div>
+  <p style="font-size:3em;text-align:center;margin-top:2%">Top 6</p>
+          <div class="topCard-container">
+           <% for (var i = 0; i < topHighest.length; i++){ %>
+            <% let obj = db.find(o => o.word_id === topHighest[i].word_id) %>
+            <div class="topCard">
+              <div class="kanji-smol">
+                <%=obj.kanj %>
+              </div>
+              <div class="hira-smol">
+                <%=obj.hira %>
+              </div>
+              <div class="translation">
+                <%=obj.eng %>
+              </div>
+              <div class="progress-bar-smol">
+                <div class="percent-progress">
+                  <%=topHighest[i].HighestCount%>
+                  <div class="percent-bar-full"><div class="percent-bar" style="width:<%=topHighest[i].HighestCount%>;"></div></div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        
+        <p style="text-align:center;margin-top:10vh;font-size:2.5em;margin-bottom:10vh">↓      See full collections      ↓</p>
+  <div class="see-cont">
+    <a id="seeFull" style="float:left" href="/collection/n5?page=1">JLPT N5</a>
+    <a id="seeFull" style="float:right" href="/collection/n4?page=1">JLPT N4</a>
+  </div>
+  
+  <% } else { %><div id="barTotalFull" style="visibility:hidden;"><div id="barTotal" style="visibility:hidden;"></div></div>
+
+  <div id="card-container">
+    <% db.forEach(entry => { %>
+    <div class="card">
+      <div class="kanji-smol">
+        <%=entry.kanj %>
+      </div>
+      <div class="hira-smol">
+        <%=entry.hira %>
+      </div>
+      <div class="translation">
+        <%=entry.eng %>
+      </div>
+      <div class="progress-bar-smol">
+        <div class="percent-progress">
+          <% let counted = 0 %>
+          <% for (var i = 0; i < counter.length; i++){ %>
+            <% if (counter[i].word_id == entry.word_id){ %>
+              <% counted = counter[i].count%>
+            <% } %>
+          <% } %>
+          <%=counted%>%
+          <div class="percent-bar-full"><div class="percent-bar" style="width:<%=counted%>%;"></div></div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  
+  </div>
+
+  <div class="break"></div>
+
+  <!-- Display links to the pages -->
+
+  <div class="pageNav">
+
+  
+
+  <% if (page > 1) {  %> <a href="/collection/<%=n%>?page=<%=page-1%>"><i class="fas fa-chevron-left"></i></a><% } %>
+  <% for (let i = iterator; i <= endingLink; i++) { %>
+    <% if (i === page) { %>
+      <a class="selectedLink" href="/collection/<%=n%>?page=<%=i%>"><%=i%></a>
+      <% continue; %>
+
+  <% } %>
+      <a href="/collection/<%=n%>?page=<%=i%>"><%=i%></a>
+      <% } %>
+      <% if (page < numOfPages) { %> <a href="/collection/<%=n%>?page=<%=page+1%>"><i class="fas fa-chevron-right"></i></a> <% } %>
+
+  <% } %>
+  </div>
+
+<!-- JavaScript -->
+
+<script src="public/js/jquery.js"></script>
+
+
+
+
+<script>
+
+
+
+
+
+  var i = 0;
+  if (i == 0) {
+    i = 1
+    var elem = document.getElementById("barTotal")
+    var width = 0
+    console.log(('<%=sum[0].total%>'/'<%=numOfResults%>')*100)
+    var id = setInterval(frame, 35)
+    function frame() {
+      if (width >= ('<%=sum[0].total%>'/'<%=numOfResults%>')) {
+        clearInterval(id)
+        i = 0
+      } else {
+        width = width + 0.1
+        elem.style.width = width + "%"
+        elem.innerHTML =  width.toPrecision(2)  + "%"
+      }
+    }
+  }
+
+
+
+
+
+
+</script>
+
+
+<script src="public/js/space.js"></script>
+<script src="public/js/gl-matrix.js"></script>
+<script src="public/js/write.js"></script>
+</body>
+</html>
