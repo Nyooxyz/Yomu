@@ -32,44 +32,62 @@
       flex-wrap: wrap;   
       justify-content: space-evenly;
       gap:20;
+      perspective: 1400px;
     }
 
     .card {
+      
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       z-index: 0;
       width: 10vw;
-      height: 14vh;
+     
       padding: 1rem;
       text-align: center;
       border: 1px solid #696969;
       border-radius:20px;
       box-shadow:4px 7px 19px rgba(0, 0, 255, 0.5);
       position: relative;
-      overflow: hidden;
       background-color: rgba(0, 0, 255, 0.1);
-      transition: .3s linear;
+      transform-style: preserve-3d;
+    }
+
+    .front,
+    .back 
+    {
+      backface-visibility: hidden;
+    }
+
+    .back{
+      position: absolute;
+      top: 20%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100px; 
+
+      transform: rotateY(180deg);
     }
 
     .topCard-container{
       margin-top: 5vh;
       box-sizing: border-box;
       text-align: center;
+      perspective: 1400px;
 
     }
     .topCard {
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       z-index: 0;
       width: 10vw;
-      height: 14vh;
+
       padding: 1rem;
       border: 1px solid #696969;
       border-radius:20px;
       box-shadow:4px 7px 19px rgba(0, 0, 255, 0.5);
-      overflow: hidden;
       background-color: rgba(0, 0, 255, 0.1);
-      transition: .3s linear;
       text-align: center;
       display: inline-block;
+      transform-style: preserve-3d;
     }
 
     #barTotal {
@@ -127,30 +145,30 @@
     }
 
     .kanji-smol {
-      font-size: 2.2em;
+      font-size: 3em;
       margin-bottom: 10;
       font-family: "yasashisa";
     }
 
     .hira-smol {
-      font-size: 1em;
+      font-size: 2em;
       font-family: "yasashisa";
       margin-bottom: 10;
     }
 
 
     .translation {
-      font-size: 1.2em;
+      font-size: 2em;
       margin-bottom: 2;
     }
 
     .progress-bar-smol {
-      font-size: 1.6em;
+      font-size: 2em;
       margin-bottom: 10;
     }
 
     .percent-bar {
-      height:1.1vh;
+      height:1.5vh;
       margin-top: 5px;
       background-color: #04AA6D;
       text-align: center;
@@ -228,19 +246,23 @@
            <% for (var i = 0; i < topHighest.length; i++){ %>
             <% let obj = db.find(o => o.word_id === topHighest[i].word_id) %>
             <div class="topCard">
-              <div class="kanji-smol">
-                <%=obj.kanj %>
+              <div class="front">
+                <div class="kanji-smol">
+                  <%=obj.kanj %>
+                </div>
+                <div class="progress-bar-smol">
+                  <div class="percent-progress">
+                    <%=topHighest[i].HighestCount%>%
+                    <div class="percent-bar-full"><div class="percent-bar" style="width:<%=topHighest[i].HighestCount%>;"></div></div>
+                  </div>
+                </div>
               </div>
-              <div class="hira-smol">
-                <%=obj.hira %>
-              </div>
-              <div class="translation">
-                <%=obj.eng %>
-              </div>
-              <div class="progress-bar-smol">
-                <div class="percent-progress">
-                  <%=topHighest[i].HighestCount%>
-                  <div class="percent-bar-full"><div class="percent-bar" style="width:<%=topHighest[i].HighestCount%>;"></div></div>
+              <div class="back">
+                <div class="hira-smol">
+                  <%=obj.hira %>
+                </div>
+                <div class="translation">
+                  <%=obj.eng %>
                 </div>
               </div>
             </div>
@@ -257,26 +279,30 @@
 
   <div id="card-container">
     <% db.forEach(entry => { %>
-    <div class="card">
-      <div class="kanji-smol">
-        <%=entry.kanj %>
-      </div>
-      <div class="hira-smol">
-        <%=entry.hira %>
-      </div>
-      <div class="translation">
-        <%=entry.eng %>
-      </div>
-      <div class="progress-bar-smol">
-        <div class="percent-progress">
-          <% let counted = 0 %>
-          <% for (var i = 0; i < counter.length; i++){ %>
-            <% if (counter[i].word_id == entry.word_id){ %>
-              <% counted = counter[i].count%>
+    <div class="card <%=entry.word_id %>">
+      <div class="front">
+        <div class="kanji-smol">
+          <%=entry.kanj %>
+        </div>
+        <div class="progress-bar-smol">
+          <div class="percent-progress">
+            <% let counted = 0 %>
+            <% for (var i = 0; i < counter.length; i++){ %>
+              <% if (counter[i].word_id == entry.word_id){ %>
+                <% counted = counter[i].count%>
+              <% } %>
             <% } %>
-          <% } %>
-          <%=counted%>%
-          <div class="percent-bar-full"><div class="percent-bar" style="width:<%=counted%>%;"></div></div>
+            <%=counted%>%
+            <div class="percent-bar-full"><div class="percent-bar" style="width:<%=counted%>%;"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <div class="hira-smol">
+          <%=entry.hira %>
+        </div>
+        <div class="translation">
+          <%=entry.eng %>
         </div>
       </div>
     </div>
@@ -308,13 +334,13 @@
 
 <!-- JavaScript -->
 
-<script src="public/js/jquery.js"></script>
+<script src="../public/js/jquery.js"></script>
+<script src="../public/js/anime.min.js"></script>
 
 
 
 
 <script>
-
 
 
 
@@ -339,6 +365,53 @@
   }
 
 
+  var card = document.querySelectorAll(".card")
+  var topCard = document.querySelectorAll(".topCard")
+  var playing = false
+
+  if(card){
+    
+    card.forEach(div => div.addEventListener('click', function() {
+      if(playing)
+        return;
+
+      playing = true;
+      anime({
+        targets: div,
+        scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
+        rotateY: {value: '+=180', delay: 200},
+        easing: 'easeInOutSine',
+        duration: 400,
+        complete: function(anim){
+          playing = false
+        }
+      })
+    }))
+  }
+
+  if(topCard){
+    topCard.forEach(div => div.addEventListener('click', function() {
+      if(playing)
+        return;
+
+      playing = true;
+      anime({
+        targets: div,
+        scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}],
+        rotateY: {value: '+=180', delay: 200},
+        easing: 'easeInOutSine',
+        duration: 400,
+        complete: function(anim){
+          playing = false
+        }
+      })
+    }))
+  }
+
+  
+
+
+
 
 
 
@@ -346,8 +419,8 @@
 </script>
 
 
-<script src="public/js/space.js"></script>
-<script src="public/js/gl-matrix.js"></script>
-<script src="public/js/write.js"></script>
+<script src="../public/js/space.js"></script>
+<script src="../public/js/gl-matrix.js"></script>
+<script src="../public/js/write.js"></script>
 </body>
 </html>
