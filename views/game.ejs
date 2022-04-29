@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>Yoむ</title>
+  <title>百んのゲーム</title>
 
   <!-- meta tags -->
   <meta charset="UTF-8">
@@ -49,33 +49,42 @@
 
   <h2 id="timer" style="display:none;"></h2>
 
-  <center>
+    <div class="rightList list">
+      <h2>CORRECT WORDS </h2>
+      <div>
+        <ul id="rightWords">
+          
+      </div>
+    </div>
+
     <div class="main-ui">
       <center id="fadein" class>
-
-        <div class="score hud">0</div>
         <div class="acc-mark hud">%</div><div class="acc hud">0</div>
         <div class="rank hud">0</div>
 
         <h1 class="kanji"></h1>
 
-        <div class="combo-mark hud">x</div><div class="combo hud">0</div>
-
         <form action="" class="our-form" method="">
           <input type="text" class="our-field" name="guess">
           <button id="submit-btn" type="submit">Guess</button>
         </form>
+        <p id="note"><span>NOTE: </span>To switch quickly to hiragana, select the field above and press <span>ALT + SHIFT</span> then <span>CRTL + CAPS-LOCK</span></p>
       </center>
     </div>
-  </center>
+
+    <div class="wrongList list">
+      <h2>RECENT WRONG GUESSES </h2>
+      <div id="wrongWords"></div>
+    </div>
+
+    <div class="cont-center">
+      <p id="note"><span>NOTE: </span>To switch quickly to hiragana, select the field above and press <span>ALT + SHIFT</span> then <span>CRTL + CAPS-LOCK</span></p>
+      <button id="reset">GIVE UP</button> 
+    </div>
 
   
   <div class="wrong hud">0</div>
-  
-
- 
-  <button id="reset">GIVE UP</button> 
-  
+  <div class="combo hud">0</div>
 
 </div>
 
@@ -86,7 +95,6 @@
   <div id="resultScreen">
 
     <div id="scoreRes">
-      <h2>Score </h2><h1 id="finalScore">0</h1><br>
 
       <h2>Miss </h2><h1 id="finalMiss">0</h1><br>
       <h2>Correct </h2><h1 id="finalRight">0</h1><br>
@@ -120,6 +128,53 @@
   <button class="restartButton" onclick="showContent()">Retry</button>
 </div>
 
+<style>
+  #note {
+    text-align: center;
+    transition: 1s;
+    margin: 1em 0;
+    font-size: 1.1rem;
+  }
+  #note span {
+    color: #FF0;
+  }
+
+  #wrongWords{
+    margin-top: 2vh;
+    font-size: 2rem;
+    font-family: 'yasashisa';
+  }
+
+  #rightWords{
+    margin-top: 2vh;
+    height:56vh;
+    font-size: 2rem;
+    font-family: 'yasashisa';
+  }
+
+  .list h2 {
+    font-family: "yasashisa";
+  }
+
+  ul {
+    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+    box-sizing: border-box;
+  }
+
+  li {
+    padding: 10px 20px;
+  }
+
+  li:nth-child(even) {
+    background: #f8f8f841;
+  } 
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+</style>
 <!-- JavaScript -->
 <script src="public/js/jquery.js"></script>
 <script>
@@ -128,7 +183,6 @@
  // First mess
  const ourForm = document.querySelector(".our-form")
  const ourField = document.querySelector(".our-field")
- const score = document.querySelector(".score")
  const wrong = document.querySelector(".wrong")
  const combo = document.querySelector(".combo")
  const kanji = document.querySelector('.kanji')
@@ -137,15 +191,16 @@
  const tableRef = document.querySelector("#tableau")
  const scoreX = document.querySelector("#scoreRes")
  const main_ui = document.querySelector(".main-ui")
- const counters = document.querySelectorAll('.score')
  const acc = document.querySelector('.acc')
  const rank = document.querySelector('.rank')
  const finalMiss = document.querySelector('#finalMiss')
- const finalScore = document.querySelector('#finalScore')
  const finalRight = document.querySelector('#finalRight')
  const finalAcc = document.querySelector('#finalAcc')
  const finalCombo = document.querySelector('#highCombo')
  const finalRank = document.querySelector('#finalRank')
+ const rightWords = document.querySelector('#rightWords')
+ const wrongWords = document.querySelector('#wrongWords')
+
 
 
  const diff = 1 // Game Difficulty WIP
@@ -159,7 +214,6 @@
  // -- Game state -- //
 
  let state = {
-   score: 0,
    wrongAnswers: 0,
    combo: 0,
    rightAnswers:0,
@@ -327,9 +381,8 @@
   
   state.combo++
   state.rightAnswers++
-  state.score += 300 + ((300 * state.combo * diff)/15)
-  scoreUpdate()
   rankCalc()
+  rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
   acc.textContent = accCalc()
   rank.textContent = state.rank
   combo.textContent = state.combo
@@ -344,6 +397,7 @@
   }
   state.combo = 0
   rankCalc()
+  ankiToHTML()
   acc.textContent = accCalc()
   rank.textContent = state.rank
   wrong.textContent = state.wrongAnswers
@@ -369,7 +423,6 @@
  function resetGame(){
    state.combo = 0
    state.wrongAnswers = 0
-   state.score = 0
    state.rightAnswers = 0
    state.i = 0
    state.highCombo = 0
@@ -398,7 +451,6 @@
    finalCombo.textContent = state.highCombo
    finalMiss.textContent = state.wrongAnswers
    finalRight.textContent = state.rightAnswers
-   finalScore.textContent = state.score
    finalRank.textContent = state.rank
  }
 
@@ -503,6 +555,7 @@ var counter // 10 will  run it every 100th of a second
 var initialMillis
 var timerEL = document.getElementById("timer")
 var countdown = document.getElementById("countdown")
+const freezeTime = true
 
 function countdownTimer(){
     if (countdownT <= 1000 && countdownT > 0) {
@@ -533,18 +586,30 @@ function countdownTimer(){
 
 
 function timer() {
-    if (count <= 0) {  //  end of game
-        clearInterval(counter)
-        arrToTab()
-        scoreMenu()
-        timerEL.style.display = "none"
+  if (freezeTime){
+    return
+  } else if (count <= 1000 * 60 && count > 0) {  //  end of game
+        timerEL.style.color = 'red'
+        var current = Date.now()
+    
+        count = count - (current - initialMillis)
+        initialMillis = current
+        displayCount(count)
         return
-    }
+    } else if (count <= 0) {
+      clearInterval(counter)
+      arrToTab()
+      scoreMenu()
+      timerEL.style.display = "none"
+      return
+    } else {
+
     var current = Date.now()
     
     count = count - (current - initialMillis)
     initialMillis = current
     displayCount(count)
+    }
 }
 
 function displayCount(count) {
@@ -565,6 +630,15 @@ function displayCountdown(count) {
   
     countdown.innerHTML = seconds
   }
+
+function ankiToHTML() {
+  console.log(arrAnki)
+  html$ = ''
+  for(var key in arrAnki){
+    html$ += '<span>'+arrAnki[key].kanj+'</span><br>'            
+  }
+  wrongWords.innerHTML = html$  
+}
 
 $('#reset').on('click', function () {
   
@@ -590,29 +664,6 @@ initialMillis = Date.now();
 counter = setInterval(countdownTimer, 1);
 displayCount(initial)
 
-// -- Score animation -- //
-
-const scoreAnimSpeed = 200;
-
-function scoreUpdate(){
-  counters.forEach( counter => {
-    const animate = () => {
-       const value = +state.score;
-       const data = +counter.innerText;
-      
-       const time = value / scoreAnimSpeed;
-      if(data < value) {
-           counter.innerText = Math.ceil(data + time);
-           setTimeout(animate, 1);
-         }else{
-           counter.innerText = value;
-         }
-      
-    }
-    
-    animate();
- });
-}
 
 function accCalc(){
   return (((state.i-state.wrongAnswers)/state.i)*100).toPrecision(3)
@@ -624,45 +675,59 @@ function rankCalc(){
 
   if(state.i >= 50 && state.wrongAnswers == 0){
     state.rank = 'SSS'
+    rank.style.color = '#FFD700'
   }
   else if(state.i >= 20 && state.wrongAnswers === 0){
     state.rank = 'SS'
+    rank.style.color = '#C0C0C0'
   }
   else if(state.i >= 50 && state.wrongAnswers > 0 && state.wrongAnswers <= 5){
     state.rank = 'A'
+    rank.style.color = 'green'
   }
   else if(state.i >= 50 && state.wrongAnswers > 5 && state.wrongAnswers <= 20){
     state.rank = 'B'
+    rank.style.color = 'blue'
   }
   else if(state.i >= 50 && state.wrongAnswers > 20 && state.wrongAnswers <= 50){
     state.rank = 'C'
+    rank.style.color = 'purple'
   }
   else if(state.i >= 20 && state.wrongAnswers === 0){
     state.rank = 'S'
+    rank.style.color = 'yellow'
   }
   else if(state.i >= 20 && state.wrongAnswers > 0 && state.wrongAnswers <= 2){
     state.rank = 'A'
+    rank.style.color = 'green'
   }
   else if(state.i >= 20 && state.wrongAnswers > 2 && state.wrongAnswers <= 10){
     state.rank = 'B'
+    rank.style.color = 'blue'
   }
   else if(state.i >= 20 && state.wrongAnswers > 10 && state.wrongAnswers <= 20){
     state.rank = 'C'
+    rank.style.color = 'purple'
   }
   else if(state.i < 20 && state.wrongAnswers === 0){
     state.rank = 'S'
+    rank.style.color = 'yellow'
   }
   else if(state.i < 20 && state.wrongAnswers > 0 && state.wrongAnswers <= 1){
     state.rank = 'A'
+    rank.style.color = 'green'
   }
   else if(state.i < 20 && state.wrongAnswers > 1 && state.wrongAnswers <= 5){
     state.rank = 'B'
+    rank.style.color = 'blue'
   }
   else if(state.i < 20 && state.wrongAnswers > 5 && state.wrongAnswers <= 15){
     state.rank = 'C'
+    rank.style.color = 'purple'
   }
   else{
     state.rank = 'D'
+    rank.style.color = 'red'
   }
 }
 

@@ -106,7 +106,7 @@ $(document).ready(function(){
         
         var currentTime = new Date();
         
-        speed = 0.025;
+        speed = 0.03;
       
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillStyle = 'rgba(0,0,0,0.2)';

@@ -38,7 +38,9 @@
   font-family: "zero";
   src: url("../font/ZeroGothic.otf");
 }
-
+::-webkit-scrollbar {
+  width: 10px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -51,7 +53,7 @@ html {
 	color: #FFF;
 	font-family: "script", sans-serif;
 	font-size: 12px;
-  background:hsla(200, 88%, 13%, 1);
+  background:rgb(0, 0, 0);
 }
 
 a {
@@ -86,14 +88,15 @@ body:before {
 	background-image: url(../media/overlay.png);
 	background-repeat: all;
 	background-position: 0px 0px;
+  background-color: rgba(0, 0, 0, 0.1);
 	animation-name: Static;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 	animation-timing-function: steps(4);
-	box-shadow: inset 0px 0px 10em rgba(0,0,0,0.4);
+	box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
 }
 
-body:after {
+/* body:after {
 	content: "";
 	position: fixed;
 	left: 0;
@@ -109,7 +112,7 @@ body:after {
 	animation-duration: 0.8s;
 	animation-iteration-count: infinite;
 	animation-timing-function: steps(4);
-}
+} */
 
 /* ---                     --- */
 
@@ -122,7 +125,7 @@ canvas {
   width: 100%;
   height: 100%;
   z-index: -100;
-  opacity: 0.5;
+  opacity:0.9;
 }
 
 .tokiWoTomare{
@@ -139,6 +142,10 @@ label {
   display: block;
 }
 
+p {
+  font-family: "yasashisa";
+}
+
 header{
   font-family: 'jp_1';
   position: fixed;
@@ -148,7 +155,7 @@ header{
   font-size: 1.8rem;
 }
 .g-nav{
-  z-index: 10;
+  z-index: 1000;
   width: 100%;
   height: 20%;
   display: flex;
@@ -164,7 +171,7 @@ header button {
   transition: 0.3s;
   border: 1px solid #6E796F;
   color: #6E796F;
-  box-shadow: 0px 8px rgb(255, 255, 0);
+  box-shadow: 0px 4px #F8ECD1;
   padding: 10px;
 }
 
@@ -175,8 +182,38 @@ header button:hover {
 } 
 
 
-#content {
+.content {
+  margin-top: 20vh;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  
+}
+
+.rightList {
+  max-height: 60vh;
+  box-shadow: 0px 6px #ffffff, 0px 4px 32px rgba(255, 255, 255, 0.4), inset 0px 8px 64px rgba(255, 255, 255, 0.4); 
+  border: 4px solid transparent;
+  border-color: rgb(255, 255, 255);
+}
+
+
+.wrongList {
+  box-shadow: 0px 6px #ffffff, 0px 4px 32px rgba(255, 255, 255, 0.4), inset 0px 8px 64px rgba(255, 255, 255, 0.4); 
+  border: 4px solid transparent;
+  border-color: rgb(255, 255, 255);
+}
+
+.list{
+  max-height: 60vh;
+  width: 40em;
+}
+
+.list {
+  text-align: center;
 }
 
 #reset{
@@ -217,15 +254,19 @@ header button:hover {
 
 .main-ui {
   position: relative;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.25); 
   width: 60em;
   padding: 1em;
-  margin-top: 20em;
+  
   overflow-y: hidden;
-  max-height: 100vh;
+  height: 30vh;
   transition: 1s;
-  box-shadow: 0px 0px 256px rgb(255 255 0 / 20%);
-  padding-bottom: 1.2em;
+  color: #ffffff;
+  background: #000;
+  box-shadow: 0px 6px #ffffff, 0px 4px 32px rgba(255, 255, 255, 0.4), inset 0px 8px 64px rgba(255, 255, 255, 0.4); 
+  border: 4px solid transparent;
+  border-color: rgb(255, 255, 255);
+  padding-bottom: 2.45em;
 }
 
 .kanji {
@@ -238,30 +279,42 @@ header button:hover {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  color: hsl(186.821, 37.6957%, 60%)
+  color: white;
 }
 
 .our-field {
   font-size: 3.45em;
   width: calc(100% - 2px);
   background-color: #000;
-  border: 1px solid rgb(0, 238, 255);
-  color: rgb(0, 238, 255);
-  font-family: Heading;
+  border: 1px solid rgb(222, 182, 171);
+  color: rgb(222, 182, 171);
+  font-family: "yasashisa";
   letter-spacing: 6px;
   text-align: center;
-  box-shadow: 0px 4px rgb(0, 238, 255);
+  box-shadow: 0px 4px rgb(222, 182, 171);
+  outline: none;
 }
+
+
 
 button {
   font-family: 'jp_1';
+  margin-top: 0.4em;
   background-color: #000;
-  border: 1px solid rgb(0, 238, 255);;
-  color: rgb(0, 238, 255);
+  border: 1px solid rgb(222, 182, 171);
+  color: rgb(222, 182, 171);
   text-align: center;
   line-height: 1.2em;
   cursor: pointer;
-  box-shadow: 0px 8px rgb(0, 238, 255), 0px 8px 32px rgba(0, 225, 255, 0.3), inset 0px 8px 32px rgba(0, 197, 247, 0.3);
+
+  position: relative;
+  box-shadow: 0px 8px rgb(222, 182, 171), 0px 8px 32px rgba(172, 125, 13, 0.3), inset 0px 8px 32px rgb(172, 125, 136 / 30%);
+}
+
+button:hover {
+  color: #F80;
+  border: 1px solid #F80;
+  box-shadow: 0px 4px #F80, 0px 8px 64px rgba(255,155,0,0.4), inset 0px 8px 64px rgba(255,155,0,0.4);
 }
 
 
@@ -272,6 +325,13 @@ button {
   margin-top: 0.4em;
   position: relative;
   top: 0px;
+}
+
+#submit-btn:hover {
+  color: #F80;
+  border: 1px solid #F80;
+  box-shadow: 0px 4px #F80, 0px 8px 64px rgba(255,155,0,0.4), inset 0px 8px 64px rgba(255,155,0,0.4);
+  top: 4px;
 }
 
 #tableau th h1 {
@@ -358,15 +418,60 @@ button {
     display: none;
   }
 }
-/*# sourceMappingURL=style.css.map */
 
-.shake-no {
-  filter: hue-rotate(360deg) saturate(130%);
-  animation: shake 0.2s linear infinite;
+
+.shake-no input {
+  color: #F00;
+  border: 1px solid #F00;
+  box-shadow: 0px 4px #F00;
 }
 
-.yes {
-  filter: hue-rotate(-0.25turn) saturate(130%);
+
+
+.shake-no {
+  animation: shake 0.2s linear infinite;
+  color: #F00 !important;
+  box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4) !important;
+  border: 1px solid #F00 !important;
+}
+
+.shake-no .kanji {
+  color: #F00;
+}
+
+.shake-no .main-ui {
+  color: #F00;
+  box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4);
+  border: 1px solid #F00;
+}
+
+.shake-no button {
+  color: #F00 !important;
+  border: 1px solid #F00 !important;
+  top: 6px !important;
+  box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4) !important;
+}
+
+.yes input {
+  color: #0F0;
+	border: 1px solid #0F0;
+	box-shadow: 0px 4px #0F0;
+}
+
+.yes .kanj {
+  color: #0F0;
+}
+
+.yes .main-ui {
+  box-shadow: 0px 0px 256px rgba(0, 255, 0, 0.3);
+  transition: 0.1s;
+}
+
+.yes button {
+  color: #0F0 !important;
+  border: 1px solid #0F0 !important;
+  top: 6px !important;
+  box-shadow: 0px 2px #0F0, 0px 8px 64px rgba(0,255,0,0.4), inset 0px 8px 64px rgba(0,255,0,0.4) !important;
 }
 
 .pulsing {
@@ -404,16 +509,26 @@ button {
 	100% { background-position: 0px 4px; }
 }
 
+@keyframes FadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes ZoomIn {
+	from { opacity: 0; transform: scale(0.5); }
+	to { opacity: 1; transform: scale(1); }
+}
+
 
 #jin-pop {
   font-family: 'yasashisa';
 	position: fixed;
 	left: 0;
-	top: 20%;
+	top: 10%;
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.8);
-	border-top: 2px solid var(--inverse-color);
-	border-bottom: 2px solid var(--inverse-color);
+	border-top: 1px solid #DEB6AB;
+	border-bottom: 1px solid #DEB6AB;
 	font-size: 3em;
 	letter-spacing: -6px;
 	color: #FFF;
@@ -424,8 +539,10 @@ button {
 	text-shadow: 0px 0px 4px #FFF;
 	opacity: 1;
 	max-height: 2em;
-	transition: 0.3s opacity, 0.3s max-height, 0.3s padding-top, 0.3s padding-bottom;
+	transition: 0.4s opacity, 0.3s max-height, 0.3s padding-top, 0.3s padding-bottom;
 	pointer-events: none;
+  animation: FadeIn 2s;
+  animation: ZoomIn 0.3s;
 }
 
 #jin-pop.hidden {
@@ -433,6 +550,8 @@ button {
 	max-height: 0;
 	padding-top: 0;
 	padding-bottom: 0;
+  animation: FadeIn 0.5s reverse;
+  animation: ZoomIn 0.5s reverse;
 }
 
 #countdown {
@@ -453,12 +572,12 @@ button {
   font-family: CNT;
   position: fixed;
   text-align: center;
-  top: 20vh;
+  top: 17vh;
   width: 100vw;
   font-size: 6em;
   margin: 0;
-  color: rgba(255, 255, 0, 0.7);
-  text-shadow: 0px 1vh rgba(255, 255, 0, 0.4), 0px 1vh 5vh rgb(255 255 0 / 40%);
+  color: #fff;
+  text-shadow: 0px 1vh rgba(133, 88, 111, 0.2), 0px 1vh 5vh rgb(133 88 111 / 20%);
   z-index: 1000;
   mix-blend-mode: lighten;
 }
@@ -482,12 +601,11 @@ button {
 }
 
 .combo{
-  float: left;
+  display: none;
 }
 
 .wrong{
   display: none;
-
 }
 
 .combo-mark{
