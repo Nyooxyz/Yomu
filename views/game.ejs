@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>百んのゲーム</title>
+  <title></title>
 
   <!-- meta tags -->
   <meta charset="UTF-8">
@@ -10,6 +10,7 @@
 
   <!-- CSS links -->
   <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
 
 
   
@@ -44,16 +45,17 @@
   </nav>
 </header>
 <h1 id="countdown"></h1>
-<div class="content tokiWoTomare">
+<div class="content tokiWodTomare willHide">
   
 
   <h2 id="timer" style="display:none;"></h2>
 
     <div class="rightList list">
-      <h2>CORRECT WORDS </h2>
+      <h2>Right Guess</h2>
       <div>
         <ul id="rightWords">
-          
+
+      </ul>
       </div>
     </div>
 
@@ -65,7 +67,7 @@
         <h1 class="kanji"></h1>
 
         <form action="" class="our-form" method="">
-          <input type="text" class="our-field" name="guess">
+          <input type="text" class="our-field" name="guess" oninput="hitSound()">
           <button id="submit-btn" type="submit">Guess</button>
         </form>
         <p id="note"><span>NOTE: </span>To switch quickly to hiragana, select the field above and press <span>ALT + SHIFT</span> then <span>CRTL + CAPS-LOCK</span></p>
@@ -73,20 +75,19 @@
     </div>
 
     <div class="wrongList list">
-      <h2>RECENT WRONG GUESSES </h2>
-      <div id="wrongWords"></div>
-    </div>
+      <h2>Wrong Guess</h2>
+      <div>
+        <ul id="wrongWords"></ul>
 
-    <div class="cont-center">
-      <p id="note"><span>NOTE: </span>To switch quickly to hiragana, select the field above and press <span>ALT + SHIFT</span> then <span>CRTL + CAPS-LOCK</span></p>
-      <button id="reset">GIVE UP</button> 
+      </div>
     </div>
-
   
   <div class="wrong hud">0</div>
   <div class="combo hud">0</div>
 
 </div>
+
+<button class="reset tokiWodTomare willHide">GIVE UP</button> 
 
 <div id="scoreMenuX" style="display:none;">
 
@@ -140,38 +141,46 @@
   }
 
   #wrongWords{
-    margin-top: 2vh;
-    font-size: 2rem;
+    margin-top: 20vh;
+    font-size: 2.5rem;
+
+    padding: 10px 20px;
     font-family: 'yasashisa';
   }
 
   #rightWords{
     margin-top: 2vh;
-    height:56vh;
     font-size: 2rem;
     font-family: 'yasashisa';
+    overflow: scroll
   }
 
   .list h2 {
     font-family: "yasashisa";
   }
 
-  ul {
-    -webkit-overflow-scrolling: touch;
-    overflow: scroll;
+  #rightWords ul {
     box-sizing: border-box;
   }
 
   li {
+    list-style: none;
+  }
+
+  #rightWords li {
     padding: 10px 20px;
   }
 
-  li:nth-child(even) {
+  #rightWords li:nth-child(even) {
     background: #f8f8f841;
   } 
 
-  li:last-child {
+  #rightWords li:last-child {
     border-bottom: none;
+  }
+
+  #wrongWords li:nth-child(1){
+    color:red;
   }
 
 </style>
@@ -200,16 +209,22 @@
  const finalRank = document.querySelector('#finalRank')
  const rightWords = document.querySelector('#rightWords')
  const wrongWords = document.querySelector('#wrongWords')
+ const willHide = document.querySelector('.willHide')
 
 
 
  const diff = 1 // Game Difficulty WIP
 
+ let initialized = false
 
+ const data = '<%- JSON.stringify(db) %>'
+ const data2 = JSON.parse(data)
 
+ // -- Audio file buffering -- //
 
-
-
+ let threeHundredSFX = new Audio("../public/sfx/300.wav")
+ let hitSFX = new Audio("../public/sfx/hit.wav")
+ let missSFX = new Audio("../public/sfx/miss.wav")
 
  // -- Game state -- //
 
@@ -255,13 +270,93 @@
    kanji.innerHTML = state.kanj
    ourField.value = ""
    ourField.focus()
+
+   initialized = true
+ }
+
+ function shiritori(data){
+  stateArr = []
+  stateAnkiArr = []
+ 
+  stateKana = state.hira.slice(-1) /* The last kana of the current word */
+  let nWord = false /* if the last kana is a ん */
+
+  /* rule exceptions */
+
+  if (stateKana === 'ん') {
+    nWord = true
+    stateKana = state.hira.slice(-2,-1)
+  }
+
+  if (stateKana === 'ゃ') {          /* KANA THAT  DONT EXISTS YETON N5 ぱ */
+    stateKana = 'や'
+  }
+
+  if (stateKana === 'ゅ') {
+    stateKana = 'ゆ'
+  }
+
+  if (stateKana === 'ょ') {
+    stateKana = 'よ'
+  }
+
+    /*      */
+
+  console.log("state kana",stateKana)
+
+  data.forEach((kana) => {
+      if (kana.hira.charAt(0) === stateKana)
+        stateArr.push(kana)
+  })
+
+  if (arrAnki.length > 0){
+    arrAnki.forEach(item => {
+      if (item.hira.charAt(0) === stateKana){
+        stateAnkiArr.push(item)
+      }
+    })
+  }
+
+  console.log("state Anki", stateAnkiArr)
+  console.log("state arr", stateArr)
+  console.log("state arrAnki", arrAnki)
+
+
+  if (stateAnkiArr.length > 0) {
+    let i = randomIntFromInterval(0,stateAnkiArr.length) 
+
+    state.kanj = stateAnkiArr[i]["kanj"]
+    state.hira = stateAnkiArr[i]["hira"]
+    state.id = stateAnkiArr[i]["id"]
+
+    kanji.style.fontFamily = "zero"
+
+  } else {
+    let i = randomIntFromInterval(0,stateArr.length) 
+  
+    state.kanj = stateArr[i].kanj
+    state.hira = stateArr[i].hira
+    state.id = stateArr[i].word_id
+
+
+    kanji.style.fontFamily = "yasashisa"
+  
+  }
+
+  kanji.innerHTML = state.kanj
+  ourField.placeholder = stateKana
+  ourField.value = ""
+  ourField.focus()
+
  }
 
 
  function updateProblem(){ 
-  let data = '<%- JSON.stringify(db) %>'
-  let data2 = JSON.parse(data)
-  initProblem(data2) 
+  if (!initialized){
+    initProblem(data2) 
+  } else {
+    shiritori(data2)
+  }
   console.log(state.hira) // Coz Im dumb
  }
 
@@ -269,50 +364,31 @@
 
   // -- Anki -- //
 
- function callAnkiOopa(){
-  if(arrAnki.length != 0){
-    return arrAnki[0].i === 0
+function inAnki() {
+
+  let l = arrAnki.length
+
+  if (l < 1) return false
+
+  for (let i = 0; i < l; i++) {
+    if (arrAnki[i]["kanj"] === state.kanj) {
+      return true
+    }
   }
- }
-
- function callAnki(){
-  
-
-  state.kanj = arrAnki[0]["kanj"]
-  state.hira = arrAnki[0]["hira"]
-  state.id = arrAnki[0]["id"]
-  
-  
-  kanji.style.fontFamily = "zero"
-  kanji.innerHTML = state.kanj
-  ourField.value = ""
-  ourField.focus()
- }
+  return false
+}
+ 
 
  function addAnki(){
-   arrAnki.push({
-    kanj: state.kanj, 
-    hira: state.hira,
-    id: state.id,
-    i: 6
-  })
+   if (!inAnki()){
+    arrAnki.push({
+      kanj: state.kanj, 
+      hira: state.hira,
+      id: state.id
+    })
+   }
  }
 
- function doAnki(){
-  // - Optimisation of function in progress - //
-
-  if(arrAnki.length != 0){
-    arrAnki.forEach(item => item.i--)
-  }
-
-  if (callAnkiOopa()){
-    callAnki()
-    arrAnki.shift()
-  }
-  else{
-    updateProblem()
-  }
- }
 
   // --         -- //
 
@@ -359,6 +435,7 @@
 
  function handleSubmit(e){
    e.preventDefault()
+   $("#jin-pop").addClass("hidden")
    state.i++
 
 
@@ -386,8 +463,12 @@
   acc.textContent = accCalc()
   rank.textContent = state.rank
   combo.textContent = state.combo
+  arrAnki = arrAnki.filter(function( obj ) {
+    return obj.kanj !== state.kanj
+  })  
+  console.log("updating problem..")
+  updateProblem()
 
-  doAnki()
  }
 
  function wrongAns(){
@@ -410,7 +491,8 @@
 
   addAnki()
 
-  doAnki()
+  console.log("updating problem..")
+  updateProblem()
 
  }
 
@@ -437,13 +519,13 @@
  function showContent(){
    resetGame()
    updateProblem() 
-   content.style.display = 'block'
+   willHide.style.display = 'flex'
    scoreMenuX.style.display = 'none'
    clearTab()
    }
 
  function scoreMenu(){
-   content.style.display = 'none'
+   willHide.style.display = 'none'
    scoreMenuX.style.display = 'block'
 
 
@@ -489,8 +571,11 @@
  var existingTimeout = null;
 
  function wrongAnsAnim2() {
-  // sfx_no.play();
-  Pop(state.hira);
+  missSFX.currentTime = 0
+  missSFX.volume = 0.1
+  missSFX.play();
+  $("#jin-pop").html(state.kanj + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' +  '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '    =>    ' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'+ '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'+ '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'  + state.hira);
+	$("#jin-pop").removeClass("hidden");
 
   $(".main-ui").addClass("shake-no");
 
@@ -504,7 +589,10 @@
 }
 
 function rightAnsAnim2() {
-  // sfx_no.play();
+
+  threeHundredSFX.currentTime = 0
+  threeHundredSFX.volume = 0.1
+  threeHundredSFX.play();
 
   $(".main-ui").addClass("yes");
 
@@ -522,29 +610,28 @@ function rightAnsAnim2() {
 
 }
 
+// -- Audio -- //
+
+function hitSound(){
+  hitSFX.currentTime =  0
+  hitSFX.volume = 0.05
+  hitSFX.play()
+}
+
+function countdownSFXPlay(){
+  countdownSFX.currentTime =  0
+  countdownSFX.volume = 0.1
+  countdownSFX.play()
+}
+
 // -- PopUp Right Answer -- //
 
 
 $(document).ready(function() {
-	$("body").append('<div id="dialogs"></div>');
-	$("body").append('<div id="jin-pop" class="hidden">Test pop</div>');
+	$(".wrongList").append('<div id="dialogs"></div>');
+	$(".wrongList").append('<div id="jin-pop" class="hidden">Test pop</div>');
 });
 
-
-var popTimer = null;
-function Pop(text, time = 2000) {
-	$("#jin-pop").html(text);
-	$("#jin-pop").removeClass("hidden");
-
-	if (popTimer !== null) {
-		clearTimeout(popTimer);
-		popTimer = null;
-	}
-	popTimer = setTimeout(function() {
-		$("#jin-pop").addClass("hidden");
-		popTimer = null;
-	}, time);
-}
 
 // -- Timer -- //
 
@@ -632,15 +719,15 @@ function displayCountdown(count) {
   }
 
 function ankiToHTML() {
-  console.log(arrAnki)
+ 
   html$ = ''
   for(var key in arrAnki){
-    html$ += '<span>'+arrAnki[key].kanj+'</span><br>'            
+    html$ += '<li>'+arrAnki[key].kanj+'</li>'            
   }
   wrongWords.innerHTML = html$  
 }
 
-$('#reset').on('click', function () {
+$('.reset').on('click', function () {
   
     clearInterval(counter);
     arrToTab()
@@ -659,10 +746,12 @@ $('.restartButton').on('click', function () {
   timerEL.style.display = "block";
 });
 
-displayCountdown(countdownT)
+/*displayCountdown(countdownT)*/
 initialMillis = Date.now();
 counter = setInterval(countdownTimer, 1);
 displayCount(initial)
+
+
 
 
 function accCalc(){

@@ -241,7 +241,7 @@ app.get('/game', checkLogin, (req, res) => {
       res.render('game.ejs',{logged : loggedin, db : result, numOfResults, startId})
     })
   } else {
-    connection.query("SELECT * FROM jlpt.n4 LIMIT 0, 1622", (err, result, fields) => {
+    connection.query("SELECT * FROM jlpt.n4 LIMIT 1650", (err, result, fields) => {
       if (err) throw err;
       const numOfResults = result.length
       const startId = 600
