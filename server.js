@@ -228,6 +228,12 @@ app.get('/', checkLogin, (req, res) => {
   res.render('index.ejs',{logged : loggedin})
 })
 
+app.get('/vip', (req, res) => {
+  res.render('tsukiVIP.ejs',{logged : loggedin})
+})
+
+
+
 app.get('/game', checkLogin, (req, res) => {
 
  

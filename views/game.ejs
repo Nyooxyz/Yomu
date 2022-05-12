@@ -70,7 +70,6 @@
           <input type="text" class="our-field" name="guess" oninput="hitSound()">
           <button id="submit-btn" type="submit">Guess</button>
         </form>
-        <p id="note"><span>NOTE: </span>To switch quickly to hiragana, select the field above and press <span>ALT + SHIFT</span> then <span>CRTL + CAPS-LOCK</span></p>
       </center>
     </div>
 
@@ -86,6 +85,7 @@
   <div class="combo hud">0</div>
 
 </div>
+
 
 <button class="reset tokiWodTomare willHide">GIVE UP</button> 
 
@@ -183,15 +183,43 @@
     color:red;
   }
 
+  /* ---      Scanlines      --- */
+  body:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url(../media/overlay.png);
+    background-repeat: all;
+    background-position: 0px 0px;
+    background-color: rgba(0, 0, 0, 0.1);
+    animation-name: Static;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4);
+    box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
+  }
+
 </style>
 <!-- JavaScript -->
+<!-- <script src="public/js/index.js"></script> -->
 <script src="public/js/jquery.js"></script>
+<script src="public/js/space.js"></script>
+<script src="public/js/gl-matrix.js"></script>
+<script src="public/js/write.js"></script>
+<script type="text/javascript" src="public/js/wanakana.js"></script>
+
 <script>
+
 
 
  // First mess
  const ourForm = document.querySelector(".our-form")
- const ourField = document.querySelector(".our-field")
+ var ourField = document.querySelector(".our-field")
  const wrong = document.querySelector(".wrong")
  const combo = document.querySelector(".combo")
  const kanji = document.querySelector('.kanji')
@@ -428,8 +456,13 @@ function inAnki() {
  }
 
 
+ 
 
  // -- Handling input -- //
+
+ $( document ).ready(function() {
+  wanakana.bind(ourField)
+ })
 
  ourForm.addEventListener("submit", handleSubmit) 
 
@@ -823,9 +856,5 @@ function rankCalc(){
 
 
 </script>
-<!-- <script src="public/js/index.js"></script> -->
-<script src="public/js/space.js"></script>
-<script src="public/js/gl-matrix.js"></script>
-<script src="public/js/write.js"></script>
 </body>
 </html>

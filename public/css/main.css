@@ -53,7 +53,9 @@ html {
 	color: #FFF;
 	font-family: "script", sans-serif;
 	font-size: 12px;
-  background:rgb(0, 0, 0);
+  background-image: url("../media/bg2.jpg");
+  background-size: cover;
+
 }
 
 a {
@@ -63,7 +65,7 @@ a {
 
 
 body{
-  opacity: 1;
+
   font-family: 'jp_1';
   position: absolute;
   top: 0;
@@ -75,26 +77,6 @@ body{
   line-height: 1; /* -- Idk at this point  -- */
 }
 
-/* ---      Scanlines      --- */
-body:before {
-	content: "";
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
-	z-index: 1000;
-	background-image: url(../media/overlay.png);
-	background-repeat: all;
-	background-position: 0px 0px;
-  background-color: rgba(0, 0, 0, 0.1);
-	animation-name: Static;
-	animation-duration: 2s;
-	animation-iteration-count: infinite;
-	animation-timing-function: steps(4);
-	box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
-}
 
 /* body:after {
 	content: "";
@@ -125,7 +107,7 @@ canvas {
   width: 100%;
   height: 100%;
   z-index: -100;
-  opacity:0.9;
+  opacity:0.65;
 }
 
 .tokiWoTomare{
@@ -209,8 +191,7 @@ header button:hover {
 }
 
 .rightList {
-  border: 2px solid rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(120, 143, 227);
  
   background-color: #000;
   box-shadow: inset 0px 2px 12px rgba(255, 255, 255, 0.4); 
@@ -223,10 +204,9 @@ header button:hover {
 
 .wrongList {
   background-color: #000;
-  border: 2px solid transparent;
+  border: 2px solid rgb(227, 120, 120);
  
   box-shadow: inset 0px 2px 12px rgba(255, 255, 255, 0.4); 
-  border-color: rgb(255, 255, 255);
 }
 
 .wrongList h2 {
@@ -289,20 +269,15 @@ font-size:3em;
 
 .main-ui {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.25); 
   width: 60em;
   padding: 1em;
   margin-top: 10vh;
-  overflow-y: hidden;
   height: 30vh;
   transition: 1s;
   color: #ffffff;
-  background: #000;
-  box-shadow: inset 0px 8px 64px rgba(255, 255, 255, 0.4); 
-  border: 4px solid transparent;
-  border-image: linear-gradient(to right,#000000, #ffff00) 30;
   padding-bottom: 2.45em;
 }
+
 
 .kanji {
   text-align: center;
@@ -462,8 +437,6 @@ button:hover {
 
 .shake-no input {
   color: #F00;
-  border: 1px solid #F00;
-  box-shadow: 0px 4px #F00;
 }
 
 
@@ -471,8 +444,7 @@ button:hover {
 .shake-no {
   animation: shake 0.2s linear infinite;
   color: #F00 !important;
-  box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4) !important;
-  border: 1px solid #F00 !important;
+  
 }
 
 .shake-no .kanji {
@@ -481,8 +453,6 @@ button:hover {
 
 .shake-no .main-ui {
   color: #F00;
-  box-shadow: 0px 2px #F00, 0px 8px 64px rgba(255,0,0,0.4), inset 0px 8px 64px rgba(255,0,0,0.4);
-  border: 1px solid #F00;
 }
 
 .shake-no button {
@@ -494,8 +464,7 @@ button:hover {
 
 .yes input {
   color: #0F0;
-	border: 1px solid #0F0;
-	box-shadow: 0px 4px #0F0;
+	
 }
 
 .yes .kanj {

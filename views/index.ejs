@@ -25,53 +25,79 @@
 </head>
 
 
-<body>
 
-<div id="rules">
+<div id="landing">
   <p>
-    <h1>Hi</h1>
-    You have 5 minutes to guess the reading of as many words as possible<br>
-    Your guesses must all be written in plain <b style="color:red;font-family:'yasashisa'";>ひらがな</b><br>
-    If your guess is wrong, the word will then reappear after 5 words and you will have to guess it again<br>
-    The correct reading is displayed as a pop-up after a wrong guess on top of the page<br>
-    <br>
-    This is only for learning purposes, please refrain yourself from using rikaikun or other tools<br>
-    Feel free to register and log in to use the collections
-
-    <br><br><br>
-    <br><br><br>
-    <br><br><br>
+    Allow audio for a better experience
   </p>
-  <p>Choose difficulty</p>
   <div id="diff">
-    <a id="n5" href="/game?jlpt=n5">JLPT 5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a id="n4" href="/game?jlpt=n4">JLPT 4</a>
+    <a id="yesAllow" onclick="checkAllow(0)">Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="noAllow" onclick="checkAllow(1)">Don't allow</a>
   </div>
+
 </div>
 
-<header>
-  <nav class="g-nav">
-      <form action="/" method="GET">
-        <button type="submit" class="btn-home">Game</button>
-      </form>
+<div class="intro">
+        
+  <h1 id="one">Upload your Mind  : <br></h1>
+  <h1 id="two">:  Download my Soul</h1>
+  
+</div>
 
-      <form action="/collection/home" method="GET">
-        <button type="submit" class="btn-collection">Collection</button>
-      </form>
-      <%if (logged) { %>
-      <form action="/logout" method="GET">
-        <button type="submit" class="btn-logout">Log Out</button>
-      </form>
-      <% } else{ %>  
-      <form action="/login" method="POST">
-        <button type="submit" class="btn-login">Log in</button>
-      </form>
-      <form action="/register">
-        <button type="submit" class="btn-register">Register</button>
-      </form>
-      <% } %>         
-  </nav>
-</header>
+<body>
+  <div id="homeContent">
+
+    <div id="rules">
+      <p>
+      
+        You have 5 minutes to guess the reading of as many words as possible<br>
+        Your guesses must all be written in plain <b style="color:red;font-family:'yasashisa'";>ひらがな</b><br>
+        If your guess is wrong, the word will then reappear after 5 words and you will have to guess it again<br>
+        The correct reading is displayed as a pop-up after a wrong guess on top of the page<br>
+        <br>
+        This is only for learning purposes, please refrain yourself from using rikaikun or other tools<br>
+        Feel free to register and log in to use the collections
+
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+      </p>
+      <p>Choose difficulty</p>
+      <div id="diff">
+        <a id="n5" href="/game?jlpt=n5">JLPT 5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="n4" href="/game?jlpt=n4">JLPT 4</a>
+      </div>
+    </div>
+
+    <header>
+      <nav class="g-nav">
+          <form action="/" method="GET">
+            <button type="submit" class="btn-home">Game</button>
+          </form>
+
+          <form action="/collection/home" method="GET">
+            <button type="submit" class="btn-collection">Collection</button>
+          </form>
+          <form action="/vip" method="GET">
+            <button type="submit" class="btn-collection">VIP</button>
+          </form>
+          <%if (logged) { %>
+          <form action="/logout" method="GET">
+            <button type="submit" class="btn-logout">Log Out</button>
+          </form>
+          <% } else{ %>  
+          <form action="/login" method="POST">
+            <button type="submit" class="btn-login">Log in</button>
+          </form>
+          <form action="/register">
+            <button type="submit" class="btn-register">Register</button>
+          </form>
+          <% } %>         
+      </nav>
+    </header>
+
+  </div>
+</body>
 
 <style>
 
@@ -81,9 +107,25 @@
     src: url("../public/font/square.ttf");
   }
 
+  @font-face {
+    font-family: "Mono";
+    src: url("../public/font/IBMPlexMono-BoldItalic.ttf");
+  }
+
+  html {
+    background: none;
+  }
+
   body {
-    background-color: black;
     font-family: 'CNT';
+    overflow: hidden;
+    background-color: #fff;
+  }
+
+  #homeContent {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
   }
 
 
@@ -108,6 +150,13 @@
     background-color: rgba(255,255,0);
   }
 
+  #yesAllow:after {
+    background-color: rgb(109, 218, 94);
+  }
+  #noAllow:after {
+    background-color: rgb(218, 94, 94);
+  }
+
   #diff a:after {
     content: '';
     position: absolute;
@@ -123,7 +172,279 @@
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+
+  /* Fireflies */
+  .fly {
+    position: absolute;
+    background: #D98E73;
+    opacity: 0;
+    border-radius: 50%;
+    animation: drift 4s ease-out;
+  }
+
+  @keyframes drift {
+    0% {opacity: 0; margin: 0;}
+    25% {opacity: 1; margin-top: -5%;}
+    100% {opacity: 0; margin-top: -10%;}
+  }
+
+
+  #landing {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  #landing a{
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .intro{
+    position: relative;
+    width: 500px;
+    height: 300px;
+    left: 20%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.intro h1{
+    font-family: "Mono";
+    font-size: 3rem;
+    color: rgba(0, 0, 0, 1);
+    overflow: hidden;
+    white-space: nowrap;
+    
+}
+
+#one {
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#two {
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+
+
+@keyframes type-w {
+    
+    0%{
+        width: 0;
+    }
+    
+    30%{
+        width: 600px;
+    }
+}
+
+
+@keyframes letter-glow {
+  0% {
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.1);
+ }
+  66% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff,
+    0 0 20px #fff, 0 0 40px #fff;
+ }
+  100% {
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.0);
+ }
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  background-image: url(../public/media/overlay.png);
+  background-repeat: all;
+  background-position: 0px 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+  animation-name: Static;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(4);
+  box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
+}
+
+@keyframes Static {
+	0% { background-position: 0px 0px; }
+	100% { background-position: 0px 4px; }
+}
+
+
 </style>
 
-</body>
+<script src="public/js/jquery.js"></script>
+<script src="public/js/loopify.js" type="text/javascript"></script>
+<script>
+
+const flies = document.getElementsByClassName('fly')
+const one =  document.getElementById('one')
+const two =  document.getElementById('two')
+const content =  document.getElementById('homeContent')
+const intro  = document.getElementById('intro')
+const landing = document.getElementById('landing')
+let introSfx = new Audio("../public/sfx/let_it.wav")
+
+
+
+$(document).ready(function() {
+  /* PlayIntroVIP();  */
+})
+
+function ready(err,loop){
+  if (err) {
+    console.warn(err);
+  }
+    loop.play();
+}
+
+function checkAllow(allowAudio){
+  if (allowAudio == 0) {
+    playIntroSfx()
+    
+  } else {
+    playIntro()
+  }
+}
+
+
+  // Fireflies
+const fireflies = () => {
+  const size = Math.random() * 5,
+        top = Math.random() * 100,
+        left = Math.random() * 100,
+        attr = `left: ${left}%; top: ${top}%; width: ${size}px; height: ${size}px;`,
+        fly = document.createElement('div');
+  
+  fly.setAttribute('style', attr);
+  fly.classList.add('fly');
+  document.body.appendChild(fly);
+    
+  setTimeout(function() {
+    fly.remove();
+  }, 2000);
+}
+
+
+
+function playIntroSfx(){
+  introSfx.currentTime = 0
+  introSfx.play()
+  landing.style.visibility = 'hidden'
+  landing.style.opacity = 0
+
+  one.style.visibility = 'visible'
+  one.style.opacity = 1
+  one.style.animation = 'type-w 1s steps(44)'
+
+  setTimeout(function() {
+    two.style.visibility = 'visible'
+    two.style.opacity = 1
+    two.style.animation = 'type-w 1s steps(44)'
+
+    setTimeout(function(){
+      loopify("../public/sfx/jamLess.wav",ready)
+    },2950)
+  }, 800)
+
+
+  setTimeout(function() {
+    document.body.style.backgroundColor = '#000'
+
+    content.style.visibility = 'visible'
+    content.style.opacity = 1
+    one.style.color = '#fff'
+    two.style.color = '#fff'
+    setInterval(function() {
+      fireflies();
+    }, 450);
+  }, 1750)
+}
+    
+
+
+function playIntro(){
+  landing.style.visibility = 'hidden'
+  landing.style.opacity = 0
+
+  one.style.visibility = 'visible'
+  one.style.opacity = 1
+  one.style.animation = 'type-w 3.5s steps(44)'
+
+  setInterval(function() {
+    two.style.visibility = 'visible'
+    two.style.opacity = 1
+    two.style.animation = 'type-w 3s steps(44)'
+  }, 1000)
+
+  setInterval(function() {
+    document.body.style.backgroundColor = '#000'
+
+    content.style.visibility = 'visible'
+    content.style.opacity = 1
+    one.style.color = '#fff'
+    two.style.color = '#fff'
+    setInterval(function() {
+      fireflies();
+    }, 450);
+  }, 1750)
+}
+
+function playIntroVIP(){
+  $("#intro").css("display", "block");
+  $("header").addClass("anim-fast");
+  $("header").addClass("hidden");
+  setTimeout(function() {
+    $("header").removeClass("anim-fast");
+    $("header").addClass("anim-slow");
+  }, 1);
+
+  playMusic(0.5, "intro", "home", function() {
+    console.log("This callback is aligned with the song.");
+
+    $("#intro").addClass("playing");
+    setTimeout(function() {
+      TypeIntroMotto();
+    }, 3000);
+    setTimeout(function() {
+      $("#intro_flare-mini").addClass("hidden");
+    }, 2500);
+    setTimeout(function() {
+      $("#intro").addClass("destroyed");
+      $("header").removeClass("hidden");
+      window.scrollTo(0, 0);
+    }, 3644);
+    setTimeout(function() {
+      $("header").removeClass("anim-slow");
+      $("#intro").remove();
+      /*setCookie("SEEN-INTRO", "v1", Date.now() + (365*24*60*60*1000));*/
+    }, 4644);
+  });
+}
+
+function TypeIntroMotto() {
+  var text = "Unlink the world.$Unlock the rest.";
+  for (var i = 0; i < text.length; i++) {
+    (function(index) {
+          setTimeout(function() {
+        $("#intro_motto").html($("#intro_motto").html() + text.charAt(index).replace("$", "<br>"));
+      }, index * 20);
+      })(i);				
+  }
+}
+
+
+
+</script>
 </html>
