@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>絶🜸Dive</title>
+  <title>だい:Ve</title>
 
   <!--ｚ  
 　 z　　　   
@@ -36,69 +36,89 @@
   </div>
 
 </div>
+<div id="notLanding">
+  <div id="loading-box"></div> 
+  <div id="intro">
+    <h1 id="intro_welcome">Welcome to the だい:Ve project</h1>
+    <h1 id="intro_motto"></h1>
+  </div>
 
-<div class="intro">
-        
-  <h1 id="one">Upload your Mind  : <br></h1>
-  <h1 id="two">:  Download my Soul</h1>
-  
-</div>
+  <body>
+    
+    
+    <div id="homeContent">
 
-<body>
-  <div id="homeContent">
+      <div id="homeHUD">
 
-    <div id="rules">
-      <p>
-      
-        You have 5 minutes to guess the reading of as many words as possible<br>
-        Your guesses must all be written in plain <b style="color:red;font-family:'yasashisa'";>ひらがな</b><br>
-        If your guess is wrong, the word will then reappear after 5 words and you will have to guess it again<br>
-        The correct reading is displayed as a pop-up after a wrong guess on top of the page<br>
-        <br>
-        This is only for learning purposes, please refrain yourself from using rikaikun or other tools<br>
-        Feel free to register and log in to use the collections
+        <h1 id="motto"><a id="zetsu">絶だい:Ve</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="kyou">強だい:Ve</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="hi">肥だい:Ve</a></h1>
 
-        <br><br><br>
-        <br><br><br>
-        <br><br><br>
-      </p>
-      <p>Choose difficulty</p>
-      <div id="diff">
-        <a id="n5" href="/game?jlpt=n5">JLPT 5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a id="n4" href="/game?jlpt=n4">JLPT 4</a>
+        <h1 id="playBar"><a id="playBtnShiri" class="playBtn" onclick="playShiri()">Play</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a id="playBtnKyou" class="playBtn" onclick="playKyou()">Play</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a id="playBtnHi" class="playBtn" onclick="playHi()">Play</a></h1>
+
+        <div id="rulesShiri" class="rules">
+          <div id="shiritori"></div>
+          <p>
+          
+            You have 5 minutes to guess the reading of as many words as possible<br>
+            Your guesses must all be written in plain <b style="color:red;font-family:'yasashisa'";>ひらがな</b><br>
+            If your guess is wrong, the word will then reappear after 5 words and you will have to guess it again<br>
+            The correct reading is displayed as a pop-up after a wrong guess on top of the page<br>
+            <br>
+            This is only for learning purposes, please refrain yourself from using rikaikun or other tools<br>
+            Feel free to register and log in to use the collections
+
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+          </p>
+          
+        </div>
+
       </div>
+
+      <div id="difficultyShiri">
+        <p>Choose difficulty</p>
+        <a id="n5" onclick="hrefing('/game?jlpt=n5')">JLPT 5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="n4" onclick="hrefing('/game?jlpt=n4')">JLPT 4</a><br>
+        <a class="backBtn" onclick="goBack()">GO BACK</a>
+      </div>
+      
+
+      <header>
+        <nav class="g-nav">
+            <form action="/" method="GET">
+              <button type="submit" class="btn-home">Game</button>
+            </form>
+
+            <form action="/collection/home" method="GET">
+              <button type="submit" class="btn-collection">Collection</button>
+            </form>
+            <form action="/vip" method="GET">
+              <button type="submit" class="btn-collection">VIP</button>
+            </form>
+            <%if (logged) { %>
+            <form action="/logout" method="GET">
+              <button type="submit" class="btn-logout">Log Out</button>
+            </form>
+            <% } else{ %>  
+            <form action="/login" method="POST">
+              <button type="submit" class="btn-login">Log in</button>
+            </form>
+            <form action="/register">
+              <button type="submit" class="btn-register">Register</button>
+            </form>
+            <% } %>         
+        </nav>
+      </header>
+
     </div>
 
-    <header>
-      <nav class="g-nav">
-          <form action="/" method="GET">
-            <button type="submit" class="btn-home">Game</button>
-          </form>
-
-          <form action="/collection/home" method="GET">
-            <button type="submit" class="btn-collection">Collection</button>
-          </form>
-          <form action="/vip" method="GET">
-            <button type="submit" class="btn-collection">VIP</button>
-          </form>
-          <%if (logged) { %>
-          <form action="/logout" method="GET">
-            <button type="submit" class="btn-logout">Log Out</button>
-          </form>
-          <% } else{ %>  
-          <form action="/login" method="POST">
-            <button type="submit" class="btn-login">Log in</button>
-          </form>
-          <form action="/register">
-            <button type="submit" class="btn-register">Register</button>
-          </form>
-          <% } %>         
-      </nav>
-    </header>
-
-  </div>
-</body>
-
+    
+  </body>
+</div>
 <style>
 
 
@@ -119,28 +139,71 @@
   body {
     font-family: 'CNT';
     overflow: hidden;
-    background-color: #fff;
+    
+    background-color: #000;
+  }
+
+
+
+  #notLanding {
+    display: none !important;
+  }
+
+  #notLanding.back {
+    display: block !important;
   }
 
   #homeContent {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.5s ease;
+    transition: 0.5s top;
   }
 
+  #homeContent.hidden {
+		top: -10em;
+	}
+  #homeContent.anim-fast {
+		top: -10em;
+		transition: none;
+	}
+	#homeContent.anim-slow {
+		transition: 1s top;
+	}
 
-  #diff{
-    margin-top: 10vh;
-    width: 50%;
-    margin: auto;
+  .rules {
+    position: absolute;
+    font-size: 1.8rem;
+    width: 50em;
+    text-align: center;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
   }
 
-  #diff a {
+  #shiritori {
+    width: 1000px;
+    height: 300px;
+    background-image: url("../public/media/shiritori.png");
+    border: 2rem solid red;
+  }
+
+  #rulesShiri{
+    display: none;
+  }
+
+  #difficultyShiri{
+    display: none;
+    margin: 0 auto;
+    width: 100px;
+
+  }
+
+  #difficultyShiri a {
     font-size:3em;
     text-align: center;
     position: relative;
     transition: 0.5s;
   }
+
 
   #n5:after{
     background-color: rgb(0, 255, 0);
@@ -190,71 +253,16 @@
 
 
   #landing {
-    background-color: #fff;
-    color: rgba(0, 0, 0, 1);
+    color: rgb(255, 255, 255);
+  }
+
+  #landing.destroyed {
+    display: none !important;
   }
 
   #landing a{
-    color: rgba(0, 0, 0, 1);
+    color: rgb(255, 255, 255);
   }
-
-  .intro{
-    position: relative;
-    width: 500px;
-    height: 300px;
-    left: 20%;
-    top: 20%;
-    transform: translate(-50%, -50%);
-}
-
-.intro h1{
-    font-family: "Mono";
-    font-size: 3rem;
-    color: rgba(0, 0, 0, 1);
-    overflow: hidden;
-    white-space: nowrap;
-    
-}
-
-#one {
-  color: black;
-  visibility: hidden;
-  opacity: 0;
-}
-
-#two {
-  color: black;
-  visibility: hidden;
-  opacity: 0;
-}
-
-
-
-
-@keyframes type-w {
-    
-    0%{
-        width: 0;
-    }
-    
-    30%{
-        width: 600px;
-    }
-}
-
-
-@keyframes letter-glow {
-  0% {
-    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.1);
- }
-  66% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff,
-    0 0 20px #fff, 0 0 40px #fff;
- }
-  100% {
-    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.0);
- }
-}
 
 body:before {
   content: "";
@@ -282,6 +290,122 @@ body:before {
 }
 
 
+#playBtnShiri{
+
+}
+
+
+/* -- TS -- */
+
+#motto {
+  font-family: "Mono", sans-serif;
+  font-size: 3vw;
+  text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+  color: #FFF;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 5vw;
+}
+
+#playBar {
+  color: #FFF;
+  font-size: 2vw;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 2vw;
+}
+
+
+#intro {
+  position: fixed;
+  z-index: 2000000000;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #000;
+  display: none;
+  transition: 1s 2.644s background-color ease-in;
+}
+#intro.playing {
+  background-color: #FFF;
+}
+#intro.destroyed {
+  transition: 1s opacity;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro_logo {
+  width: 10vw;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(0);
+  opacity: 1;
+
+  transition: 0.5s filter, 3.644s top, 1s 2.644s opacity ease-in;
+}
+#intro.playing #intro_logo {
+  filter: brightness(1);
+  top: calc(50% + 1vw);
+  opacity: 0;
+}
+
+
+#intro_welcome {
+  width: 100%;
+  position: fixed;
+  top: calc(50% + 7vw);
+  font-family: "Mono", sans-serif;
+  font-size: 2em;
+  color: #FFF;
+  opacity: 0;
+  text-shadow: 0px 0px 0px #FFF;
+  text-align: center;
+
+  transition: 3.644s top, 2s 1s opacity, 2s 1s text-shadow;
+}
+#intro.playing #intro_welcome {
+  top: calc(50% + 8vw);
+  opacity: 1;
+  text-shadow: 0px 0px 4px #FFF;
+}
+
+#intro_motto {
+  font-family: "Mono", sans-serif;
+  font-size: 3vw;
+  color: #000;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 5vw;
+}
+
+#loading-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 1000000000;
+  transition: opacity 0.2s;
+}
+
+#loading-box.finished {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading-box {
+  display: none !important;
+}
+
+
 </style>
 
 <script src="public/js/jquery.js"></script>
@@ -295,12 +419,65 @@ const content =  document.getElementById('homeContent')
 const intro  = document.getElementById('intro')
 const landing = document.getElementById('landing')
 let introSfx = new Audio("../public/sfx/let_it.wav")
+let yattongLesgoSfx = new Audio("../public/sfx/yattongLesGo.wav")
+let yattongLongSfx = new Audio("../public/sfx/yattongLong.wav")
+
+
+function PlayIntro() {
+  $("#notLanding").addClass("back")
+  $("#landing").addClass("destroyed")
+  $("#intro").css("display", "block");
+  $("#homeContent").addClass("anim-fast");
+  $("#homeContent").addClass("hidden");
+  setTimeout(function() {
+    $("#homeContent").removeClass("anim-fast");
+    $("#homeContent").addClass("anim-slow");
+    $("#intro").addClass("playing");
+  }, 1);
+
+
+   
+  setTimeout(function() {
+    TypeIntroMotto();
+      setInterval(function() {
+        fireflies();
+      }, 450);
+  }, 3000);
+
+  setTimeout(function() {
+    $("#intro").addClass("destroyed");
+    $("#homeContent").removeClass("hidden");
+    window.scrollTo(0, 0);
+  }, 3644);
+  setTimeout(function() {
+    $("#homeContent").removeClass("anim-slow");
+    $("#intro").remove();
+
+  }, 4644);
+}
+
+function TypeIntroMotto() {
+  var text = "絶だい:Ve$強だい:Ve$肥だい:Ve";
+  for (var i = 0; i < text.length; i++) {
+    (function(index) {
+      setTimeout(function() {
+        $("#intro_motto").html($("#intro_motto").html() + text.charAt(index).replace("$", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
+      }, index * 20);
+    })(i);				
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  document.getElementById("loading-box").className = "finished";
+});
+
+window.onbeforeunload = function() {
+  document.getElementById("loading-box").classList.remove("finished");
+  fadeAway(200);
+}
 
 
 
-$(document).ready(function() {
-  /* PlayIntroVIP();  */
-})
 
 function ready(err,loop){
   if (err) {
@@ -311,11 +488,21 @@ function ready(err,loop){
 
 function checkAllow(allowAudio){
   if (allowAudio == 0) {
-    playIntroSfx()
+    PlayIntro()
     
   } else {
-    playIntro()
+    PlayIntro()
   }
+}
+
+function hrefing(str){
+  yattongLesgoSfx.volume = 0.1
+  yattongLesgoSfx.play()
+  $("html").fadeOut(3000)
+  setTimeout(function(){
+    location.href=str
+  },5000)
+
 }
 
 
@@ -374,7 +561,7 @@ function playIntroSfx(){
     
 
 
-function playIntro(){
+function playIntroNoSfx(){
   landing.style.visibility = 'hidden'
   landing.style.opacity = 0
 
@@ -401,50 +588,25 @@ function playIntro(){
   }, 1750)
 }
 
-function playIntroVIP(){
-  $("#intro").css("display", "block");
-  $("header").addClass("anim-fast");
-  $("header").addClass("hidden");
-  setTimeout(function() {
-    $("header").removeClass("anim-fast");
-    $("header").addClass("anim-slow");
-  }, 1);
-
-  playMusic(0.5, "intro", "home", function() {
-    console.log("This callback is aligned with the song.");
-
-    $("#intro").addClass("playing");
-    setTimeout(function() {
-      TypeIntroMotto();
-    }, 3000);
-    setTimeout(function() {
-      $("#intro_flare-mini").addClass("hidden");
-    }, 2500);
-    setTimeout(function() {
-      $("#intro").addClass("destroyed");
-      $("header").removeClass("hidden");
-      window.scrollTo(0, 0);
-    }, 3644);
-    setTimeout(function() {
-      $("header").removeClass("anim-slow");
-      $("#intro").remove();
-      /*setCookie("SEEN-INTRO", "v1", Date.now() + (365*24*60*60*1000));*/
-    }, 4644);
-  });
+function playShiri(){
+  $('#homeHUD').fadeOut(400);
+  $("#difficultyShiri").fadeIn(400);
 }
 
-function TypeIntroMotto() {
-  var text = "Unlink the world.$Unlock the rest.";
-  for (var i = 0; i < text.length; i++) {
-    (function(index) {
-          setTimeout(function() {
-        $("#intro_motto").html($("#intro_motto").html() + text.charAt(index).replace("$", "<br>"));
-      }, index * 20);
-      })(i);				
+function goBack(){
+  $('#homeHUD').fadeIn(400);
+  $("#difficultyShiri").fadeOut(400);
+}
+
+$("#zetsu").hover(
+  function() {
+    $("#rulesShiri").fadeIn(400);
+  },
+  function() {
+    $("#rulesShiri").fadeOut(400);
   }
-}
-
-
+);
+ 
 
 </script>
 </html>

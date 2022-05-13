@@ -16,6 +16,7 @@
 <!-- CSS links -->
 
 <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
+<link href="public/css/tsuki.css" rel="stylesheet" />
 
 <!-- CSS overrides, if any -->
 
@@ -111,76 +112,7 @@
 			opacity: 0;
 		}
 
-		#intro_flare-back {
-			width: 15vw;
-			position: fixed;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			opacity: 0;
-			mix-blend-mode: lighten;
-
-			transition: 3.644s opacity, 3.644s width, 3.644s top;
-		}
-		#intro.playing #intro_flare-back {
-			opacity: 1;
-			width: 20vw;
-			top: calc(50% - 1vw);
-		}
-
-		#intro_flare-top {
-			width: 0vw;
-			position: fixed;
-			left: 50%;
-			top: calc(50% - 4.5vw);
-			transform: translate(-50%, -50%);
-			opacity: 0;
-			mix-blend-mode: lighten;
-
-			transition: 3.644s opacity, 3.644s width, 3.644s top;
-		}
-		#intro.playing #intro_flare-top {
-			opacity: 1;
-			width: 10vw;
-			top: calc(50% - 3.5vw);
-		}
-
-		#intro_flare-mini_holder {
-			position: fixed;
-			width: 12vw;
-			height: 12vw;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%) rotate(0deg);
-			mix-blend-mode: lighten;
-
-			transition: 3.644s transform linear, 3.644s top;
-		}
-		#intro.playing #intro_flare-mini_holder {
-			top: calc(50% + 1vw);
-			transform: translate(-50%, -50%) rotate(-180deg);
-		}
-
-		#intro_flare-mini {
-			position: absolute;
-			width: 5vw;
-			opacity: 0;
-			left: 50%;
-			top: 0;
-			transform: translate(-50%, 0) rotate(0deg);
-			mix-blend-mode: lighten;
-
-			transition: 3.644s transform linear, 0.5s 1s opacity;
-		}
-		#intro.playing #intro_flare-mini {
-			transform: translate(-50%, 0) rotate(180deg);
-			opacity: 0.4;
-		}
-		#intro.playing #intro_flare-mini.hidden {
-			opacity: 0;
-			transition: 3.644s transform linear, 1s opacity;
-		}
-
+		
 		#intro_welcome {
 			width: 100%;
 			position: fixed;
@@ -209,26 +141,6 @@
 			top: 10vw;
 		}
 
-		#shiro {
-			position: fixed;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 60;
-			background-color: #FFF;
-			opacity: 0;
-			pointer-events: none;
-		}
-
-		#shiro.fireaway {
-			animation: 3s fadeInShiro linear forwards;
-		}
-
-		@keyframes fadeInShiro {
-			0%   { opacity: 0; }
-			100% { opacity: 1; }
-		}
 	</style>
 	<script>
 	
@@ -246,29 +158,25 @@
             setTimeout(function() {
                 $("header").removeClass("anim-fast");
                 $("header").addClass("anim-slow");
+				$("#intro").addClass("playing");
             }, 1);
-            
+        
 
-            
-                console.log("This callback is aligned with the song.");
-
-                $("#intro").addClass("playing");
-                setTimeout(function() {
-                    TypeIntroMotto();
-                }, 3000);
-                setTimeout(function() {
-                    $("#intro_flare-mini").addClass("hidden");
-                }, 2500);
-                setTimeout(function() {
-                    $("#intro").addClass("destroyed");
-                    $("header").removeClass("hidden");
-                    window.scrollTo(0, 0);
-                }, 3644);
-                setTimeout(function() {
-                    $("header").removeClass("anim-slow");
-                    $("#intro").remove();
-                
-                }, 4644);
+             
+			setTimeout(function() {
+				TypeIntroMotto();
+			}, 3000);
+		
+			setTimeout(function() {
+				$("#intro").addClass("destroyed");
+				$("header").removeClass("hidden");
+				window.scrollTo(0, 0);
+			}, 3644);
+			setTimeout(function() {
+				$("header").removeClass("anim-slow");
+				$("#intro").remove();
+			
+			}, 4644);
 
 			
 		}
@@ -286,13 +194,7 @@
 	</script>
 </head>
 <body>
-	<!-- <div id="loading-box">
-	<span id="loading-box-text">Loading...</span>
-	<div id="loading-box-icon">
-		<img id="loading-box-icon-tsuki" src="res/img/loading-box-icon-tsuki.png" />
-		<img id="loading-box-icon-spin" src="res/img/loading-box-icon-spin.png" />
-	</div>
-</div> -->
+	<div id="loading-box"></div> 
 
 <style>
 	#loading-box {
@@ -310,88 +212,17 @@
 		opacity: 0;
 		pointer-events: none;
 	}
-
-	#loading-box-text {
-		position: fixed;
-		right: 72px;
-		bottom: 28px;
-		text-align: right;
-		color: #FFF;
-		font-family: "Tiny", sans-serif;
-		font-size: 22px;
-		pointer-events: none;
-		transition: bottom 0.2s ease-in;
-	}
-
-	#loading-box-text::selection {
-		background: none;
-		color: #FFF;
-	}
-	#loading-box-text::-moz-selection {
-		background: none;
-		color: #FFF;
-	}
-
-	#loading-box.finished #loading-box-text {
-		bottom: -36px;
-	}
-
-	#loading-box-icon {
-		position: fixed;
-		width: 50px;
-		height: 50px;
-		right: 14px;
-		bottom: 14px;
-		pointer-events: none;
-		transition: bottom 0.2s ease-in;
-	}
-
-	#loading-box.finished #loading-box-icon {
-		bottom: -50px;
-	}
-
-	#loading-box-icon-tsuki {
-		position: absolute;
-		width: 50px;
-		pointer-events: none;
-	}
-
-	#loading-box-icon-spin {
-		position: absolute;
-		width: 50px;
-		left: 1px;
-		pointer-events: none;
-		animation: LoaderSpin 2s infinite linear;
-	}
-
-	@keyframes LoaderSpin {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
 </style>
 
 <script>
-	/*document.addEventListener("DOMContentLoaded", function(event) { 
-		document.getElementById("loading-box-icon-spin").src = "res/img/loading-box-icon-finish.png";
-		document.getElementById("loading-box-text").innerHTML = "Loaded.";
+	document.addEventListener("DOMContentLoaded", function(event) { 
 		document.getElementById("loading-box").className = "finished";
-
-		setTimeout(function() {
-			document.getElementById("loading-box-icon-spin").src = "res/img/loading-box-icon-spin.png";
-			document.getElementById("loading-box-text").innerHTML = "Loading...";
-		}, 500);
 	});
 
 	window.onbeforeunload = function() {
-		document.getElementById("loading-box-icon-spin").src = "res/img/loading-box-icon-spin.png";
-		document.getElementById("loading-box-text").innerHTML = "Loading...";
 		document.getElementById("loading-box").classList.remove("finished");
 		fadeAway(200);
-	}*/
+	}
 </script>
 
 <noscript>
@@ -403,13 +234,10 @@
 </noscript>	<header class="announcement-hidden">
 	
 	</div id="header-inner">
-	<div id="header-knobs">
-		<a href="index.html"><div class="header-knob" id="header-knobs_tsuki"></div></a>
-		<a href="https://boards.systemspace.link/"><div class="header-knob header-knob-text" id="header-knobs_boards">BOARDS</div></a>
-		<a href="https://chat.systemspace.link/"><div class="header-knob header-knob-text" id="header-knobs_boards">CHAT</div></a>
-		<a href="https://wiki.systemspace.link/"><div class="header-knob header-knob-text" id="header-knobs_boards">WIKI</div></a>
-				<a href="member/auth.html"><div class="header-knob header-knob-text right-hand">LOG IN</div></a>
-						<a href="javascript:void(0);"><div class="header-knob header-knob-text right-hand" id="header-knobs_preferences">PREFERENCES</div></a>
+		<div id="header-knobs">
+		<a href="https://boards.systemspace.link/"><div class="header-knob header-knob-text" >HOME</div></a>
+		
+		<a href="member/auth.html"><div class="header-knob header-knob-text right-hand">LOG IN</div></a>
 	</div>
 </header>
 
@@ -654,19 +482,11 @@
 	.hs_ok span {
 		color: var(--positive-color) !important;
 	}
-</style>	<div id="intro">
-		<img id="intro_flare-back" src="public/media/intro/flare-back.png" />
-	
-		<img id="intro_flare-top" src="public/media/intro/flare-top.png" />
-		<div id="intro_flare-mini_holder">
-			<img id="intro_flare-mini" src="public/media/intro/flare-top.png" />
-		</div>
-		<h1 id="intro_welcome">Welcome to the TSUKI Project</h1>
-		<h1 id="intro_motto"></h1>
-	</div>
-
-	<div id="shiro"></div>
-	<div id="bg-dots"></div>
+</style>	
+<div id="intro">
+	<h1 id="intro_welcome">Welcome to the TSUKI Project</h1>
+	<h1 id="intro_motto"></h1>
+</div>
 
 	<div id="header-shadow">
 		<div id="header">
