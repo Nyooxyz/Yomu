@@ -250,9 +250,9 @@
 
  // -- Audio file buffering -- //
 
- let threeHundredSFX = new Audio("../public/sfx/300.wav")
- let hitSFX = new Audio("../public/sfx/hit.wav")
- let missSFX = new Audio("../public/sfx/miss.wav")
+ let threeHundredSFX = new Audio("../public/sfx/yattongLong.wav")
+ let hitSFdX = new Audio("../public/sfx/yattongLong.wav")
+ let missSFX = new Audio("../public/sfx/yattongLesgo.wav")
 
  // -- Game state -- //
 
@@ -607,7 +607,7 @@ function inAnki() {
   missSFX.currentTime = 0
   missSFX.volume = 0.1
   missSFX.play();
-  $("#jin-pop").html(state.kanj + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' +  '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '    =>    ' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'+ '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'+ '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'  + state.hira);
+  $("#jin-pop").html(state.kanj +  '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp' + '    =>    ' + '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'+ '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'+ '&nbsp' + '&nbsp' + '&nbsp' + '&nbsp'  + state.hira);
 	$("#jin-pop").removeClass("hidden");
 
   $(".main-ui").addClass("shake-no");

@@ -531,16 +531,14 @@ button:hover {
 	background-color: rgba(0, 0, 0, 0.8);
 	border-top: 1px solid #FFF;
 	border-bottom: 1px solid #FFF;
-	font-size: 2em;
-	letter-spacing: -6px;
+	font-size: 3em;
 	color: #FFF;
-	text-align: center;
 	z-index: 1500000;
 	padding-top: 0.25em;
 	padding-bottom: 0.25em;
 	text-shadow: 0px 0px 4px #FFF;
 	opacity: 1;
-	max-height: 2em;
+	max-height: 4em;
 	transition: 0.4s opacity, 0.3s max-height, 0.3s padding-top, 0.3s padding-bottom;
 	pointer-events: none;
   animation: FadeIn 2s;

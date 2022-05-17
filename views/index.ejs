@@ -183,7 +183,6 @@
     width: 1000px;
     height: 300px;
     background-image: url("../public/media/shiritori.png");
-    border: 2rem solid red;
   }
 
   #rulesShiri{
@@ -213,27 +212,22 @@
     background-color: rgba(255,255,0);
   }
 
-  #yesAllow:after {
+  #yesAllow:hover {
     background-color: rgb(109, 218, 94);
   }
-  #noAllow:after {
+  #noAllow:hover {
     background-color: rgb(218, 94, 94);
   }
 
-  #diff a:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+  #diff a:hover {
+    transform: scaleX(1.5);
+    cursor: pointer;
+    transition: 0.5s linear;
   }
-  #diff a:hover:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+
+  #diff {
+    text-align: center;
+    margin-top: 5vh;
   }
 
   /* Fireflies */
@@ -243,6 +237,7 @@
     opacity: 0;
     border-radius: 50%;
     animation: drift 4s ease-out;
+    z-index: -55555;
   }
 
   @keyframes drift {
@@ -254,14 +249,22 @@
 
   #landing {
     color: rgb(255, 255, 255);
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
   }
 
   #landing.destroyed {
     display: none !important;
   }
 
+  #landing p{
+    font-size: 4em;
+  }
+
   #landing a{
-    color: rgb(255, 255, 255);
+    font-size: 3em;
   }
 
 body:before {
@@ -306,6 +309,11 @@ body:before {
   width: 100%;
   text-align: center;
   bottom: 5vw;
+  z-index: 22;
+}
+
+#motto a {
+  cursor: pointer;
 }
 
 #playBar {
@@ -315,6 +323,10 @@ body:before {
   width: 100%;
   text-align: center;
   bottom: 2vw;
+}
+
+#playBar a {
+  cursor: pointer;
 }
 
 
@@ -439,9 +451,6 @@ function PlayIntro() {
    
   setTimeout(function() {
     TypeIntroMotto();
-      setInterval(function() {
-        fireflies();
-      }, 450);
   }, 3000);
 
   setTimeout(function() {
@@ -496,7 +505,7 @@ function checkAllow(allowAudio){
 }
 
 function hrefing(str){
-  yattongLesgoSfx.volume = 0.1
+  yattongLesgoSfx.volume = 0.3
   yattongLesgoSfx.play()
   $("html").fadeOut(3000)
   setTimeout(function(){
