@@ -41,13 +41,24 @@
 
 	#header {
 		display: grid;
-		grid-template-columns: 40% 60%;
+		grid-template-columns: repeat(8, 1fr);
+		column-gap: 6em;
 		height: 35vh;
 	}
 
 	#headerLeftSplit {
 		display: grid;
 		grid-template-rows: 50% 50%;
+		grid-column: 1/span 3;
+		
+	}
+
+	#headerRight  {
+		grid-column:3/-1;
+	}
+
+	#headerRight, #headerLeftSplit  {
+		grid-row: 1/2;
 	}
 
 	#main {
@@ -95,70 +106,30 @@
 		height: 100%;
 	}
 
-	.outlineTop  {
-		border-bottom: 1px solid black;
-		border-left: 1px solid black;
-		height: 100%;
-		position: relative;
-	}
-
-	.outlineTop::before {
-		content: '';
-		top: -24;
-		right: 0;
-		left: 0;
-		bottom: -22;
-		border-top: 1px solid black;
-		border-right: 1px solid black;
-		position: absolute;
-		transform: skewY(-5deg);
-		z-index: 2;
-	
-	}
-
-	
-	.outlineBot  {
-		border-left: 1px solid black;
-		border-top: 1px solid black;
-		height: 100%;
-		background-color: white;
-		position: relative;
-	}
-
-	.outlineBot::before {
-		content: '';
-		top: 24;
-		right: 0;
-		left: 0;
-		bottom:24;
-		border-bottom: 1px solid black;
-		border-right: 1px solid black;
-		position: absolute;
-		transform: skewY(-5deg);
-	
-	}
 
 	/* The trilogy */
 	
 	.outlineRight  {
-		border-left: 1px solid black;
-		border-top: 1px solid black;
 		height: 100%;
-		background-color: white;
+		background-color: black;
 		position: relative;
+	
 	}
 
 	.outlineRight::before {
 		content: '';
-		top: 0;
-		right: 22;
-		left: 22;
-		bottom: 0;
-		border-bottom: 1px solid black;
-		border-right: 1px solid black;
+		width: calc(100% - 3px);
+		height: calc(100% - 3px);
+		background: url("../public/media/panelLogIn.jpg") no-repeat center;
+		background-size: cover;
+		display: block;
 		position: absolute;
-		transform: skewX(-15deg);
-	
+		top: 1.5px;
+		left: 1.5px;
+	}
+
+	.outlineRight, .outlineRight:before {
+		clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
 	}
 
 	.outlineRight2  {
@@ -168,49 +139,52 @@
 	}
 
 	.outlineRight3  {  
-		border-top: 1px solid black;
-		width: 91%;
 		height: 100%;
-		background-color: white;
+		width: 88%;
+		background-color: black;
 		position: relative;
 	}
 
 	.outlineRight3::before {
 		content: '';
-		top: 0;
-		right: 22;
-		left: 22;
-		bottom: 0;
-		border-bottom: 1px solid black;
-		border-right: 1px solid black;
+		width: calc(100% - 3px);
+		height: calc(100% - 3px);
+		background: url("../public/media/panelRegister.jpg") no-repeat center;
+		background-size: cover;
+		display: block;
 		position: absolute;
-		transform: skewX(-15deg);
-	
+		top:1.5px;
+		left:1.5px;
 	}
 
+	.outlineRight3, .outlineRight3:before {
+		clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
+	}
 
  	/*     */
 
 
 	.outlineLeft  {
-		border-right: 1px solid black;
-		border-top: 1px solid black;
 		height: 100%;
-		background-color: white;
+		background-color: black;
 		position: relative;
+		
 	}
 
 	.outlineLeft::before {
 		content: '';
-		top: 0;
-		right:-48;
-		left: -48;
-		bottom: 0;
-		border-bottom: 1px solid black;
-		border-left: 1px solid black;
+		width: calc(100% - 3px);
+		height: calc(100% - 3px);
+		background: url("../public/media/panelRegister.jpg") no-repeat center;
+		background-size: cover;
+		display: block;
 		position: absolute;
-		transform: skewX(-15deg);
-	
+		top:1.5px;
+		left:1.5px;
+	}
+
+	.outlineLeft, .outlineLeft:before {
+		clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
 	}
 
 
