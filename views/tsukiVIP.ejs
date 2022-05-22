@@ -42,7 +42,7 @@
 	#header {
 		display: grid;
 		grid-template-columns: repeat(8, 1fr);
-		column-gap: 6em;
+		column-gap: 5em;
 		height: 35vh;
 	}
 
@@ -76,10 +76,54 @@
 	}
 
 
-	#footerLeft {
-		display: grid;
-		grid-template-rows: 60% 40%;
+	#footerRight {
+		grid-column:2/-1;
+
 	}
+
+	#footerLeft {
+		grid-column: 1/2;
+		
+	}
+
+	#idkyet {
+
+		background-image: url(../public/media/chat.gif);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: 20%;
+		filter: grayscale(95%);
+
+    	
+	}
+
+	#collectionTitle {
+		width: calc(100% - 0.75em);
+		margin-left: 0.5em;
+		height: 20%;
+		grid-column:-1/-2;
+		z-index: 5;
+		background-color: white;
+		cursor: pointer;
+		transition: 0.5s linear;
+		border: 2px solid black;
+	}
+
+	#collectionTitle a {
+		font-size: 1.2em;
+	}
+
+	.oldCollection:hover {
+		display: block;
+		-webkit-animation: fadeOut 1s;
+		animation: fadeOut 1s;
+		animation-fill-mode: forwards;
+	}
+
+	#collectionTitle, #footerRight  {
+		grid-row: 2/-1;
+	}
+
 
 	.panelTop {
 		padding-top: 0.5em;
@@ -102,21 +146,18 @@
 
 
 	.outline {
-		border: 1px solid black;
+		border: 2px solid black;
 		height: 100%;
 	}
-
-
-	/* The trilogy */
 	
-	.outlineRight  {
+	.clipLogIn  {
 		height: 100%;
 		background-color: black;
 		position: relative;
 	
 	}
 
-	.outlineRight::before {
+	.clipLogIn::before {
 		content: '';
 		width: calc(100% - 3px);
 		height: calc(100% - 3px);
@@ -128,24 +169,68 @@
 		left: 1.5px;
 	}
 
-	.outlineRight, .outlineRight:before {
+	.clipLogIn, .clipLogIn:before {
 		clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
 	}
 
-	.outlineRight2  {
+	.btn-login {
+		position: absolute;
+		right:10%;
+		top:10%;
+		bottom:2;
+	
+	}
+
+	.btn-login button {
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+	
+	}
+	
+	.btn-login b {
+		font-size: 1.5em;
+		width: 50%;
+		writing-mode: vertical-rl;
+		text-orientation: upright;
+	}
+
+	.btn-register {
+		position: absolute;
+		left:5%;
+		top:5%;
+		bottom:2;
+	
+	}
+
+	.btn-register button {
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+	
+	}
+	
+	.btn-register b {
+		font-size: 1.5em;
+		width: 50%;
+		writing-mode: vertical-rl;
+		text-orientation: upright;
+	}
+
+	.clipRegiContainer  {
 		border-left: 1px solid black;
 		height: 100%;
 		position: relative;
 	}
 
-	.outlineRight3  {  
+	.clipRegi  {  
 		height: 100%;
 		width: 88%;
 		background-color: black;
 		position: relative;
 	}
 
-	.outlineRight3::before {
+	.clipRegi::before {
 		content: '';
 		width: calc(100% - 3px);
 		height: calc(100% - 3px);
@@ -157,11 +242,9 @@
 		left:1.5px;
 	}
 
-	.outlineRight3, .outlineRight3:before {
+	.clipRegi, .clipRegi:before {
 		clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
 	}
-
- 	/*     */
 
 
 	.outlineLeft  {
@@ -172,10 +255,14 @@
 	}
 
 	.outlineLeft::before {
-		content: '';
+		content: "安気 : Z";
+		font-size: 3vw;
+		text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+		color: #FFF;
 		width: calc(100% - 3px);
 		height: calc(100% - 3px);
-		background: url("../public/media/panelRegister.jpg") no-repeat center;
+		filter: grayscale(100%);
+		background: url("../public/media/maybe.gif") no-repeat center;
 		background-size: cover;
 		display: block;
 		position: absolute;
@@ -185,6 +272,62 @@
 
 	.outlineLeft, .outlineLeft:before {
 		clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+	}
+
+	.clipBot  {
+		height: 100%;
+		background-color: black;
+		position: relative;
+		
+	}
+
+	.clipBot::before {
+		content: '';
+		width: calc(100% - 3px);
+		height: calc(100% - 3px);
+		/*background: url("../public/media/panelRegister.jpg") no-repeat center;
+		background-size: cover;*/
+		display: block;
+		position: absolute;
+		top:1.5px;
+		left:1.5px;
+	}
+
+	.clipBot, .clipBot:before {
+		clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+	}
+
+
+	.clipTop  {
+		height: 100%;
+		background-color: black;
+		position: relative;
+		
+	}
+
+	.clipTop::before {
+		content: '';
+		width: calc(100% - 3px);
+		height: calc(100% - 3px);
+		/*background: url("../public/media/panelRegister.jpg") no-repeat center;
+		background-size: cover;*/
+		display: block;
+		position: absolute;
+		top:1.5px;
+		left:1.5px;
+	}
+
+	.clipTop, .clipTop:before {
+		clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
+	}
+
+	#mainGame {
+		background: url("../public/media/end.jpg") no-repeat;
+		background-position: 50% 45% ;
+		background-size: cover;
+		filter: grayscale(100%);
+		cursor: pointer;
+		transition: 0.8s linear;
 	}
 
 
@@ -199,22 +342,42 @@
 		margin-left: 3vw;
 	}
 	
-
-	#clipRight {
-		clip-path: polygon(0 0, 100% 0, 50% 100%, 0% 100%);
+	.clipCollection  {
+		background: url("../public/media/punpun.png") no-repeat;
+		background-size:cover;
+		background-position: 5%;
+		background-color: black;
+		transition: 0.5s linear;
 	}
 
-	#clipLeft {
-		clip-path: polygon(50% 0, 100% 0, 100% 100%, 0% 100%);
-	}
 
-	#clipBot {
-		clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-	}
+	body:before {
+		content: "";
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: 1000;
+		background-image: url(../public/media/overlay.png);
+		background-repeat: all;
+		background-position: 0px 0px;
+		background-color: rgba(0, 0, 0, 0.1);
+		animation-name: Static;
+		animation-duration: 2s;
+		animation-iteration-count: infinite;
+		animation-timing-function: steps(4);
+		box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
+	  }
+	  
+	  @keyframes Static {
+		  0% { background-position: 0px 0px; }
+		  100% { background-position: 0px 4px; }
+	  }
 
-	#clipTop {
-		clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
-	}
+	 
+
 
 </style>
 
@@ -228,7 +391,7 @@
 
 			<div id="headerLeft" class="panelRight">
 				<div id="logoutContain">
-					<div class="outlineRight">
+					<div class="clipLogOut">
 						<form action="/logout" method="GET">
 							<button type="submit" class="btn-logout">Log Out</button>
 						</form>
@@ -240,17 +403,18 @@
 			  
 			<div id="headerLeftSplit" class="panelRight">
 				<div id="loginContain" class="panelBot">
-					<div class="outlineRight">
-						<form action="/login" method="POST">
-							<button type="submit" class="btn-login">Log in</button>
+					<div class="clipLogIn">
+						<form action="/login" method="POST" class="btn-login">
+							<button type="submit"><b>ログイン</b></button>
 						</form>
 					</div>
 				</div>
+				
 				<div id="registerContain" class="panelTop">
-					<div class="outlineRight2">
-						<div class="outlineRight3">
-							<form action="/register">
-								<button type="submit" class="btn-register">Register</button>
+					<div class="clipRegiContainer">
+						<div class="clipRegi">
+							<form action="/register" class="btn-register">
+								<button type="submit"><b>レジスター</b></button>
 							</form>
 						</div>
 					</div>
@@ -259,7 +423,7 @@
 
 			<% } %>  
 
-			<div id="headerRight" class="panelLeft">
+			<div id="headerRight" class="panelLeft">	
 
 				<div class="outlineLeft">
 
@@ -270,28 +434,24 @@
 		</div>
 
 		<div id="main">
-			<div  class="outline">
-
+			<div id="mainGame" class="outline">
+				<img
+					src="../public/media/path.svg"
+					alt="Start Game"
+					height="87"
+					width="100" />
 			</div>
 		</div>
 
 		<div id="footer">
 			<div id="footerLeft" class="panelRight">
-				<div class="panelBot">
-					<div class="outlineBot">
-
-					</div>
-				</div>
-				<div class="panelTop">
-					<div class="outlineTop">
-
-					</div>
-				</div>
-
+				<div id="idkyet" class="outline"></div>
 			</div>
-
+			<div id="collectionTitle" >
+				<a><b>コレクション</b></a>
+			</div>
 			<div id="footerRight" class="panelLeft">
-				<div class="outline">
+				<div class="clipCollection outline">
 
 				</div>
 
@@ -303,5 +463,34 @@
 
 
 </body>
+<script src="public/js/jquery.js"></script>
+<script>
+
+	/* SPAGHETTTT */
+
+	$("#collectionTitle").on({
+		mouseenter: function () {
+			
+			$(".clipCollection").css({"background":"url('../public/media/punpunColor.png') no-repeat bottom", "background-size":"cover", "background-position":"5%"})
+		},
+		mouseleave: function () {
+			
+			$(".clipCollection").css({"background":"url('../public/media/punpun.png') no-repeat bottom", "background-size":"cover", "background-position":"5%"})
+		}
+	})
+
+	$("#mainGame").on({
+		mouseenter: function () {
+			$("#mainGame").css("filter","none")
+		},
+		mouseleave: function () {
+			$("#mainGame").css("filter","grayscale(100%)")
+		}
+	})
+
+
+
+
+</script>
 
 </html>
