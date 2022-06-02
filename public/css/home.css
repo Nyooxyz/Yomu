@@ -1,0 +1,770 @@
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+html  {
+    overflow: hidden;
+    background-color: #90898A;
+}
+
+b {
+    font-family: "yasashisa";
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+}
+
+#pageContain{
+    height: calc(100% - 10em);
+    width: 70vw;
+    padding: 4rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#header {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: 6em;
+    height: 35vh;
+}
+
+#headerLeft {
+    grid-column: 1/span 3;
+}
+
+.clipLogOut  {
+    height: 100%;
+    background-color: #000;
+    position: relative;
+    cursor: pointer;
+
+}
+
+.clipLogOut::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    background: url("../media/pxlgrl.jpg") no-repeat center;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+    transform: scale(0.97);
+}
+
+.clipLogOut, .clipLogOut:before {
+    clip-path: polygon(0 0, 100% 0, 78% 100%, 0% 100%);
+}
+
+#headerLeftSplit {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-column: 1/span 3;
+    
+}
+
+#headerRight  {
+    grid-column:3/-1;
+}
+
+#headerRight, #headerLeftSplit, #headerLeft  {
+    grid-row: 1/2;
+}
+
+#main {
+    width: 100%;
+    height: 20vh;
+    padding-top:1em;
+    padding-bottom:2em;
+}
+
+#footer  {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: calc(100% - 35vh - 20vh);
+
+}
+
+
+#footerRight {
+    grid-column:2/-1;
+
+}
+
+#footerLeft {
+    grid-column: 1/2;
+    
+}
+
+#idkyet {
+
+    background-image: url(../media/chat.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 20%;
+    filter: grayscale(95%);
+
+    
+}
+
+
+#collectionTitle {
+    grid-column:2/-1;
+    background-color: white;
+    transition: 0.5s linear;
+    border-left: 5px solid black;
+    text-orientation: upright;
+    writing-mode: vertical-rl;
+    text-align: center;
+}
+
+#collectionKata {
+    font-size: 1.5rem;
+    line-height: 80px;
+}
+
+#collectionRoma {
+    font-size: 0.8rem;
+    line-height: 10px;
+    display: none;
+}
+
+.oldCollection:hover {
+    display: block;
+    -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+    animation-fill-mode: forwards;
+}
+
+#collectionTitle, #footerRight  {
+    grid-row: 2/-1;
+}
+
+
+.panelTop {
+    padding-top: 0.5em;
+}
+
+
+.panelBot {
+    padding-bottom: 0.5em;
+}
+
+
+.panelRight {
+    padding-right: 0.5em;
+}
+
+
+.panelLeft {
+    padding-left: 0.5em;
+}
+
+.outline {
+    border:#000 solid;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-right-width: 7px;
+    border-left-width:7px;
+    height: 100%;
+}
+
+.clipLogIn  {
+    cursor: pointer;
+    height: 100%;
+    background-color: #000;
+    position: relative;
+
+}
+
+.clipLogIn::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    background: url("../media/panelLogIn.jpg") no-repeat center;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+    transform: scale(0.97);
+}
+
+.clipLogIn, .clipLogIn:before {
+    clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
+}
+
+
+.clipLogOut b {
+    position: absolute;
+    left:4%;
+    top:5%;
+    font-size: 1.5vw;
+    color:#FFF !important;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.clipLogIn b {
+    position: absolute;
+    right:13%;
+    top:10%;
+    font-size: 2rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.clipRegi b {
+    position: absolute;
+    left:5%;
+    top:10%;
+    font-size: 1.7rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.clipRegiContainer  {
+    border-left: 1px solid black;
+    height: 100%;
+    position: relative;
+}
+
+.clipRegi  {  
+    cursor: pointer;
+    height: 100%;
+    width: 88%;
+    background-color: black;
+    position: relative;
+}
+
+.clipRegi::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    background: url("../media/panelRegister.jpg") no-repeat center;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    top:1.5px;
+    left:1.5px;
+    transform: scale(0.97);
+}
+
+.clipRegi, .clipRegi:before {
+    clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
+}
+
+
+.outlineLeft  {
+    height: 100%;
+    background-color: black;
+    position: relative;
+    
+}
+
+.outlineLeft::before {
+    content: "〖 安 : 気 〗";
+    font-size: 3vw;
+    font-family: "yasashisa";
+    text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+    color: #FFF;
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    background: url("../media/drowning_under_the_milky_way_by_nanomortis-d8zru84.png") no-repeat;
+    background-size: cover;
+    background-position: 50% 70%;
+    display: block;
+    position: absolute;
+    top:1.5px;
+    left:1.5px;
+    transform: scale(0.99);
+}
+
+.outlineLeft, .outlineLeft:before {
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.clipBot  {
+    height: 100%;
+    background-color: black;
+    position: relative;
+    
+}
+
+.clipBot::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    /*background: url("public/media/panelRegister.jpg") no-repeat center;
+    background-size: cover;*/
+    display: block;
+    position: absolute;
+    top:1.5px;
+    left:1.5px;
+}
+
+.clipBot, .clipBot:before {
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+}
+
+
+.clipTop  {
+    height: 100%;
+    background-color: black;
+    position: relative;
+    
+}
+
+.clipTop::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    /*background: url("public/media/panelRegister.jpg") no-repeat center;
+    background-size: cover;*/
+    display: block;
+    position: absolute;
+    top:1.5px;
+    left:1.5px;
+}
+
+.clipTop, .clipTop:before {
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
+}
+
+#mainGame {
+    cursor: pointer;
+    transition: 0.8s linear;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 28%;
+}
+
+#main-bg {
+    grid-column: 1/-1;
+    background: url("../media/end.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+    filter: grayscale(100%);
+    transition: 0.5s linear;
+}
+
+#anki {
+    grid-column: 4/-1;
+    font-size: 2.2rem;
+    line-height: 3;
+    -webkit-text-stroke: 1.5px white;
+    color:#000 !important;
+}
+
+#n5, #n4, #anki, #main-bg  {
+    grid-row: 1/2;
+    z-index: 2;
+}
+
+#n5, #n4, #anki {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    color:#FFF;
+    text-align: center;
+}
+
+
+#n5, #n4 {
+    font-family: "AAA";
+    font-size: 1.2rem;
+    line-height: 18;
+    text-shadow: 0 0 2px #000;
+}
+
+#n5  {
+    height: 100%;
+    position: relative;
+    grid-column: 1/ span 2;
+}
+
+#n5::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    display: block;
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+}
+
+#n5, #n5::before {
+    clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
+}
+
+#n4  {
+    height: 100%;
+    position: relative;
+    grid-column: 2/4;
+
+}
+
+#n4::before {
+    content: '';
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    display: block;
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+}
+
+#n4, #n4::before {
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+
+#n5:hover {
+    background-color:rgba(255, 255, 255, 0.182);
+}
+
+#n4:hover {
+    background-color:rgba(255, 255, 255, 0.182);
+}
+
+
+
+
+#mainBubble{
+    position: relative;
+    grid-column: 2;
+    margin-top: 10;
+    height: 200px; 
+    width: 100px; 
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url(../media/bubble.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+#mainBubble b {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+#bubbleRightTxt   {
+    position: absolute;
+    top:12;
+    right:20;
+    font-size: 1.2rem;
+}
+
+#intro_motto {
+    font-family: "Mono", sans-serif;
+    font-size: 3vw;
+    color: #000;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 5vw;
+  }
+
+
+#bubbleLeftTxt {
+    position: absolute;
+    top:62;
+    left:20;
+    font-size: 1.5rem;
+}
+
+
+.splitVert  {
+    margin-top: 1.5vw;
+    margin-bottom: 3vw;
+}
+
+
+.splitHori  {
+    margin-right: 1.5vw;
+    margin-left: 3vw;
+}
+
+.clipCollection  {
+    background: url("../media/punpun.png") no-repeat;
+    background-size:cover;
+    background-position: 5%;
+    background-color: black;
+    transition: 0.5s linear;
+    display: grid;
+    grid-template-columns: 2.3fr 0.3fr;
+    cursor: pointer;
+}
+
+.clipCollection:hover  {
+    background: url("../media/punpunColor.png") no-repeat bottom;
+    background-size:cover;
+    background-position: 5%;
+}
+
+#difficultyShiri {
+    display: none;
+}
+
+
+body:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url(../media/overlay.png);
+    background-repeat: all;
+    background-position: 0px 0px;
+    background-color: rgba(0, 0, 0, 0.1);
+    animation-name: Static;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4);
+    box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
+  }
+
+  body:after {
+	content: "";
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1000;
+	background-image: url(../media/overlay2.png);
+	background-repeat: all;
+	background-position: 0px 0px;
+	animation-name: Static;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(4);
+    } 
+  
+  @keyframes Static {
+      0% { background-position: 0px 0px; }
+      100% { background-position: 0px 4px; }
+  }
+
+@font-face {
+    font-family: "CNT";
+    src: url("../font/square.ttf");
+}
+
+@font-face {
+    font-family: "Mono";
+    src: url("../font/IBMPlexMono-BoldItalic.ttf");
+}
+
+@font-face {
+    font-family: "script";
+    src: url("../font/scriptgame.ttf");
+  }
+  @font-face {
+    font-family: "CNT";
+    src: url("../font/Square.ttf");
+  }
+  
+  @font-face {
+    font-family: "AAA";
+    src: url("../font/AldotheApache.ttf");
+  }
+  
+  @font-face {
+    font-family: "PPP";
+    src: url("../font/PixelSplitter-Bold.ttf");
+  }
+  
+  @font-face {
+    font-family: "jp_1";
+    src: url("../font/851Gkktt_005.ttf");
+  }
+  
+  @font-face {
+    font-family: "yasashisa";
+    src: url("../font/YasashisaGothicBold-V2.otf");
+  }
+
+
+
+#notLanding {
+    display: none !important;
+}
+
+#notLanding.back {
+    display: block !important;
+}
+
+#pageContain {
+    transition: 0.5s top;
+}
+
+#pageContain.hidden {
+    top: -10em;
+}
+#pageContain.anim-fast {
+    top: -10em;
+    transition: none;
+}
+#pageContain.anim-slow {
+    transition: 1s top;
+}
+
+
+#landing {
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    right: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+    text-align: center;
+}
+
+#landing img {
+  pointer-events: none;
+  width: 20%;
+  filter: invert(100%);
+  height: auto;
+}
+
+#landing.destroyed {
+    display: none !important;
+}
+
+#landing p{
+    background: -webkit-linear-gradient(white, #aeb7c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    font-family: "yasashisa";
+    font-size: 3rem;
+}
+
+#diff a{
+    
+    transition: 0.2s linear;
+    color:#000;
+    padding: 1vw;
+    font-family: "CNT";
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#yesAllow{
+    background: -webkit-linear-gradient(white, rgb(0, 128, 109));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#noAllow{
+    background: -webkit-linear-gradient(white, rgb(255, 0, 51));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#motto {
+    font-family: "Mono", sans-serif;
+    font-size: 3vw;
+    text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+    color: #FFF;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    bottom: 5vw;
+    z-index: 22;
+}
+    
+#motto a {
+    cursor: pointer;
+}
+
+#intro {
+    position: fixed;
+    z-index: 2000000000;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    display: none;
+    transition: 1s 2.644s background-color ease-in;
+    }
+#intro.playing {
+    background-color: #FFF;
+}
+#intro.destroyed {
+    transition: 1s opacity;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#intro_logo {
+    width: 10vw;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(0);
+    opacity: 1;
+    
+    transition: 0.5s filter, 3.644s top, 1s 2.644s opacity ease-in;
+}
+#intro.playing #intro_logo {
+    filter: brightness(1);
+    top: calc(50% + 1vw);
+    opacity: 0;
+}
+
+
+#intro_welcome {
+    width: 100%;
+    position: fixed;
+    top: calc(50% + 7vw);
+    font-family: "Mono", sans-serif;
+    font-size: 2em;
+    color: #FFF;
+    opacity: 0;
+    text-shadow: 0px 0px 0px #FFF;
+    text-align: center;
+    
+    transition: 3.644s top, 2s 1s opacity, 2s 1s text-shadow;
+}
+#intro.playing #intro_welcome {
+    top: calc(50% + 8vw);
+    opacity: 1;
+    text-shadow: 0px 0px 4px #FFF;
+}
+
+
+
+#loading-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 1000000000;
+    transition: opacity 0.2s;
+    }
+    
+#loading-box.finished {
+    opacity: 0;
+    pointer-events: none;
+}
+    
+#loading-box {
+    display: none !important;
+}

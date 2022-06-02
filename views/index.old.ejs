@@ -1,0 +1,645 @@
+<html>
+<head>
+
+  <title>だい:Ve</title>
+
+  <!--ｚ  
+　 z　　　   
+　　z  
+　＜⌒／ヽ-､_＿_  
+／＜_/＿＿＿＿／  
+￣￣￣￣￣￣￣νύξ-->
+
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- CSS links -->
+  <link href="../public/css/home.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
+
+
+  
+
+</head>
+
+
+
+<div id="landing">
+  <p>
+    Allow audio for a better experience
+  </p>
+  <div id="diff">
+    <a id="yesAllow" onclick="checkAllow(0)">Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="noAllow" onclick="checkAllow(1)">Don't allow</a>
+  </div>
+
+</div>
+<div id="notLanding">
+  <div id="loading-box"></div> 
+  <div id="intro">
+    <h1 id="intro_welcome">Welcome to the だい:Ve project</h1>
+    <h1 id="intro_motto"></h1>
+  </div>
+
+  <body>
+    
+    
+    <div id="homeContent">
+
+      <div id="homeHUD">
+
+        <h1 id="motto">hi</h1>
+
+      </div>
+
+        <div id="header">
+
+          <%if (logged) { %>
+
+          <div id="headerLeft" class="panelRight">
+            <div id="logoutContain">
+              <div class="clipLogOut">
+                <form action="/logout" method="GET">
+                  <button type="submit" class="btn-logout">Log Out</button>
+                </form>
+              </div>
+            </div>
+          </div> 
+
+          <% } else{ %>  
+          
+          <div id="headerLeftSplit" class="panelRight">
+            <div id="loginContain" class="panelBot">
+              <div class="clipLogIn">
+                <form action="/login" method="POST" class="btn-login">
+                  <button type="submit"><b>ログイン</b></button>
+                </form>
+              </div>
+            </div>
+            
+            <div id="registerContain" class="panelTop">
+              <div class="clipRegiContainer">
+                <div class="clipRegi">
+                  <form action="/register" class="btn-register">
+                    <button type="submit"><b>レジスター</b></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% } %>  
+
+          <div id="headerRight" class="panelLeft">	
+
+            <div class="outlineLeft">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="main">
+          <div id="mainGame" class="outline">
+            <div id="mainBubble">
+              <b id="bubbleRightTxt">尻取り</b>
+              <b id="bubbleLeftTxt">スタート</b>
+            </div>
+            
+          </div>
+        </div>
+
+        <div id="footer">
+          <div id="footerLeft" class="panelRight">
+            <div id="idkyet" class="outline"></div>
+          </div>
+          <div id="collectionTitle" onclick(href="/collection/home" method="GET")>
+            <a><b>コレクション</b></a>
+          </div>
+          <div id="footerRight" class="panelLeft">
+            <div class="clipCollection outline">
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+      <div id="difficultyShiri">
+        <p>Choose difficulty</p>
+        <a id="n5" onclick="hrefing('/game?jlpt=n5')">JLPT 5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="n4" onclick="hrefing('/game?jlpt=n4')">JLPT 4</a><br>
+        <a class="backBtn" onclick="goBack()">GO BACK</a>
+      </div>
+
+    </div>
+
+    
+  </body>
+</div>
+<style>
+
+
+  @font-face {
+    font-family: "CNT";
+    src: url("../public/font/square.ttf");
+  }
+
+  @font-face {
+    font-family: "Mono";
+    src: url("../public/font/IBMPlexMono-BoldItalic.ttf");
+  }
+
+  html {
+    background: none;
+  }
+
+  body {
+    font-family: 'CNT';
+    overflow: hidden;
+    
+    background-color: #000;
+  }
+
+
+
+  #notLanding {
+    display: none !important;
+  }
+
+  #notLanding.back {
+    display: block !important;
+  }
+
+  #homeContent {
+    transition: 0.5s top;
+  }
+
+  #homeContent.hidden {
+		top: -10em;
+	}
+  #homeContent.anim-fast {
+		top: -10em;
+		transition: none;
+	}
+	#homeContent.anim-slow {
+		transition: 1s top;
+	}
+
+  .rules {
+    position: absolute;
+    font-size: 1.8rem;
+    width: 50em;
+    text-align: center;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+  }
+
+  #shiritori {
+    width: 1000px;
+    height: 300px;
+    background-image: url("../public/media/shiritori.png");
+  }
+
+  #rulesShiri{
+    display: none;
+  }
+
+  #difficultyShiri{
+    display: none;
+    margin: 0 auto;
+    width: 100px;
+
+  }
+
+  #difficultyShiri a {
+    font-size:3em;
+    text-align: center;
+    position: relative;
+    transition: 0.5s;
+  }
+
+
+  #n5:after{
+    background-color: rgb(0, 255, 0);
+  }
+
+  #n4:after{
+    background-color: rgba(255,255,0);
+  }
+
+  #yesAllow:hover {
+    background-color: rgb(109, 218, 94);
+  }
+  #noAllow:hover {
+    background-color: rgb(218, 94, 94);
+  }
+
+  #diff a:hover {
+    transform: scaleX(1.5);
+    cursor: pointer;
+    transition: 0.5s linear;
+  }
+
+  #diff {
+    text-align: center;
+    margin-top: 5vh;
+  }
+
+  /* Fireflies */
+  .fly {
+    position: absolute;
+    background: #D98E73;
+    opacity: 0;
+    border-radius: 50%;
+    animation: drift 4s ease-out;
+    z-index: -55555;
+  }
+
+  @keyframes drift {
+    0% {opacity: 0; margin: 0;}
+    25% {opacity: 1; margin-top: -5%;}
+    100% {opacity: 0; margin-top: -10%;}
+  }
+
+
+  #landing {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+  }
+
+  #landing.destroyed {
+    display: none !important;
+  }
+
+  #landing p{
+    font-size: 4em;
+  }
+
+  #landing a{
+    font-size: 3em;
+  }
+
+body:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  background-image: url(../public/media/overlay.png);
+  background-repeat: all;
+  background-position: 0px 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+  animation-name: Static;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(4);
+  box-shadow: inset 0px 0px 8em rgba(0,0,0,0.2);
+}
+
+@keyframes Static {
+	0% { background-position: 0px 0px; }
+	100% { background-position: 0px 4px; }
+}
+
+
+#playBtnShiri{
+
+}
+
+
+/* -- TS -- */
+
+#motto {
+  font-family: "Mono", sans-serif;
+  font-size: 3vw;
+  text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+  color: #FFF;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 5vw;
+  z-index: 22;
+}
+
+#motto a {
+  cursor: pointer;
+}
+
+#playBar {
+  color: #FFF;
+  font-size: 2vw;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 2vw;
+}
+
+#playBar a {
+  cursor: pointer;
+}
+
+
+#intro {
+  position: fixed;
+  z-index: 2000000000;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #000;
+  display: none;
+  transition: 1s 2.644s background-color ease-in;
+}
+#intro.playing {
+  background-color: #FFF;
+}
+#intro.destroyed {
+  transition: 1s opacity;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro_logo {
+  width: 10vw;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(0);
+  opacity: 1;
+
+  transition: 0.5s filter, 3.644s top, 1s 2.644s opacity ease-in;
+}
+#intro.playing #intro_logo {
+  filter: brightness(1);
+  top: calc(50% + 1vw);
+  opacity: 0;
+}
+
+
+#intro_welcome {
+  width: 100%;
+  position: fixed;
+  top: calc(50% + 7vw);
+  font-family: "Mono", sans-serif;
+  font-size: 2em;
+  color: #FFF;
+  opacity: 0;
+  text-shadow: 0px 0px 0px #FFF;
+  text-align: center;
+
+  transition: 3.644s top, 2s 1s opacity, 2s 1s text-shadow;
+}
+#intro.playing #intro_welcome {
+  top: calc(50% + 8vw);
+  opacity: 1;
+  text-shadow: 0px 0px 4px #FFF;
+}
+
+#intro_motto {
+  font-family: "Mono", sans-serif;
+  font-size: 3vw;
+  color: #000;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 5vw;
+}
+
+#loading-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 1000000000;
+  transition: opacity 0.2s;
+}
+
+#loading-box.finished {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading-box {
+  display: none !important;
+}
+
+
+</style>
+
+<script src="public/js/jquery.js"></script>
+<script src="public/js/loopify.js" type="text/javascript"></script>
+<script>
+
+const flies = document.getElementsByClassName('fly')
+const one =  document.getElementById('one')
+const two =  document.getElementById('two')
+const content =  document.getElementById('homeContent')
+const intro  = document.getElementById('intro')
+const landing = document.getElementById('landing')
+let introSfx = new Audio("../public/sfx/let_it.wav")
+let yattongLesgoSfx = new Audio("../public/sfx/yattongLesGo.wav")
+let yattongLongSfx = new Audio("../public/sfx/yattongLong.wav")
+
+
+function PlayIntro() {
+  $("#notLanding").addClass("back")
+  $("#landing").addClass("destroyed")
+  $("#intro").css("display", "block");
+  $("#homeContent").addClass("anim-fast");
+  $("#homeContent").addClass("hidden");
+  setTimeout(function() {
+    $("#homeContent").removeClass("anim-fast");
+    $("#homeContent").addClass("anim-slow");
+    $("#intro").addClass("playing");
+  }, 1);
+
+
+   
+  setTimeout(function() {
+    TypeIntroMotto();
+  }, 3000);
+
+  setTimeout(function() {
+    $("#intro").addClass("destroyed");
+    $("#homeContent").removeClass("hidden");
+    window.scrollTo(0, 0);
+  }, 3644);
+  setTimeout(function() {
+    $("#homeContent").removeClass("anim-slow");
+    $("#intro").remove();
+
+  }, 4644);
+}
+
+function TypeIntroMotto() {
+  var text = "絶だい:Ve$強だい:Ve$肥だい:Ve";
+  for (var i = 0; i < text.length; i++) {
+    (function(index) {
+      setTimeout(function() {
+        $("#intro_motto").html($("#intro_motto").html() + text.charAt(index).replace("$", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
+      }, index * 20);
+    })(i);				
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  document.getElementById("loading-box").className = "finished";
+});
+
+window.onbeforeunload = function() {
+  document.getElementById("loading-box").classList.remove("finished");
+  fadeAway(200);
+}
+
+
+
+
+function ready(err,loop){
+  if (err) {
+    console.warn(err);
+  }
+    loop.play();
+}
+
+function checkAllow(allowAudio){
+  if (allowAudio == 0) {
+    PlayIntro()
+    
+  } else {
+    PlayIntro()
+  }
+}
+
+function hrefing(str){
+  yattongLesgoSfx.volume = 0.3
+  yattongLesgoSfx.play()
+  $("html").fadeOut(3000)
+  setTimeout(function(){
+    location.href=str
+  },5000)
+
+}
+
+
+  // Fireflies
+const fireflies = () => {
+  const size = Math.random() * 5,
+        top = Math.random() * 100,
+        left = Math.random() * 100,
+        attr = `left: ${left}%; top: ${top}%; width: ${size}px; height: ${size}px;`,
+        fly = document.createElement('div');
+  
+  fly.setAttribute('style', attr);
+  fly.classList.add('fly');
+  document.body.appendChild(fly);
+    
+  setTimeout(function() {
+    fly.remove();
+  }, 2000);
+}
+
+
+
+function playIntroSfx(){
+  introSfx.currentTime = 0
+  introSfx.play()
+  landing.style.visibility = 'hidden'
+  landing.style.opacity = 0
+
+  one.style.visibility = 'visible'
+  one.style.opacity = 1
+  one.style.animation = 'type-w 1s steps(44)'
+
+  setTimeout(function() {
+    two.style.visibility = 'visible'
+    two.style.opacity = 1
+    two.style.animation = 'type-w 1s steps(44)'
+
+    setTimeout(function(){
+      loopify("../public/sfx/jamLess.wav",ready)
+    },2950)
+  }, 800)
+
+
+  setTimeout(function() {
+    document.body.style.backgroundColor = '#000'
+
+    content.style.visibility = 'visible'
+    content.style.opacity = 1
+    one.style.color = '#fff'
+    two.style.color = '#fff'
+    setInterval(function() {
+      fireflies();
+    }, 450);
+  }, 1750)
+}
+    
+
+
+function playIntroNoSfx(){
+  landing.style.visibility = 'hidden'
+  landing.style.opacity = 0
+
+  one.style.visibility = 'visible'
+  one.style.opacity = 1
+  one.style.animation = 'type-w 3.5s steps(44)'
+
+  setInterval(function() {
+    two.style.visibility = 'visible'
+    two.style.opacity = 1
+    two.style.animation = 'type-w 3s steps(44)'
+  }, 1000)
+
+  setInterval(function() {
+    document.body.style.backgroundColor = '#000'
+
+    content.style.visibility = 'visible'
+    content.style.opacity = 1
+    one.style.color = '#fff'
+    two.style.color = '#fff'
+    setInterval(function() {
+      fireflies();
+    }, 450);
+  }, 1750)
+}
+
+function playShiri(){
+  $('#homeHUD').fadeOut(400);
+  $("#difficultyShiri").fadeIn(400);
+}
+
+function goBack(){
+  $('#homeHUD').fadeIn(400);
+  $("#difficultyShiri").fadeOut(400);
+}
+
+$("#zetsu").hover(
+  function() {
+    $("#rulesShiri").fadeIn(400);
+  },
+  function() {
+    $("#rulesShiri").fadeOut(400);
+  }
+);
+ 
+
+</script>
+</html>
