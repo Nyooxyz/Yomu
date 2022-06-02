@@ -18,7 +18,9 @@ var MySQLStore = require('express-mysql-session')(session);
 var flash = require('express-flash');
 const { builtinModules } = require('module');
 const e = require('express');
-
+var kuromoji = require("kuromoji");
+var path = []
+var japTxt = ""
 
 
 if (app.get("env") === "production") {
@@ -220,16 +222,21 @@ function checkLogin(req, res, next) {
 }
 
 
+
+
 /*routes*/
 
 
 
 app.get('/', checkLogin, (req, res) => {
-  res.render('index.ejs',{logged : loggedin})
+  res.render('index.ejs', {logged : loggedin})
 })
 
-app.get('/vip', (req, res) => {
-  res.render('tsukiVIP.ejs',{logged : loggedin})
+app.get('/kuro', checkLogin, (req,res) => {
+  console.log(path)
+  res.render('kuro.ejs', {logged : loggedin, txtd : path, txtdJap : japTxt})
+  path = []
+  japTxt = ""
 })
 
 
@@ -406,6 +413,17 @@ app.post('/login', isNotAuth,  passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: true
 }))
+
+app.post('/kuro', (req, res, next) => {
+ 
+  kuromoji.builder({ dicPath: "node_modules/kuromoji/dict" }).build(function (err, tokenizer) {
+    // tokenizer is ready
+    path = tokenizer.tokenize(req.body.txt);
+    japTxt = req.body.txt
+    res.redirect('/kuro')
+  });  
+ 
+})
 
 app.post('/register',isNotAuth,userExists,(req,res,next)=>{
   console.log("Inside post");

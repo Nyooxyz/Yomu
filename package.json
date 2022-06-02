@@ -25,6 +25,8 @@
     "express-mysql-session": "^2.1.7",
     "express-openid-connect": "^2.7.1",
     "express-session": "^1.17.2",
+    "fs": "^0.0.1-security",
+    "kuromoji": "^0.1.2",
     "method-override": "^3.0.0",
     "mysql": "^2.18.1",
     "passport": "^0.5.2",
