@@ -11,6 +11,8 @@
     <!-- CSS links -->
     <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
+    <link rel="stylesheet" href="../public/css/table-sortable.css" type="text/css"/>
+
     
     
     
@@ -48,28 +50,13 @@
       <button id="btn-analyse" type="submit">Analyse</button>
     </form>
     
-    <table id="countTable">
-        <thead>
-          <tr>
-            <th><h2>Word</h2></th>
-            <th><h2>Reading</h2></th>
-            <th><h2>Count</h2></th>
-            <th><h2>Jisho</h2></th>
-          </tr>
-        </thead>
-        <tbody>
-            <% if (txtd !== []){ %>
-              <% for (var i = 0; i < txtd.length; ++i) { %>
-              <tr>
-                <td><%=txtd[i].surface_form %></td>
-                <td class="toHira"><%=txtd[i].reading %></td>
-                <td>1</td>
-                <td> osef </td>
-              </tr>
-              <% } %>
-            <% } %>
-        </tbody>
-    </table>
+
+    <div id="countTable">
+      <input type="text" placeholder="Search in table..." id="searchField">
+      <div class="table-sortable">
+        
+      </div>
+    </div>
 
 
 </div>
@@ -119,46 +106,99 @@
         grid-column: 2/-1;
         grid-row:2/3;
         border-collapse: collapse;
+        display: grid;
+        grid-template-rows: 10% 80% 10%;
     }
-
-    #countTable td, #countTable th {
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      text-align: center;
-      font-size: 16px;
-   }
-   #countTable th {
-      background-color: rgb(0, 0, 0);
-      color: #fff;
-   }
-   #countTable tbody tr:nth-child(even) {
-      background-color: #6f6f6f;
-   }
 
     html:before {
       content: "";
       background-image: none;
     }
+
+    #searchField {
+      grid-row: 1/2;
+      width: 100%;
+      height: 100%;
+    }
+
+    .table-sortable {
+      height: 100%;
+    }
+
+    .gs-table-container{
+      height: 100%;
+    }
+
+    .table{
+      grid-row: 2/3;
+      height: 100%;
+    }
+
+    .gs-pagination {
+      grid-row: 3/-1;
+      width: 100%;
+      height: 100%;
+    }
+
+
  </style>
 
  <script src="public/js/jquery.js"></script>
+ <script src="public/js/table-sortable.js"></script>
+ <script src="public/js/xregexp-all.js"></script>
+
  <script type="text/javascript" src="public/js/wanakana.min.js"></script>
  <script>
 
-    /* -- Old method -- */
+  
 
-    /*$("#btn-analyse").click(function() {
-        $.post('/kuro', { txt : $('#japText').val() });
-        $("#countTable").css("display","block") 
-    })*/
+    /* -- Old method for hira WIP -- */
 
-    $( document ).ready(function() {
-      $('.toHira').each(function(){
+    /* $( document ).ready(function() {
+      $('td').each(function(){
         $( this ).html(wanakana.toHiragana( $( this ).text() ))
      });
-    })
-    
+    }) */
 
+    /* Pagination Table using table-sortable plugin */
+
+    var data = <%- JSON.stringify(txtd) %>;
+
+    /* Removing non-usable data */
+    
+    let impurity = data.filter( el => el.basic_form !== "*" )
+
+    /* Filtering out non-nouns and non-verbs */
+
+    let onlyNandV = impurity.filter( el => el.pos == "動詞" || el.pos == "名詞" )
+
+    /* Removing hiragana only words with a regex range */
+
+    let onlyKanj = onlyNandV.filter(el => /[\u2E80-\u2E99\u2E9B-\u2EF3\u2F00-\u2FD5\u3005\u3007\u3021-\u3029\u3038-\u303B\u3400-\u4DB5\u4E00-\u9FCC\uF900-\uFA6D\uFA70-\uFAD9]/.test(el.basic_form))
+
+    /* (∩｀-´)⊃━☆ﾟ.*･｡ﾟ */
+    
+    let filterdData = Object.values(onlyKanj.reduce((a,{basic_form, reading}) => {
+      let key = `${basic_form}_${reading}`;
+      a[key] = a[key] || {basic_form, reading, count : 0};
+      a[key].count++;
+      return a;
+    }, {}));
+
+    if (filterdData.length > 0){
+      var columns = {
+        'basic_form': 'Word',
+        'reading': 'Reading',
+        'count': 'Count'
+      }
+
+      var table = $('.table-sortable').tableSortable({
+        data: filterdData,
+        columns: columns,
+        rowsPerPage: 5,
+        pagination: true
+      });
+    }
 
 
  </script>
