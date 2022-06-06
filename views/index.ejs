@@ -43,8 +43,10 @@
 
 	</div> 
 	<div id="intro">
-	<h1 id="intro_welcome">Keep going</h1>
-	<h1 id="intro_motto"></h1>
+		<div id="intro_vid"></div>
+		<div id="intro_vid_bg"></div>
+		<h1 id="intro_welcome">Keep going</h1>
+		<h1 id="intro_motto"></h1>
 	</div>
 
 	<body>
@@ -108,14 +110,19 @@
 
 				<div id="footer">
 					<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
-						<div id="idkyet" class="outline"></div>
+						<div id="idkyet" class="outline">
+							<div id="kuroTitle" class="txtPanelBubble">
+								<a class="txtPanelHira" id="kuroKanj"><b>黒森</b></a>
+								<a class="txtPanelRoma" id="kuroRoma"><b>Kuromori</b></a>
+							</div>
+						</div>
 					</div>
 				
 					<div id="footerRight" class="panelLeft" onclick="hrefing('/collection/home')">
 						<div class="clipCollection outline">
-							<div id="collectionTitle">
-								<a id="collectionKata"><b>コレクション</b></a>
-								<a id="collectionRoma"><b>Collection</b></a>
+							<div id="collectionTitle" class="txtPanelBubble">
+								<a class="txtPanelHira" id="collectionKata"><b>コレクション</b></a>
+								<a class="txtPanelRoma" id="collectionRoma"><b>Collection</b></a>
 							</div>
 						</div>
 
@@ -146,6 +153,8 @@
 	/* INTRO */
 
 	function PlayIntro() {
+
+		/*if (getCookie("SEEN-INTRO") !== "v1" || getCookie("pref-FORCEINTRO") === "on") {*/
 		$("#notLanding").addClass("back")
 		$("#landing").addClass("destroyed")
 		$("#intro").css("display", "block");
@@ -178,7 +187,7 @@
 	  }
 
 	function TypeIntroMotto() {
-		var text = "安$:$気"
+		var text = "日$月$星$辰"
 		for (var i = 0; i < text.length; i++) {
 			(function(index) {
 				setTimeout(function() {
@@ -343,6 +352,17 @@
 		mouseleave: function () {
 			$("#collectionKata").css("line-height","80px")
 			$("#collectionRoma").css("display","none")
+		}
+	})
+
+	$("#kuroTitle").on({
+		mouseenter: function () {
+			$("#kuroKanj").css("line-height","60px")
+			$("#kuroRoma").css("display","block")
+		},
+		mouseleave: function () {
+			$("#kuroKanj").css("line-height","80px")
+			$("#kuroRoma").css("display","none")
 		}
 	})
 	

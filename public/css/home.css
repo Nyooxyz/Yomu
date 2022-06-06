@@ -104,18 +104,30 @@ body {
 
 #idkyet {
 
-    background-image: url(../media/chat.gif);
+    background-image: url(../media/idkman.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 20%;
+    background-position: 20%; 
     filter: grayscale(95%);
+    transition: 0.2s linear;
+    display: grid;
+    grid-template-columns: 1.8fr 0.4fr;
+}
 
-    
+#idkyet:hover {
+    filter: none;
+}
+
+#kuroTitle {
+    grid-column:2/-1;
 }
 
 
 #collectionTitle {
     grid-column:2/-1;
+}
+
+.txtPanelBubble {
     background-color: white;
     transition: 0.5s linear;
     border-left: 5px solid black;
@@ -124,12 +136,12 @@ body {
     text-align: center;
 }
 
-#collectionKata {
+.txtPanelHira {
     font-size: 1.5rem;
     line-height: 80px;
 }
 
-#collectionRoma {
+.txtPanelRoma {
     font-size: 0.8rem;
     line-height: 10px;
     display: none;
@@ -269,7 +281,7 @@ body {
 }
 
 .outlineLeft::before {
-    content: "〖 安 : 気 〗";
+    content: "日 月 星 辰";
     font-size: 3vw;
     font-family: "yasashisa";
     text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
@@ -464,10 +476,11 @@ body {
     font-family: "Mono", sans-serif;
     font-size: 3vw;
     color: #000;
+    top: 54px;
+    right: 622px;
     position: absolute;
-    width: 100%;
+    
     text-align: center;
-    bottom: 5vw;
   }
 
 
@@ -767,4 +780,50 @@ body:before {
     
 #loading-box {
     display: none !important;
+}
+
+
+#intro_vid {
+    width: 30%;
+    height: 30%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(0);
+    background: url('../media/intro/intropen.gif') center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+
+    transition: 0.5s filter, 3.644s top, 1s 2.644s opacity ease-in;
+}
+#intro.playing #intro_vid {
+    filter: brightness(1);
+    top: calc(50% + 1vw);
+    opacity: 0;
+}
+
+#intro_vid_bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(0) blur(3rem);
+    background: url('../media/intro/intropen.gif') center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    z-index: -22;
+    
+
+    transition: 0.5s filter, 3.644s top, 1s 2.644s opacity ease-in;
+}
+
+#intro.playing #intro_vid_bg {
+    filter: brightness(1) blur(2rem);
+    top: calc(50% + 1vw);
+    opacity: 0;
 }

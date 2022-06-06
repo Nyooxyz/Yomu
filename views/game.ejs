@@ -25,11 +25,15 @@
 <header>
   <nav class="g-nav">
       <form action="/" method="GET">
-        <button type="submit" class="btn-home">Game</button>
+        <button type="submit" class="btn-home">Home</button>
       </form>
 
       <form action="/collection/home" method="GET">
         <button type="submit" class="btn-collection">Collection</button>
+      </form>
+      
+      <form action="/kuro" method="GET">
+        <button type="submit" class="btn-collection">Kuromori</button>
       </form>
       <%if (logged) { %>
       <form action="/logout" method="GET">

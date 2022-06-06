@@ -24,7 +24,7 @@
 <header>
     <nav class="g-nav">
         <form action="/" method="GET">
-          <button type="submit" class="btn-home">Game</button>
+          <button type="submit" class="btn-home">Home</button>
         </form>
   
         <form action="/collection/home" method="GET">
@@ -246,6 +246,8 @@
  <script>
 
     let searchField = document.querySelector('#searchField')
+    var rows = document.getElementsByTagName("tr");
+   
 
   
 
@@ -274,8 +276,6 @@
     let onlyKanj = onlyNandV.filter(el => /[\u2E80-\u2E99\u2E9B-\u2EF3\u2F00-\u2FD5\u3005\u3007\u3021-\u3029\u3038-\u303B\u3400-\u4DB5\u4E00-\u9FCC\uF900-\uFA6D\uFA70-\uFAD9]/.test(el.basic_form))
 
     /* (∩｀-´)⊃━☆ﾟ.*･｡ﾟ */
-
-    console.log(onlyKanj)
     
     let filterdData = Object.values(onlyKanj.reduce((a,{basic_form, reading}) => {
       let key = `${basic_form}_${reading}`;
@@ -284,21 +284,44 @@
       return a;
     }, {}));
 
-    if (filterdData.length > 0){
+    let jishoAdd = filterdData.map(v => ({...v, jisho: "check"}))
+
+    if (jishoAdd.length > 0){
       var columns = {
         'basic_form': 'Word',
         'reading': 'Reading',
-        'count': 'Count'
+        'count': 'Count',
+        'jisho': 'Jisho'
       }
 
       var table = $('.table-sortable').tableSortable({
-        data: filterdData,
+        data: jishoAdd,
         columns: columns,
         rowsPerPage: 5,
         pagination: true,
         sorting:true
       });
+
+      /* adds jisho checkup */
+
+      for (let c=1; c < rows.length; c++) {
+        rows[c].cells[3].addEventListener("click",() => {window.open("https://jisho.org/word/"+rows[c].cells[0].innerHTML, "_blank");})
+        rows[c].cells[3].style.cursor = "pointer"
+      }   
+
+      /* Brain melting table issue */
+
+      let stupidTable = document.querySelector('.gs-table-container')
+
+      stupidTable.addEventListener("click", function(){
+        for (let c=1; c < rows.length; c++) {
+          rows[c].cells[3].addEventListener("click",() => {window.open("https://jisho.org/word/"+rows[c].cells[0].innerHTML, "_blank");})
+          rows[c].cells[3].style.cursor = "pointer"
+        }   
+      })
+
     }
+
 
  </script>
 
