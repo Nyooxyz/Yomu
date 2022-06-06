@@ -11,6 +11,7 @@
   <!-- CSS links -->
   <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
 
 
   
@@ -259,7 +260,7 @@
                 <div class="progress-bar-smol">
                   <div class="percent-progress">
                     <%=topHighest[i].HighestCount%>%
-                    <div class="percent-bar-full"><div class="percent-bar" style="width:<%=topHighest[i].HighestCount%>;"></div></div>
+                    <div class="percent-bar-full"><div class="percent-bar" style="width:<%=topHighest[i].HighestCount%>"></div></div>
                   </div>
                 </div>
               </div>
@@ -299,7 +300,7 @@
               <% } %>
             <% } %>
             <%=counted%>%
-            <div class="percent-bar-full"><div class="percent-bar" style="width:<%=counted%>%;"></div></div>
+            <div class="percent-bar-full"><div class="percent-bar" style="width:<%=counted%>"></div></div>
           </div>
         </div>
       </div>
@@ -342,10 +343,8 @@
 
 <script src="../public/js/jquery.js"></script>
 <script src="../public/js/anime.min.js"></script>
-
-
-
-
+<script src="public/js/kursor.min.js"></script>
+<script src="public/js/kursorConfig.js"></script>
 <script>
 
 

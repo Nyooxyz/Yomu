@@ -19,6 +19,7 @@ var flash = require('express-flash');
 const { builtinModules } = require('module');
 const e = require('express');
 var kuromoji = require("kuromoji");
+const puppeteer = require('puppeteer');
 var path = []
 var japTxt = ""
 
@@ -52,6 +53,7 @@ app.use(session({
 
 
 
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -72,7 +74,7 @@ app.engine('html', require('ejs').renderFile);
 
 PORT = 3000
 
-/*Mysql Connection*/
+/* --                                                MYSQL                                                                -- */
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -95,7 +97,17 @@ const customFields={
   passwordField:'pw',
 };
 
-/*Passport JS*/
+
+
+
+
+
+
+
+
+
+
+/* --                                                PASSPORT JS                                                                -- */
 const verifyCallback=(username,password,done)=>{
    
   connection.query('SELECT * FROM users WHERE username = ? ', [username], function(error, results, fields) {
@@ -132,7 +144,17 @@ passport.deserializeUser(function(userId,done){
   });
 });
 
-/*middleware*/
+
+
+
+
+
+
+
+
+
+/* --                                                MIDDLEWARES                                                                -- */
+
 function validPassword(password,hash,salt)
 {
     var hashVerify=crypto.pbkdf2Sync(password,salt,10000,60,'sha512').toString('hex');
@@ -223,8 +245,18 @@ function checkLogin(req, res, next) {
 
 
 
-/*routes*/
 
+
+
+
+
+
+
+
+
+
+
+/* --                                                ROUTES                                                                -- */
 
 
 app.get('/', checkLogin, (req, res) => {
@@ -232,7 +264,6 @@ app.get('/', checkLogin, (req, res) => {
 })
 
 app.get('/kuro', checkLogin, (req,res) => {
-  console.log(path)
   res.render('kuro.ejs', {logged : loggedin, txtd : path, txtdJap : japTxt})
   path = []
   japTxt = ""
@@ -407,6 +438,32 @@ app.get('/logout', (req, res, next) => {
   res.redirect('/')
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --                                                POST REQUESTS                                                                -- */
+
 app.post('/login', isNotAuth,  passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
@@ -422,6 +479,32 @@ app.post('/kuro', (req, res, next) => {
     res.redirect('/kuro')
   });  
  
+})
+
+app.post('/scrape', (req,res,next) => {
+  (async () => {
+      const browser = await puppeteer.launch({
+          headless: true
+      });
+      const page = (await browser.pages())[0];
+      await page.goto(req.body.scrapeUrl);
+      const extractedText = await page.$eval('*', (el) => {
+          const selection = window.getSelection();
+          const range = document.createRange();
+          range.selectNode(el);
+          selection.removeAllRanges();
+          selection.addRange(range);
+          return window.getSelection().toString();
+      });
+
+      await browser.close();
+
+      await kuromoji.builder({ dicPath: "node_modules/kuromoji/dict" }).build(function (err, tokenizer) {
+        // tokenizer is ready
+        path = tokenizer.tokenize(extractedText);
+        res.redirect('/kuro')
+      }); 
+  })();
 })
 
 app.post('/register',isNotAuth,userExists,(req,res,next)=>{
@@ -491,8 +574,7 @@ app.post('/send', checkLogin, (req,res,next)=>{
 })
 
 
-// server //
-
+/* --                                                SERVER                                                                -- */
 
 app.listen(PORT, 'localhost', () => {
   console.log(`Server running on port ${PORT}`)

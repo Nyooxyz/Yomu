@@ -12,6 +12,7 @@
     <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
     <link rel="stylesheet" href="../public/css/table-sortable.css" type="text/css"/>
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
 
     
     
@@ -45,19 +46,30 @@
   </header>
 
 <div id="app">
-    <form class="inputWrap" action="/kuro" method="POST">
-      <textarea id="japText" name="txt" placeholder="<%=txtdJap%>"></textarea>
-      <button id="btn-analyse" type="submit">Analyse</button>
-    </form>
+
+    <div id="leftWraps">
+      <form class="inputWrap" action="/kuro" method="POST">
+        <textarea id="japText" name="txt" placeholder="enter text"></textarea>
+        <button id="btn-analyse" type="submit">Analyse Text</button>
+      </form>
+      
+      <div id="hring">
+        
+        <p>OR</p>
+       
+      </div>
+  
+      <form class="scraperWrap" action="/scrape" method="POST">
+        <input id="scrape-input" name="scrapeUrl" placeholder="enter url"/>
+        <button id="btn-analyse" type="submit">Analyse Page</button>
+      </form>
+    </div>
     
 
     <div id="countTable">
-      <input type="text" placeholder="Search in table..." id="searchField">
       <div class="table-sortable">
-        
       </div>
     </div>
-
 
 </div>
 
@@ -70,7 +82,9 @@
     }
 
     body{
-      background:rgb(48, 48, 48);
+      background: rgb(49, 49, 49);
+      font-family: sans-serif;
+      font-weight: 100;
     }
 
     #app {
@@ -78,17 +92,41 @@
       height: 100%;
       display: grid;
       gap: 0px 4%;
-      grid-template-columns: 1.9fr 0.7fr;
-      grid-template-rows: 0.8fr 1.4fr 0.8fr;
+      grid-template-columns: 1.7fr 0.9fr;
+      grid-template-rows: 0.8fr 1.8fr 0.4fr;
+    }
+
+    #leftWraps {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      margin-left: 50px;
+      display: grid;
+      grid-template-rows: 70% 10% 10%;
     }
 
     .inputWrap  {
-        display: grid;
-        grid-template-rows: 80% 20%;
-        grid-column: 1/2;
-        grid-row: 2/3;
         font-size: 1.15em;
-        
+        grid-row: 1/2;
+        display: grid;
+        grid-template-rows:80% 20%;
+    }
+
+    #hring {
+      grid-row: 2/3;
+      position: relative;
+    }
+
+    #hring p{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .scraperWrap {
+      grid-row: 3/-1;
+      display: grid;
+      grid-template-rows:50% 50%;
     }
 
     #btn-analyse {
@@ -102,12 +140,16 @@
       background-color: rgb(190, 190, 190);
     }
 
+    #scrape-input {
+      grid-row: 1/2;
+      width: 100%;
+      height: 100%;
+    }
+
     #countTable{
         grid-column: 2/-1;
         grid-row:2/3;
-        border-collapse: collapse;
-        display: grid;
-        grid-template-rows: 10% 80% 10%;
+        margin-right: 50px;
     }
 
     html:before {
@@ -115,14 +157,9 @@
       background-image: none;
     }
 
-    #searchField {
-      grid-row: 1/2;
-      width: 100%;
-      height: 100%;
-    }
-
     .table-sortable {
       height: 100%;
+      
     }
 
     .gs-table-container{
@@ -132,13 +169,68 @@
     .table{
       grid-row: 2/3;
       height: 100%;
+      text-align: center;
     }
 
     .gs-pagination {
-      grid-row: 3/-1;
-      width: 100%;
-      height: 100%;
+      text-align: center;
+      background-color: #000000;
     }
+
+    .col-md-6 {
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 15px;
+      background-color: rgba(255,255,255,0.2);
+      color: #fff;
+   }
+
+   th {
+    text-align: left;
+ }
+  thead th {
+    background-color: #000000;
+ }
+  tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+ }
+  tbody td {
+    position: relative;
+ }
+  tbody td:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .justify-content-end {
+    justify-content: center;
+  }
+
+  button {
+    margin-top: 0;
+    box-shadow: none;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 4px;
+  }
 
 
  </style>
@@ -146,9 +238,14 @@
  <script src="public/js/jquery.js"></script>
  <script src="public/js/table-sortable.js"></script>
  <script src="public/js/xregexp-all.js"></script>
+ <script src="public/js/kursor.min.js"></script>
+ <script src="public/js/kursorConfig.js"></script>
+ <script type="text/javascript" src="public/js/wanakana.min.js"></script> 
 
- <script type="text/javascript" src="public/js/wanakana.min.js"></script>
+ 
  <script>
+
+    let searchField = document.querySelector('#searchField')
 
   
 
@@ -162,7 +259,7 @@
 
     /* Pagination Table using table-sortable plugin */
 
-    var data = <%- JSON.stringify(txtd) %>;
+    var data = <%- JSON.stringify(txtd) %>
 
     /* Removing non-usable data */
     
@@ -177,6 +274,8 @@
     let onlyKanj = onlyNandV.filter(el => /[\u2E80-\u2E99\u2E9B-\u2EF3\u2F00-\u2FD5\u3005\u3007\u3021-\u3029\u3038-\u303B\u3400-\u4DB5\u4E00-\u9FCC\uF900-\uFA6D\uFA70-\uFAD9]/.test(el.basic_form))
 
     /* (∩｀-´)⊃━☆ﾟ.*･｡ﾟ */
+
+    console.log(onlyKanj)
     
     let filterdData = Object.values(onlyKanj.reduce((a,{basic_form, reading}) => {
       let key = `${basic_form}_${reading}`;
@@ -196,10 +295,10 @@
         data: filterdData,
         columns: columns,
         rowsPerPage: 5,
-        pagination: true
+        pagination: true,
+        sorting:true
       });
     }
-
 
  </script>
 
