@@ -2,9 +2,20 @@
     width: 10px;
 }
 
+:root {
+	--main-color: #FFDF9B;
+	--accent-color: #FF9B9B;
+	--inverse-color: #518EE2;
+	--positive-color: #61DE61;
+	--negative-color: #FF9B9B;
+
+}
+
 html  {
     overflow: hidden;
-    background-color: #90898A;
+   /*  background-color: #1f1e33; - 大箭将也 - */
+   background: url("../media/osuDump/fastest.jpg") center center;
+   background-size: cover;
 }
 
 b {
@@ -13,8 +24,9 @@ b {
 
 body {
     margin: 0;
-    background-color: #000;
+    background-color: rgb(0, 0, 0);
 }
+
 
 #pageContain{
     height: calc(100% - 10em);
@@ -26,10 +38,17 @@ body {
     text-align: center;
 }
 
+#headers {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    height: 35vh;
+}
+
 #header {
+    grid-column: 1/2;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    column-gap: 6em;
+    column-gap: 8%;
     height: 35vh;
 }
 
@@ -75,6 +94,32 @@ body {
 
 #headerRight, #headerLeftSplit, #headerLeft  {
     grid-row: 1/2;
+}
+
+#headerOptions {
+    grid-column: 2/-1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-right: 5px solid black;
+    position: relative;
+}
+
+
+.header-knob {
+    display: inline-block;
+}
+
+.header-knob-text {
+    background-color: #000;
+    color: #FFF;
+    font-family: "Tiny", sans-serif;
+    height: 2em;
+}
+
+
+#header-knobs_preferences {
+    width: 100%;
 }
 
 #main {
@@ -281,14 +326,14 @@ body {
 }
 
 .outlineLeft::before {
-    content: "日 月 星 辰";
+    content: "";
     font-size: 3vw;
     font-family: "yasashisa";
     text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
     color: #FFF;
     width: calc(100% - 3px);
     height: calc(100% - 3px);
-    background: url("../media/drowning_under_the_milky_way_by_nanomortis-d8zru84.png") no-repeat;
+    background: url("../media/drowning_in_anim.gif") no-repeat;
     background-size: cover;
     background-position: 50% 70%;
     display: block;
@@ -472,17 +517,6 @@ body {
     font-size: 1.2rem;
 }
 
-#intro_motto {
-    font-family: "Mono", sans-serif;
-    font-size: 3vw;
-    color: #000;
-    top: 54px;
-    right: 622px;
-    position: absolute;
-    
-    text-align: center;
-  }
-
 
 #bubbleLeftTxt {
     position: absolute;
@@ -607,7 +641,10 @@ body:before {
     src: url("../font/YasashisaGothicBold-V2.otf");
   }
 
-
+  @font-face {
+    font-family: "zen";
+    src: url("../font/ZenKurenaido-Regular.ttf");
+}
 
 #notLanding {
     display: none !important;
@@ -688,20 +725,33 @@ body:before {
 }
 
 #motto {
-    font-family: "Mono", sans-serif;
+    font-family: "yasashisa";
     font-size: 3vw;
     text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
     color: #FFF;
     position: fixed;
     width: 100%;
     text-align: center;
-    bottom: 5vw;
     z-index: 22;
+    top: 20px;
+    left: 130px;
 }
     
 #motto a {
     cursor: pointer;
 }
+
+#intro_motto {
+    font-family: "yasashisa";
+    font-size: 3vw;
+    width: 100%;
+    color: #000;
+    top: 20px;
+    left: 130px;
+    position: fixed;
+    text-align: center;
+}
+
 
 #intro {
     position: fixed;
@@ -826,4 +876,182 @@ body:before {
     filter: brightness(1) blur(2rem);
     top: calc(50% + 1vw);
     opacity: 0;
+}
+
+
+#preferences-wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: 0.3s background-color;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5000000;
+}
+
+#preferences-wrapper.hidden {
+    background-color: rgba(0, 0, 0, 0);
+    pointer-events: none;
+}
+
+#preferences {
+    position: absolute;
+    width: 50em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    padding: 1em;
+    background-color: #000;
+    border: 1px solid var(--inverse-color);
+    color: var(--inverse-color);
+    transition: 0.3s top, 0.3s transform, 0.3s opacity;
+}
+
+#preferences-wrapper.hidden #preferences {
+    top: 100%;
+    opacity: 0;
+    transform: translate(-50%, 0) rotate(2deg);
+}
+
+#preflist {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+#preferences h1 {
+    font-family: "Heading", sans-serif;
+    font-size: 2em;
+    border-bottom: 1px solid var(--inverse-color);
+    padding-bottom: 0.25em;
+}
+
+#preferences-close {
+    color: #000;
+    text-align: center;
+    font-family: "Heading", sans-serif;
+    font-size: 2em;
+    margin: -0.5em;
+    margin-top: 0.5em;
+    background-color: var(--inverse-color);
+    padding: 0.25em;
+}
+
+.preference {
+    padding: 0.5em;
+    display: inline-block;
+    width: calc(100% - 1em);
+    vertical-align: middle;
+
+    transition: 0.3s filter, 0.3s opacity;
+}
+
+.preference.disabled {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.preference>* {
+    display: inline-block;
+    float: right;
+}
+
+.preference.disabled>* {
+    pointer-events: none;
+}
+
+.preference>.explanation {
+    float: left;
+}
+
+.explanation h2 {
+    font-family: "Heading", sans-serif;
+    letter-spacing: -4px;
+}
+
+.explanation p {
+    font-family: "Tiny", sans-serif;
+    margin-bottom: -0.2em;
+}
+
+.preferences-link {
+    border-bottom: 1px solid var(--inverse-color);
+    margin-left: 0.5em;
+    display: inline;
+    font-family: "Tiny", sans-serif;
+}
+
+.switch {
+	display: inline-block;
+}
+
+.switch .switch-option {
+	--color: #FFF;
+	width: 2em;
+	text-align: center;
+	padding: 0.25em;
+	border: 1px solid var(--color);
+	color: var(--color);
+	display: inline-block;
+	position: relative;
+	top: 0;
+	box-shadow: 0px 3px var(--color);
+}
+
+.switch .switch-option.selected {
+	top: 2px;
+	color: #000;
+	background-color: var(--color);
+	box-shadow: 0px 1px var(--color);
+}
+
+.switch-option.negative {
+	--color: var(--negative-color);
+}
+
+.switch-option.inverse {
+	--color:
+	var(--inverse-color);
+}
+
+.switch-option.positive {
+	--color: var(--positive-color);
+}
+
+.slider {
+	--color: var(--inverse-color);
+    -webkit-appearance: none;
+    border: 1px solid var(--color);
+    width: 10em;
+    height: 1px;
+    background-color: #000;
+    outline: none;
+    padding: 0;
+    margin-top: 0.5em;
+    margin-right: 0;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--color);
+    border: none;
+    border-radius: 0px;
+}
+
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--color);
+    border: none;
+    border-radius: 0px;
+}
+
+.slider::-webkit-slider-runnable-track {
+	opacity: 1;
+}
+
+.slider::-moz-range-track {
+	opacity: 0;
 }

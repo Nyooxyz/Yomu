@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>Gods drink js - 日月星辰</title>
+  <title>存在予想</title>
 
   <!--ｚ  
 　 z　　　   
@@ -18,6 +18,8 @@
   <!-- CSS links -->
   <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
   <link href="../public/css/home.css" rel="stylesheet" type="text/css" />
+
+  <link href="../public/css/transitions.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
 
 
@@ -26,7 +28,6 @@
   
 
 </head>
-
 
 <div id="landing">
 	<img src="../public/media/headphone.png"/>
@@ -56,55 +57,62 @@
 			<div id="homeHUD">
 
 				
+				<div id="headers">
+					<div id="header">
 
-				<div id="header">
+						<%if (logged) { %>
 
-					<%if (logged) { %>
-
-					<div id="headerLeft" class="panelRight">
-						<div id="logoutContain" onclick="hrefing('/logout')">
-							<div class="clipLogOut">
-								<b>ログアウト</b>
+						<div id="headerLeft" class="panelRight">
+							<div id="logoutContain" onclick="hrefing('/logout')">
+								<div class="clipLogOut">
+									<b>ログアウト</b>
+								</div>
 							</div>
-						</div>
-					</div> 
+						</div> 
 
-					<% } else{ %>  
-					
-					<div id="headerLeftSplit" class="panelRight">
-						<div id="loginContain" class="panelBot" onclick="hrefing('/login')">
-							<div class="clipLogIn">
-								<b>ログイン</b>
-							</div>
-						</div>
+						<% } else{ %>  
 						
-						<div id="registerContain" class="panelTop">
-							<div class="clipRegiContainer" onclick="hrefing('/login')">
-								<div class="clipRegi">
-									<b>レジスター</b>
+						<div id="headerLeftSplit" class="panelRight">
+							<div id="loginContain" class="panelBot" onclick="hrefing('/login')">
+								<div class="clipLogIn">
+									<b>ログイン</b>
+								</div>
+							</div>
+							
+							<div id="registerContain" class="panelTop">
+								<div class="clipRegiContainer" onclick="hrefing('/login')">
+									<div class="clipRegi">
+										<b>レジスター</b>
+									</div>
 								</div>
 							</div>
 						</div>
+
+						<% } %>  
+
+						<div id="headerRight" class="panelLeft">	
+
+							<div class="outlineLeft">
+								<h1 id="intro_motto"></h1>
+								<h1 id="motto">∃世界 <br>ƒ(夢) = 現実</h1>
+							</div>
+
+						</div>
 					</div>
 
-					<% } %>  
-
-					<div id="headerRight" class="panelLeft">	
-
-						<div class="outlineLeft">
-							<h1 id="intro_motto"></h1>
-						</div>
-
+					<div id="headerOptions">
+						<div class="header-knob header-knob-text right-hand" id="header-knobs_preferences">PREFERENCES</div>
 					</div>
 
 				</div>
+
 
 				<div id="main">
 					<div id="mainGame" class="outline">
 						<div id="main-bg"></div>
 						<div id="n5" onclick="hrefing('/game?jlpt=n5')">【JLPT <b style="color: lime">5</b>】</div>
 						<div id="n4" onclick="hrefing('/game?jlpt=n4')">【JLPT <b style="color: orange">4</b>】</div>
-						<div id="anki"><b>安 : 気</b></div>
+						<div id="anki"><b>安気</b></div>
 					</div>
 				</div>
 
@@ -112,8 +120,8 @@
 					<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
 						<div id="idkyet" class="outline">
 							<div id="kuroTitle" class="txtPanelBubble">
-								<a class="txtPanelHira" id="kuroKanj"><b>黒森</b></a>
-								<a class="txtPanelRoma" id="kuroRoma"><b>Kuromori</b></a>
+								<a class="txtPanelHira" id="kuroKanj"><b>光</b></a>
+								<a class="txtPanelRoma" id="kuroRoma"><b>Hikari</b></a>
 							</div>
 						</div>
 					</div>
@@ -132,13 +140,91 @@
 			</div>
 		</div>
 
-
+		<!-- <span id="kanj_bg"></span> -->
 	</body>
 </div>
 
+<div id="preferences-wrapper" class="hidden">
+	<div id="preferences">
+		<h1>Preferences</h1>
+		<div id="preflist">
+			<div class="preference" id="preference_animations">
+				<div class="explanation">
+					<h2>Animations</h2>
+					<p>Use all animations</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="animations-none">⊘</div><div class="switch-option inverse" id="animations-light">⊝</div><div class="switch-option positive" id="animations-all">◯</div>
+				</div>
+			</div>
+			<div class="preference" id="scanlines_opacity">
+				<div class="explanation">
+					<h2>Scanline opacity</h2>
+					<p>50%</p>
+				</div>
+				<input type="range" min="5" max="100" value="50" class="slider">
+			</div>
+			<div class="preference" id="music_volume">
+				<div class="explanation">
+					<h2>Music volume</h2>
+					<p>100%</p>
+				</div>
+				<input type="range" min="0" max="100" value="100" class="slider">
+			</div>
+			<div class="preference" id="sfx_volume">
+				<div class="explanation">
+					<h2>Sound effect volume</h2>
+					<p>100%</p>
+				</div>
+				<input type="range" min="0" max="100" value="100" class="slider">
+			</div>
+			<div class="preference" id="preference_marquee">
+				<div class="explanation">
+					<h2>Marquee</h2>
+					<p>Always show marquee</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="marquee-never">⊘</div><div class="switch-option inverse" id="marquee-home">◇</div><div class="switch-option positive" id="marquee-always">◯</div>
+				</div>
+			</div>
+			<div class="preference" id="preference_simple404">
+				<div class="explanation">
+					<h2>Simple error pages</h2>
+					<p>For if you see 404s, etc. often. Off</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="s404-off">⊘</div><div class="switch-option positive" id="s404-on">◯</div>
+				</div>
+			</div>
+			<div class="preference" id="preference_forceintro">
+				<div class="explanation">
+					<h2>Always play intro</h2>
+					<p>Off</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="forceintro-off">⊘</div><div class="switch-option positive" id="forceintro-on">◯</div>
+				</div>
+			</div>
+			<div class="preference" id="preference_altbgm">
+				<div class="explanation">
+					<h2>Alternative homepage BGM</h2>
+					<p>Off</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="altbgm-off">⊘</div><div class="switch-option positive" id="altbgm-on">◯</div>
+				</div>
+			</div>
+			<a href="javascript:void(0);"><div id="preferences_replay-intro" class="cur-confirm preferences-link">Replay Intro</div></a>
+		</div>
+		<a href="javascript:void(0);"><div id="preferences-close" class="cur-confirm">CLOSE</div></a>
+	</div>
+</div>
+
+<div class="page_transi"><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div></div>
+
+
 <script src="public/js/jquery.js"></script>
-<script src="public/js/kursor.min.js"></script>
-<script src="public/js/kursorConfig.js"></script>
+<script src="public/js/common.js"></script>
 <script>
 
 	const one =  document.getElementById('one')
@@ -146,9 +232,31 @@
 	const content =  document.getElementById('pageContain')
 	const intro  = document.getElementById('intro')
 	const landing = document.getElementById('landing')
-	let introSfx = new Audio("../public/sfx/let_it.wav")
 	let yattongLesgoSfx = new Audio("../public/sfx/yattongLesGo.wav")
 	let yattongLongSfx = new Audio("../public/sfx/yattongLong.wav")
+	let jlptRoll = new Audio("../public/sfx/Audio/rollover5.ogg")
+	let clickSfx = new Audio("../public/sfx/Audio/click1.ogg")
+	let bgm = new Audio("../public/sfx/Oltanis.mp3")
+	let sfx_dialog = new Audio("../public/sfx/Audio/toggle_001.ogg")
+	let sfx_dialog_confirm = new Audio("../public/sfx/Audio/confirmation_001.ogg")
+	let sfx_dialog_cancel = new Audio("../public/sfx/Audio/close_001.ogg")
+	let sfx_power_loop = new Audio("../public/sfx/Audio/rollover4.ogg")
+	let sfx_default = new Audio("../public/sfx/Audio/switch33.ogg")
+
+	sfx_dialog.volume = 0.1
+	sfx_dialog_confirm.volume = 0.1
+	sfx_dialog_cancel.volume = 0.1
+	sfx_power_loop.volume = 0.1
+	sfx_default.volume = 0.1
+	jlptRoll.volume = 0.07 
+	clickSfx.volume = 0.1
+	bgm.volume = 0.1
+	bgm.loop = true
+
+
+	$( document ).ready(function() {
+		$('.grid_transi').addClass('transi_in')
+	});
 
 	/* INTRO */
 
@@ -182,16 +290,18 @@
 		setTimeout(function() {
 		  $("#pageContain").removeClass("anim-slow");
 		  $("#intro").remove();
+		  bgm.play()
+		  /*setCookie("SEEN-INTRO", "v1", Date.now() + (365*24*60*60*1000))*/
 	  
 		}, 4644);
 	  }
 
 	function TypeIntroMotto() {
-		var text = "日$月$星$辰"
+		var text = "∃世界$ƒ(夢) = 現実"
 		for (var i = 0; i < text.length; i++) {
 			(function(index) {
 				setTimeout(function() {
-					$("#intro_motto").html($("#intro_motto").html() + text.charAt(index).replace("$", "&nbsp;"))
+					$("#intro_motto").html($("#intro_motto").html() + text.charAt(index).replace("$", "<br>"))
 				}, index * 20)
 			})(i)		
 		}
@@ -226,15 +336,6 @@
 		} else {
 			PlayIntro()
 		}
-	}
-	function hrefing(str){
-		yattongLesgoSfx.volume = 0.3
-		yattongLesgoSfx.play()
-		$("html").fadeOut(3000)
-		setTimeout(function(){
-			location.href=str
-		},5000)
-	
 	}
 
 	function playIntroSfx(){
@@ -308,9 +409,8 @@
 		$('#homeHUD').fadeIn(400);
 		$("#difficultyShiri").fadeOut(400);
 	}
-	  
 
-	/* SPAGHETTTT */
+	/*  UI EFFECTS  */
 
 	$("#mainBubble").on({
 		mouseenter: function () {
@@ -323,6 +423,8 @@
 	
 	$("#n4").on({
 		mouseenter: function () {
+			jlptRoll.currentTime = 0;
+			jlptRoll.play()
 			$("#main-bg").css("background-position","50% 75%")
 			$("#main-bg").css("filter","hue-rotate(80deg)")
 		},
@@ -334,6 +436,8 @@
 
 	$("#n5").on({
 		mouseenter: function () {
+			jlptRoll.currentTime = 0;
+			jlptRoll.play()
 			$("#main-bg").css("background-position","bottom")
 			$("#main-bg").css("filter","none")
 		},
@@ -365,13 +469,331 @@
 			$("#kuroRoma").css("display","none")
 		}
 	})
+
+	$("#n5, #n4, #loginContain, #clipRegiContainer, #footerleft, #footerRight").on("click", () => clickSfx.play())
 	
 
+	function randomIntFromInterval(min, max) { 
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min) + min);
+    }
+
+	const dataRaw = '<%- JSON.stringify(db) %>'
+	const data = JSON.parse(dataRaw)
+
+	let i = randomIntFromInterval('<%=startId%>','<%=numOfResults%>') 
+
+	$("<span class='kanj_bg_unit'></span>").appendTo("#kanj_bg");
+
+	$('.kanj_bg_unit').html(data[i].kanj)
+
+
+	/* Settings */
+
+	$(document).ready(function() {
+		$("#header-knobs_preferences").on("click", function() {
+			sfx_dialog.play();
+			$("#preferences-wrapper").removeClass("hidden");
+		});
+
+		$("#preferences-close").click(function() {
+			sfx_dialog_confirm.play();
+			$("#preferences-wrapper").addClass("hidden");
+		});
+
+		$("#preferences-wrapper").click(function(e) {
+			if ($(e.target).attr("id") !== "preferences-wrapper") { return; }
+			sfx_dialog_cancel.play();
+			$("#preferences-wrapper").addClass("hidden");
+		});
 
 
 
+
+
+
+		/*
+
+		$("#preferences_replay-intro").click(function() {
+			setCookie("SEEN-INTRO", "no", Date.now() + (365*24*60*60*1000));
+			window.location = "index.html";
+		});
+
+		 $("#animations-none").click(function() {
+			setCookie("pref-ANIM", "none", Date.now() + (365*24*60*60*1000));
+			updateAnimations();
+		});
+		$("#animations-light").click(function() {
+			setCookie("pref-ANIM", "light", Date.now() + (365*24*60*60*1000));
+			updateAnimations();
+		});
+		$("#animations-all").click(function() {
+			setCookie("pref-ANIM", "all", Date.now() + (365*24*60*60*1000));
+			updateAnimations();
+		});
+
+		updateAnimations();
+
+		///////////////////////
+
+
+		$("#scanlines_opacity .slider").change(function() {
+			setCookie("pref-SLOPAC", $(this).val() / 100, Date.now() + (365*24*60*60*1000));
+			updateScanlines();
+		});
+
+		updateScanlines(true);
+
+		///////////////////////
+
+		$("#music_volume .slider").change(function() {
+			setCookie("pref-MUSVOL", $(this).val(), Date.now() + (365*24*60*60*1000));
+			updateSound();
+		});
+
+		$("#sfx_volume .slider").change(function() {
+			setCookie("pref-SFXVOL", $(this).val(), Date.now() + (365*24*60*60*1000));
+			updateSound();
+		});
+
+		*/
+
+		$("#sfx_volume .slider").mousedown(function() {
+			sfx_power_loop.play();
+		});
+		$("#sfx_volume .slider").mouseup(function() {
+			sfx_power_loop.pause();
+			sfx_power_loop.currentTime = 0;
+			sfx_default.play();
+		});
+
+		/*
+
+		updateSound(true);
+
+		///////////////////////
+
+		$("#marquee-never").click(function() {
+			setCookie("pref-MARQUEE", "never", Date.now() + (365*24*60*60*1000));
+			updateMarquee();
+		});
+		$("#marquee-home").click(function() {
+			setCookie("pref-MARQUEE", "home", Date.now() + (365*24*60*60*1000));
+			updateMarquee();
+		});
+		$("#marquee-always").click(function() {
+			setCookie("pref-MARQUEE", "always", Date.now() + (365*24*60*60*1000));
+			updateMarquee();
+		});
+
+		updateMarquee();
+
+		///////////////////////
+
+		$("#s404-on").click(function() {
+			setCookie("pref-S404", "on", Date.now() + (365*24*60*60*1000));
+			updateS404();
+		});
+		$("#s404-off").click(function() {
+			setCookie("pref-S404", "ff", Date.now() + (365*24*60*60*1000));
+			updateS404();
+		});
+
+		updateS404();
+
+		///////////////////////
+
+		$("#forceintro-on").click(function() {
+			setCookie("pref-FORCEINTRO", "on", Date.now() + (365*24*60*60*1000));
+			updateForceIntro();
+		});
+		$("#forceintro-off").click(function() {
+			setCookie("pref-FORCEINTRO", "off", Date.now() + (365*24*60*60*1000));
+			updateForceIntro();
+		});
+
+		updateForceIntro();
+
+		///////////////////////
+
+		$("#altbgm-on").click(function() {
+			setCookie("pref-ALTBGM", "on", Date.now() + (365*24*60*60*1000));
+			updateAltBGM();
+
+			if (window.location.pathname === "index.html") {
+				fadeAway(200);
+				setTimeout(function() {
+					playMusic(0.5, "home-alt");
+				}, 250);
+			}
+		});
+		$("#altbgm-off").click(function() {
+			setCookie("pref-ALTBGM", "off", Date.now() + (365*24*60*60*1000));
+			updateAltBGM();
+
+			if (window.location.pathname === "index.html") {
+				fadeAway(200);
+				setTimeout(function() {
+					playMusic(0.5, "home");
+				}, 250);
+			}
+		});
+
+		updateAltBGM();
+	});
+
+	function updateAnimations() {
+		switch (getCookie("pref-ANIM")) {
+			case "all":
+				$("#preference_animations p").text("Show all animations");
+				$("#animations-all").addClass("selected");
+				$("html").removeClass("no-anim");
+				$("html").removeClass("no-scanlines");
+				$("#scanlines_opacity").removeClass("disabled");
+				break;
+			case "light":
+				$("#preference_animations p").text("Show only scanlines");
+				$("#animations-light").addClass("selected");
+				$("html").addClass("no-anim");
+				$("html").removeClass("no-scanlines");
+				$("#scanlines_opacity").removeClass("disabled");
+				break;
+			case "none":
+				$("#preference_animations p").text("No animations at all");
+				$("#animations-none").addClass("selected");
+				$("html").addClass("no-anim");
+				$("html").addClass("no-scanlines");
+				$("#scanlines_opacity").addClass("disabled");
+				break;
+			default:
+				setCookie("pref-ANIM", "all", Date.now() + (365*24*60*60*1000));
+				updateAnimations();
+				break;
+		}
+	}
+
+	function updateSound(updateSliders = false) {
+		if (getCookie("pref-MUSVOL") === "") {
+			setCookie("pref-MUSVOL", 100, Date.now() + (365*24*60*60*1000));
+		}
+		if (getCookie("pref-SFXVOL") === "") {
+			setCookie("pref-SFXVOL", 100, Date.now() + (365*24*60*60*1000));
+		}
+
+		$("#music_volume p").text(getCookie("pref-MUSVOL") == 0 ? "Off" : getCookie("pref-MUSVOL") + "%");
+		$("#sfx_volume p").text(getCookie("pref-SFXVOL") == 0 ? "Off" : getCookie("pref-SFXVOL") + "%");
+
+		music_volume = getCookie("pref-MUSVOL") / 100;
+		sfx_volume = getCookie("pref-SFXVOL") / 100;
+
+		setMusicVolume(music_volume);
+		setSfxVolume(sfx_volume);
+
+		if (updateSliders) {
+			$("#music_volume .slider").val(getCookie("pref-MUSVOL"));
+			$("#sfx_volume .slider").val(getCookie("pref-SFXVOL"));
+		}
+	}
+
+	function updateMarquee() {
+		switch (getCookie("pref-MARQUEE")) {
+			case "always":
+				$("#preference_marquee p").text("Always show marquee");
+				$("#marquee-always").addClass("selected");
+				$("html").removeClass("no-marquee");
+				break;
+			case "home":
+				$("#preference_marquee p").text("Only show marquee on home page");
+				$("#marquee-home").addClass("selected");
+				if (window.location.pathname === "index.html") {
+					$("html").removeClass("no-marquee");
+				} else {
+					$("html").addClass("no-marquee");
+				}
+				break;
+			case "never":
+				$("#preference_marquee p").text("Never show marquee");
+				$("#marquee-never").addClass("selected");
+				$("html").addClass("no-marquee");
+				break;
+			default:
+				setCookie("pref-MARQUEE", "always", Date.now() + (365*24*60*60*1000));
+				updateMarquee();
+				break;
+		}
+	}
+
+	function updateScanlines(updateSliders = false) {
+		if (getCookie("pref-SLOPAC") === "") {
+			setCookie("pref-SLOPAC", 0.75, Date.now() + (365*24*60*60*1000));
+		}
+
+		$("#scanlines_opacity p").text(getCookie("pref-SLOPAC") == 0 ? "Off" : (getCookie("pref-SLOPAC") * 100).toFixed() + "%");
+
+		setPseudo("html:not(.no-scanlines):not(.force-no-scanlines) body::before", "opacity", getCookie("pref-SLOPAC"));
+		setPseudo("html:not(.no-scanlines):not(.force-no-scanlines) body::after", "opacity", getCookie("pref-SLOPAC"));
+
+		if (updateSliders) {
+			$("#scanlines_opacity .slider").val((getCookie("pref-SLOPAC") * 100).toFixed());
+		}
+	}
+
+	function updateS404() {
+		switch (getCookie("pref-S404")) {
+			case "on":
+				$("#preference_simple404 p").text("For if you see 404s, etc. often. On");
+				$("#s404-on").addClass("selected");
+				break;
+			case "off":
+				$("#preference_simple404 p").text("For if you see 404s, etc. often. Off");
+				$("#s404-off").addClass("selected");
+				break;
+			default:
+				setCookie("pref-S404", "off", Date.now() + (365*24*60*60*1000));
+				updateS404();
+				break;
+		}
+	}
+
+	function updateForceIntro() {
+		switch (getCookie("pref-FORCEINTRO")) {
+			case "on":
+				$("#preference_forceintro p").text("On");
+				$("#forceintro-on").addClass("selected");
+				break;
+			case "off":
+				$("#preference_forceintro p").text("Off");
+				$("#forceintro-off").addClass("selected");
+				break;
+			default:
+				setCookie("pref-FORCEINTRO", "off", Date.now() + (365*24*60*60*1000));
+				updateForceIntro();
+				break;
+		}
+	}
+
+	function updateAltBGM() {
+		switch (getCookie("pref-ALTBGM")) {
+			case "on":
+				$("#preference_altbgm p").text("On");
+				$("#altbgm-on").addClass("selected");
+				break;
+			case "off":
+				$("#preference_altbgm p").text("Off");
+				$("#altbgm-off").addClass("selected");
+				break;
+			default:
+				setCookie("pref-ALTBGM", "off", Date.now() + (365*24*60*60*1000));
+				updateAltBGM();
+				break;
+		}
+	}*/
+
+	})
 
 
 </script>
+
 
 </html>

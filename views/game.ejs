@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>〖 安 : 気 〗</title>
+  <title>安気</title>
 
   <!-- meta tags -->
   <meta charset="UTF-8">
@@ -11,7 +11,7 @@
   <!-- CSS links -->
   <link href="../public/css/main.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
-  <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+  <link href="../public/css/transitions.css" rel="stylesheet" type="text/css" />
 
 
   
@@ -25,26 +25,26 @@
 <header>
   <nav class="g-nav">
       <form action="/" method="GET">
-        <button type="submit" class="btn-home">Home</button>
+        <button type="submit" class="btn-home">家</button>
       </form>
 
       <form action="/collection/home" method="GET">
-        <button type="submit" class="btn-collection">Collection</button>
+        <button type="submit" class="btn-collection">コレクション</button>
       </form>
       
       <form action="/kuro" method="GET">
-        <button type="submit" class="btn-collection">Kuromori</button>
+        <button type="submit" class="btn-collection">光</button>
       </form>
       <%if (logged) { %>
       <form action="/logout" method="GET">
-        <button type="submit" class="btn-logout">Log Out</button>
+        <button type="submit" class="btn-logout">ログアウト</button>
       </form>
       <% } else{ %>  
       <form action="/login" method="POST">
-        <button type="submit" class="btn-login">Log in</button>
+        <button type="submit" class="btn-login">ログイン中</button>
       </form>
       <form action="/register">
-        <button type="submit" class="btn-register">Register</button>
+        <button type="submit" class="btn-register">レジスター</button>
       </form>
       <% } %>         
   </nav>
@@ -89,10 +89,11 @@
   <div class="wrong hud">0</div>
   <div class="combo hud">0</div>
 
+  <button class="reset tokiWodTomare willHide">GIVE UP</button> 
 </div>
 
 
-<button class="reset tokiWodTomare willHide">GIVE UP</button> 
+
 
 <div id="scoreMenuX" style="display:none;">
 
@@ -133,6 +134,8 @@
 
   <button class="restartButton" onclick="showContent()">Retry</button>
 </div>
+<div class="page_transi"><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div></div>
+
 
 <style>
   #note {
@@ -217,8 +220,7 @@
 <script src="public/js/gl-matrix.js"></script>
 <script src="public/js/write.js"></script>
 <script type="text/javascript" src="public/js/wanakana.min.js"></script>
-<script src="public/js/kursor.min.js"></script>
-<script src="public/js/kursorConfig.js"></script>
+<script src="public/js/common.js"></script>
 
 <script>
 
@@ -246,7 +248,9 @@
  const wrongWords = document.querySelector('#wrongWords')
  const willHide = document.querySelector('.willHide')
 
-
+$( document ).ready(function() {
+    $('.grid_transi').addClass('transi_in')
+});
 
  const diff = 1 // Game Difficulty WIP
 
@@ -257,9 +261,15 @@
 
  // -- Audio file buffering -- //
 
- let threeHundredSFX = new Audio("../public/sfx/yattongLong.wav")
- let hitSFdX = new Audio("../public/sfx/yattongLong.wav")
- let missSFX = new Audio("../public/sfx/yattongLesgo.wav")
+ let threeHundredSFX = new Audio("../public/sfx/Audio/confirmation_004.ogg")
+ let missSFX = new Audio("../public/sfx/Audio/error_005.ogg")
+ let btnRoll = new Audio("../public/sfx/Audio/rollover3.ogg")
+ let hitSFX = new Audio("../public/sfx/Audio/bong_001.ogg") 
+ let btnClick = new Audio("../public/sfx/Audio/click2.ogg")
+ let tdRoll = new Audio("../public/sfx/Audio/rollover2.ogg")
+ btnRoll.volume = 0.03
+ tdRoll.volume = 0.03 
+ btnClick.volume = 0.07
 
  // -- Game state -- //
 
@@ -459,6 +469,13 @@ function inAnki() {
   tabRes.forEach((item) => {
     addRow(item.kanj,item.hira,item.miss)
   });
+  $("td").on({
+		mouseenter: function () {
+      tdRoll.currentTime = 0
+			tdRoll.play()
+		}
+	})
+
 
  }
 
@@ -663,6 +680,16 @@ function countdownSFXPlay(){
   countdownSFX.volume = 0.1
   countdownSFX.play()
 }
+
+$("button").on({
+		mouseenter: function () {
+      btnRoll.currentTime = 0
+			btnRoll.play()
+		}
+	})
+
+
+$("button").on("click", () => btnClick.play())
 
 // -- PopUp Right Answer -- //
 

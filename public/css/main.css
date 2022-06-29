@@ -135,6 +135,7 @@ p {
   font-family: "yasashisa";
 }
 
+
 header{
   font-family: 'jp_1';
   position: fixed;
@@ -233,22 +234,12 @@ font-size:3em;
 
 }
 
-.willHide {
-  display:flex;
-}
 
 .reset{
-  display:block;
+  position: fixed;
+  bottom: 0;
   width: 35%;
-  height: 7%;
-  font-size: 3em;
-  transition: 0.6s;
-  position: absolute; 
-  left: 0; 
-  right: 0;
-  bottom: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
+  height: 5%;
 }
 
 .reset:hover{
@@ -277,6 +268,7 @@ font-size:3em;
   color: #ffffff;
   padding-bottom: 2.45em;
   background-color: black;
+  text-align: center;
 }
 
 
@@ -362,6 +354,10 @@ button:hover {
   font-size: 1em;
   -webkit-box-shadow: 0 2px 2px -2px #0E1119;
   box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+#tableau td:nth-child(4) {
+  cursor: pointer;
 }
 
 #tableau {

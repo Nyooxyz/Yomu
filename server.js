@@ -22,6 +22,7 @@ var kuromoji = require("kuromoji");
 const puppeteer = require('puppeteer');
 var path = []
 var japTxt = ""
+let dontTransi = false
 
 
 if (app.get("env") === "production") {
@@ -260,13 +261,20 @@ function checkLogin(req, res, next) {
 
 
 app.get('/', checkLogin, (req, res) => {
-  res.render('index.ejs', {logged : loggedin})
+  connection.query("SELECT * FROM jlpt.n5 UNION SELECT * FROM jlpt.n4", (err, result, fields) => {
+    if (err) throw err;
+    const numOfResults = result.length
+    const startId = 0
+    
+    res.render('index.ejs',{logged : loggedin, db : result, numOfResults, startId})
+  })
 })
 
 app.get('/kuro', checkLogin, (req,res) => {
-  res.render('kuro.ejs', {logged : loggedin, txtd : path, txtdJap : japTxt})
+  res.render('kuro.ejs', {logged : loggedin, txtd : path, txtdJap : japTxt, dontTransi : dontTransi})
   path = []
   japTxt = ""
+  dontTransi = false
 })
 
 
@@ -476,6 +484,7 @@ app.post('/kuro', (req, res, next) => {
     // tokenizer is ready
     path = tokenizer.tokenize(req.body.txt);
     japTxt = req.body.txt
+    dontTransi = true
     res.redirect('/kuro')
   });  
  
@@ -502,6 +511,7 @@ app.post('/scrape', (req,res,next) => {
       await kuromoji.builder({ dicPath: "node_modules/kuromoji/dict" }).build(function (err, tokenizer) {
         // tokenizer is ready
         path = tokenizer.tokenize(extractedText);
+        dontTransi = true
         res.redirect('/kuro')
       }); 
   })();

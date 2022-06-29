@@ -1,7 +1,7 @@
 
 <head>
 
-    <title>〖 Kuro 〗</title>
+    <title>光</title>
     
     <!-- meta tags -->
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
     <link rel="stylesheet" href="../public/css/table-sortable.css" type="text/css"/>
     <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
+    <link href="../public/css/transitions.css" rel="stylesheet" type="text/css" />
 
     
     
@@ -24,22 +25,22 @@
 <header>
     <nav class="g-nav">
         <form action="/" method="GET">
-          <button type="submit" class="btn-home">Home</button>
+          <button type="submit" class="btn-home">家</button>
         </form>
   
         <form action="/collection/home" method="GET">
-          <button type="submit" class="btn-collection">Collection</button>
+          <button type="submit" class="btn-collection">コレクション</button>
         </form>
         <%if (logged) { %>
         <form action="/logout" method="GET">
-          <button type="submit" class="btn-logout">Log Out</button>
+          <button type="submit" class="btn-logout">ログアウト</button>
         </form>
         <% } else{ %>  
         <form action="/login" method="POST">
-          <button type="submit" class="btn-login">Log in</button>
+          <button type="submit" class="btn-login">ログイン中</button>
         </form>
         <form action="/register">
-          <button type="submit" class="btn-register">Register</button>
+          <button type="submit" class="btn-register">レジスター</button>
         </form>
         <% } %>         
     </nav>
@@ -49,8 +50,8 @@
 
     <div id="leftWraps">
       <form class="inputWrap" action="/kuro" method="POST">
-        <textarea id="japText" name="txt" placeholder="enter text"></textarea>
-        <button id="btn-analyse" type="submit">Analyse Text</button>
+        <textarea id="japText" name="txt" placeholder="文"></textarea>
+        <button id="btn-analyse" type="submit">光って</button>
       </form>
       
       <div id="hring">
@@ -60,8 +61,8 @@
       </div>
   
       <form class="scraperWrap" action="/scrape" method="POST">
-        <input id="scrape-input" name="scrapeUrl" placeholder="enter url"/>
-        <button id="btn-analyse" type="submit">Analyse Page</button>
+        <input id="scrape-input" name="scrapeUrl" placeholder="ＵＲＬ"/>
+        <button id="btn-analyse" type="submit">光って</button>
       </form>
     </div>
     
@@ -72,6 +73,8 @@
     </div>
 
 </div>
+<div class="page_transi"><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div></div>
+
 
  <style>
     @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
@@ -238,9 +241,9 @@
  <script src="public/js/jquery.js"></script>
  <script src="public/js/table-sortable.js"></script>
  <script src="public/js/xregexp-all.js"></script>
- <script src="public/js/kursor.min.js"></script>
- <script src="public/js/kursorConfig.js"></script>
  <script type="text/javascript" src="public/js/wanakana.min.js"></script> 
+ <script src="public/js/common.js"></script>
+ 
 
  
  <script>
@@ -248,7 +251,11 @@
     let searchField = document.querySelector('#searchField')
     var rows = document.getElementsByTagName("tr");
    
-
+    $( document ).ready(function() {
+      if(!<%=dontTransi%>){
+        $('.grid_transi').addClass('transi_in')
+      }
+    })
   
 
     /* -- Old method for hira WIP -- */
@@ -262,6 +269,8 @@
     /* Pagination Table using table-sortable plugin */
 
     var data = <%- JSON.stringify(txtd) %>
+
+    console.log(data)
 
     /* Removing non-usable data */
     
@@ -277,25 +286,29 @@
 
     /* (∩｀-´)⊃━☆ﾟ.*･｡ﾟ */
     
-    let filterdData = Object.values(onlyKanj.reduce((a,{basic_form, reading}) => {
-      let key = `${basic_form}_${reading}`;
-      a[key] = a[key] || {basic_form, reading, count : 0};
+    let filterdData = Object.values(onlyKanj.reduce((a,{basic_form, reading, pos}) => {
+      let key = `${basic_form}_${reading}_${pos}`;
+      a[key] = a[key] || {basic_form, reading, pos, count : 0};
       a[key].count++;
       return a;
     }, {}));
 
     let jishoAdd = filterdData.map(v => ({...v, jisho: "check"}))
 
-    if (jishoAdd.length > 0){
+    let forNow = jishoAdd.map(v => ({...v, jlpt: "wip"}))
+
+    if (forNow.length > 0){
       var columns = {
         'basic_form': 'Word',
         'reading': 'Reading',
         'count': 'Count',
-        'jisho': 'Jisho'
+        'pos': 'Type',
+        'jisho': 'Jisho',
+        'jlpt': 'JLPT'
       }
 
       var table = $('.table-sortable').tableSortable({
-        data: jishoAdd,
+        data: forNow,
         columns: columns,
         rowsPerPage: 5,
         pagination: true,
@@ -305,20 +318,20 @@
       /* adds jisho checkup */
 
       for (let c=1; c < rows.length; c++) {
-        rows[c].cells[3].addEventListener("click",() => {window.open("https://jisho.org/word/"+rows[c].cells[0].innerHTML, "_blank");})
-        rows[c].cells[3].style.cursor = "pointer"
+        rows[c].cells[4].onclick = () => {window.open("https://jisho.org/word/"+rows[c].cells[0].innerHTML, "_blank");}
+        rows[c].cells[4].style.cursor = "pointer"
       }   
 
       /* Brain melting table issue */
 
       let stupidTable = document.querySelector('.gs-table-container')
 
-      stupidTable.addEventListener("click", function(){
+      stupidTable.onclick = () => {
         for (let c=1; c < rows.length; c++) {
-          rows[c].cells[3].addEventListener("click",() => {window.open("https://jisho.org/word/"+rows[c].cells[0].innerHTML, "_blank");})
-          rows[c].cells[3].style.cursor = "pointer"
+          rows[c].cells[4].onclick = () => {window.open("https://jisho.org/word/"+rows[c].cells[0].innerHTML, "_blank");}
+          rows[c].cells[4].style.cursor = "pointer"
         }   
-      })
+      }
 
     }
 

@@ -1,0 +1,38 @@
+.page_transi {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    position: absolute;
+    top:0;
+    pointer-events: none;
+    z-index: 22;
+}
+.grid_transi {
+    border: solid black 0px;
+}
+
+.transi_out {
+    animation: blocks_fadeOut 1s forwards;
+    animation-iteration-count: 1;
+}
+
+.transi_in{
+    animation: blocks_fadeIn 1s ease-in-out;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes blocks_fadeOut {
+  0%   {border-width: 0px;}
+  100% {border-width: 60px;}
+  }
+
+
+  
+@keyframes blocks_fadeIn {
+    0%   {border-width: 60px;}
+    100% {border-width: 0px;}
+}
+  
