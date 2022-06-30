@@ -19,6 +19,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
   <link href="../public/css/home.css" rel="stylesheet" type="text/css" />
 
+  <link href="../public/css/scanlines.css" rel="stylesheet" type="text/css" />
+
   <link href="../public/css/transitions.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css">
 
@@ -150,11 +152,11 @@
 		<div id="preflist">
 			<div class="preference" id="preference_animations">
 				<div class="explanation">
-					<h2>Animations</h2>
-					<p>Use all animations</p>
+					<h2>Scanlines</h2>
+					<p>Use scanlines</p>
 				</div>
 				<div class="switch cur-action">
-					<div class="switch-option negative" id="animations-none">⊘</div><div class="switch-option inverse" id="animations-light">⊝</div><div class="switch-option positive" id="animations-all">◯</div>
+					<div class="switch-option negative" id="animations-none">⊘</div><div class="switch-option positive" id="animations-all">◯</div>
 				</div>
 			</div>
 			<div class="preference" id="scanlines_opacity">
@@ -225,6 +227,8 @@
 
 <script src="public/js/jquery.js"></script>
 <script src="public/js/common.js"></script>
+<script src="public/js/cookies.js"></script>
+
 <script>
 
 	const one =  document.getElementById('one')
@@ -508,32 +512,25 @@
 			$("#preferences-wrapper").addClass("hidden");
 		});
 
-
-
-
-
-
-		/*
-
 		$("#preferences_replay-intro").click(function() {
 			setCookie("SEEN-INTRO", "no", Date.now() + (365*24*60*60*1000));
-			window.location = "index.html";
+			window.location = "index.ejs";
 		});
 
 		 $("#animations-none").click(function() {
-			setCookie("pref-ANIM", "none", Date.now() + (365*24*60*60*1000));
-			updateAnimations();
+			setCookie("pref-SCAN", "none", Date.now() + (365*24*60*60*1000));
+			updateScanlinesOF();
 		});
 		$("#animations-light").click(function() {
-			setCookie("pref-ANIM", "light", Date.now() + (365*24*60*60*1000));
-			updateAnimations();
+			setCookie("pref-SCAN", "light", Date.now() + (365*24*60*60*1000));
+			updateScanlinesOF();
 		});
 		$("#animations-all").click(function() {
-			setCookie("pref-ANIM", "all", Date.now() + (365*24*60*60*1000));
-			updateAnimations();
+			setCookie("pref-SCAN", "all", Date.now() + (365*24*60*60*1000));
+			updateScanlinesOF();
 		});
 
-		updateAnimations();
+		updateScanlinesOF();
 
 		///////////////////////
 
@@ -557,7 +554,7 @@
 			updateSound();
 		});
 
-		*/
+		
 
 		$("#sfx_volume .slider").mousedown(function() {
 			sfx_power_loop.play();
@@ -568,7 +565,7 @@
 			sfx_default.play();
 		});
 
-		/*
+		
 
 		updateSound(true);
 
@@ -643,33 +640,22 @@
 		updateAltBGM();
 	});
 
-	function updateAnimations() {
-		switch (getCookie("pref-ANIM")) {
+	function updateScanlinesOF() {
+		switch (getCookie("pref-SCAN")) {
 			case "all":
-				$("#preference_animations p").text("Show all animations");
-				$("#animations-all").addClass("selected");
-				$("html").removeClass("no-anim");
-				$("html").removeClass("no-scanlines");
-				$("#scanlines_opacity").removeClass("disabled");
-				break;
-			case "light":
-				$("#preference_animations p").text("Show only scanlines");
-				$("#animations-light").addClass("selected");
-				$("html").addClass("no-anim");
-				$("html").removeClass("no-scanlines");
-				$("#scanlines_opacity").removeClass("disabled");
-				break;
+				$("html").removeClass("no-anim")
+				$("html").removeClass("no-scanlines")
+				$("#scanlines_opacity").removeClass("disabled")
+				break
 			case "none":
-				$("#preference_animations p").text("No animations at all");
-				$("#animations-none").addClass("selected");
-				$("html").addClass("no-anim");
-				$("html").addClass("no-scanlines");
-				$("#scanlines_opacity").addClass("disabled");
-				break;
+				$("html").addClass("no-anim")
+				$("html").addClass("no-scanlines")
+				$("#scanlines_opacity").addClass("disabled")
+				break
 			default:
-				setCookie("pref-ANIM", "all", Date.now() + (365*24*60*60*1000));
-				updateAnimations();
-				break;
+				setCookie("pref-SCAN", "all", Date.now() + (365*24*60*60*1000))
+				updateScanlinesOF()
+				break
 		}
 	}
 
@@ -788,9 +774,29 @@
 				updateAltBGM();
 				break;
 		}
-	}*/
+	}
 
-	})
+
+	String.prototype.hashCode = function() {
+		var hash = 0, i, chr;
+		if (this.length === 0) return hash;
+		for (i = 0; i < this.length; i++) {
+			chr   = this.charCodeAt(i);
+			hash  = ((hash << 5) - hash) + chr;
+			hash |= 0; // Convert to 32bit integer
+		}
+		return hash;
+	};
+
+	function setPseudo(elem, property, value) {
+		var hash = (elem+property).hashCode();
+
+		if ($("#x-pseudo-" + hash).length === 0) {
+			$("head").append("<style id=\"x-pseudo-" + hash + "\"></style>");
+		}
+
+		$("#x-pseudo-" + hash).html(elem + " { " + property + ": " + value + "; }");
+	}
 
 
 </script>
