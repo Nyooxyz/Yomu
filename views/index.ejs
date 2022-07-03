@@ -18,7 +18,7 @@
   <!-- CSS links -->
   <link rel="shortcut icon" type="image/x-icon" href="public/media/DiveIcon.png" />
   <link href="../public/css/home.css" rel="stylesheet" type="text/css" />
-
+  <link href="../public/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="../public/css/scanlines.css" rel="stylesheet" type="text/css" />
 
   <link href="../public/css/transitions.css" rel="stylesheet" type="text/css" />
@@ -31,125 +31,127 @@
 
 </head>
 
-<div id="landing">
-	<img src="../public/media/headphone.png"/>
-	<p>
-	Allow audio for a better experience ?
-	</p>
-	<div id="diff">
-	<a id="yesAllow" onclick="checkAllow(0)">Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a id="noAllow" onclick="checkAllow(1)">Don't allow</a>
-	</div>
+
+<div id="loading-box">
+
+</div> 
+<div id="intro">
+	<div id="intro_vid"></div>
+	<div id="intro_vid_bg"></div>
+	<h1 id="intro_welcome">Keep going</h1>
+	<h1 id="intro_motto"></h1>
 </div>
-<div id="notLanding">
-	<div id="loading-box">
 
-	</div> 
-	<div id="intro">
-		<div id="intro_vid"></div>
-		<div id="intro_vid_bg"></div>
-		<h1 id="intro_welcome">Keep going</h1>
-		<h1 id="intro_motto"></h1>
-	</div>
+<body>
 
-	<body>
+	<div id="pageContain">
 
-		<div id="pageContain">
+		<div id="homeHUD">
 
-			<div id="homeHUD">
+			
+			<div id="headers">
+				<div id="header">
 
-				
-				<div id="headers">
-					<div id="header">
+					<%if (logged) { %>
 
-						<%if (logged) { %>
-
-						<div id="headerLeft" class="panelRight">
-							<div id="logoutContain" onclick="hrefing('/logout')">
-								<div class="clipLogOut">
-									<b>ログアウト</b>
-								</div>
+					<div id="headerLeft" class="panelRight">
+						<div id="logoutContain" onclick="hrefing('/logout')">
+							<div class="clipLogOut">
+								<b>ログアウト</b>
 							</div>
-						</div> 
+						</div>
+					</div> 
 
-						<% } else{ %>  
+					<% } else{ %>  
+					
+					<div id="headerLeftSplit" class="panelRight">
+						<div id="loginContain" class="panelBot" onclick="hrefing('/login')">
+							<div class="clipLogIn">
+								<b>ログイン</b>
+							</div>
+						</div>
 						
-						<div id="headerLeftSplit" class="panelRight">
-							<div id="loginContain" class="panelBot" onclick="hrefing('/login')">
-								<div class="clipLogIn">
-									<b>ログイン</b>
-								</div>
-							</div>
-							
-							<div id="registerContain" class="panelTop">
-								<div class="clipRegiContainer" onclick="hrefing('/login')">
-									<div class="clipRegi">
-										<b>レジスター</b>
-									</div>
+						<div id="registerContain" class="panelTop">
+							<div class="clipRegiContainer" onclick="hrefing('/login')">
+								<div class="clipRegi">
+									<b>レジスター</b>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						<% } %>  
+					<% } %>  
 
-						<div id="headerRight" class="panelLeft">	
+					<div id="headerRight" class="panelLeft">	
 
-							<div class="outlineLeft">
-								<h1 id="intro_motto"></h1>
-								<h1 id="motto">∃世界 <br>ƒ(夢) = 現実</h1>
-							</div>
-
+						<div class="outlineLeft">
+							<h1 id="intro_motto"></h1>
+							<h1 id="motto">∃世界 <br>ƒ(夢) = 現実</h1>
 						</div>
-					</div>
 
-					<div id="headerOptions">
-						<div class="header-knob header-knob-text right-hand" id="header-knobs_preferences">PREFERENCES</div>
-					</div>
-
-				</div>
-
-
-				<div id="main">
-					<div id="mainGame" class="outline">
-						<div id="main-bg"></div>
-						<div id="n5" onclick="hrefing('/game?jlpt=n5')">【JLPT <b style="color: lime">5</b>】</div>
-						<div id="n4" onclick="hrefing('/game?jlpt=n4')">【JLPT <b style="color: orange">4</b>】</div>
-						<div id="anki"><b>安気</b></div>
 					</div>
 				</div>
 
-				<div id="footer">
-					<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
-						<div id="idkyet" class="outline">
-							<div id="kuroTitle" class="txtPanelBubble">
-								<a class="txtPanelHira" id="kuroKanj"><b>光</b></a>
-								<a class="txtPanelRoma" id="kuroRoma"><b>Hikari</b></a>
-							</div>
-						</div>
-					</div>
-				
-					<div id="footerRight" class="panelLeft" onclick="hrefing('/collection/home')">
-						<div class="clipCollection outline">
-							<div id="collectionTitle" class="txtPanelBubble">
-								<a class="txtPanelHira" id="collectionKata"><b>コレクション</b></a>
-								<a class="txtPanelRoma" id="collectionRoma"><b>Collection</b></a>
-							</div>
-						</div>
+				<div id="headerSqueeze">
+					<div class="header-knob header-knob-text right-hand" id="header-knobs_preferences">PREFERENCES</div>
+					<div class="header-knob header-knob-text right-hand" id="playBGM"></div>
+					<div class="header-knob header-knob-text right-hand" id="無作為"></div>
+				</div>
 
-					</div>
+			</div>
 
+
+			<div id="main">
+				<div id="mainGame" class="outline">
+					<div id="main-bg"></div>
+					<div id="n5" onclick="hrefing('/game?jlpt=n5')">【JLPT <b style="color: lime">5</b>】</div>
+					<div id="n4" onclick="hrefing('/game?jlpt=n4')">【JLPT <b style="color: orange">4</b>】</div>
+					<div id="anki"><b>安気</b></div>
 				</div>
 			</div>
-		</div>
 
-		<!-- <span id="kanj_bg"></span> -->
-	</body>
-</div>
+			<div id="footer">
+				<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
+					<div id="idkyet" class="outline">
+						<div id="kuroTitle" class="txtPanelBubble">
+							<a class="txtPanelHira" id="kuroKanj"><b>光</b></a>
+							<a class="txtPanelRoma" id="kuroRoma"><b>Hikari</b></a>
+						</div>
+					</div>
+				</div>
+			
+				<div id="footerRight" class="panelLeft" onclick="hrefing('/collection/home')">
+					<div class="clipCollection outline">
+						<div id="collectionBG"></div>
+						<div id="collectionTitle" class="txtPanelBubble">
+							<a class="txtPanelHira" id="collectionKata"><b>コレクション</b></a>
+							<a class="txtPanelRoma" id="collectionRoma"><b>Collection</b></a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- <span id="kanj_bg"></span> -->
+</body>
+
 
 <div id="preferences-wrapper" class="hidden">
 	<div id="preferences">
 		<h1>Preferences</h1>
 		<div id="preflist">
+			<div class="preference" id="preference_audio">
+				<div class="explanation">
+					<h2>Use audio</h2>
+					<p>Allow all audio</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="allowAudio-off">⊘</div><div class="switch-option positive" id="allowAudio-on">◯</div>
+				</div>
+			</div>
 			<div class="preference" id="preference_animations">
 				<div class="explanation">
 					<h2>Scanlines</h2>
@@ -180,24 +182,6 @@
 				</div>
 				<input type="range" min="0" max="100" value="100" class="slider">
 			</div>
-			<div class="preference" id="preference_marquee">
-				<div class="explanation">
-					<h2>Marquee</h2>
-					<p>Always show marquee</p>
-				</div>
-				<div class="switch cur-action">
-					<div class="switch-option negative" id="marquee-never">⊘</div><div class="switch-option inverse" id="marquee-home">◇</div><div class="switch-option positive" id="marquee-always">◯</div>
-				</div>
-			</div>
-			<div class="preference" id="preference_simple404">
-				<div class="explanation">
-					<h2>Simple error pages</h2>
-					<p>For if you see 404s, etc. often. Off</p>
-				</div>
-				<div class="switch cur-action">
-					<div class="switch-option negative" id="s404-off">⊘</div><div class="switch-option positive" id="s404-on">◯</div>
-				</div>
-			</div>
 			<div class="preference" id="preference_forceintro">
 				<div class="explanation">
 					<h2>Always play intro</h2>
@@ -207,16 +191,15 @@
 					<div class="switch-option negative" id="forceintro-off">⊘</div><div class="switch-option positive" id="forceintro-on">◯</div>
 				</div>
 			</div>
-			<div class="preference" id="preference_altbgm">
+			<div class="preference" id="preference_you">
 				<div class="explanation">
-					<h2>Alternative homepage BGM</h2>
-					<p>Off</p>
+					<h2>Being great</h2>
+					<p>Thank you for being you</p>
 				</div>
 				<div class="switch cur-action">
-					<div class="switch-option negative" id="altbgm-off">⊘</div><div class="switch-option positive" id="altbgm-on">◯</div>
+					<div class="switch-option positive selected" id="you-on">◯</div>
 				</div>
 			</div>
-			<a href="javascript:void(0);"><div id="preferences_replay-intro" class="cur-confirm preferences-link">Replay Intro</div></a>
 		</div>
 		<a href="javascript:void(0);"><div id="preferences-close" class="cur-confirm">CLOSE</div></a>
 	</div>
@@ -228,77 +211,95 @@
 <script src="public/js/jquery.js"></script>
 <script src="public/js/common.js"></script>
 <script src="public/js/cookies.js"></script>
+<script src="public/js/howler.min.js"></script>
+<script src="public/js/sfx.js"></script>
 
 <script>
 
-	const one =  document.getElementById('one')
-	const two =  document.getElementById('two')
-	const content =  document.getElementById('pageContain')
-	const intro  = document.getElementById('intro')
-	const landing = document.getElementById('landing')
-	let yattongLesgoSfx = new Audio("../public/sfx/yattongLesGo.wav")
-	let yattongLongSfx = new Audio("../public/sfx/yattongLong.wav")
-	let jlptRoll = new Audio("../public/sfx/Audio/rollover5.ogg")
-	let clickSfx = new Audio("../public/sfx/Audio/click1.ogg")
-	let bgm = new Audio("../public/sfx/Oltanis.mp3")
-	let sfx_dialog = new Audio("../public/sfx/Audio/toggle_001.ogg")
-	let sfx_dialog_confirm = new Audio("../public/sfx/Audio/confirmation_001.ogg")
-	let sfx_dialog_cancel = new Audio("../public/sfx/Audio/close_001.ogg")
-	let sfx_power_loop = new Audio("../public/sfx/Audio/rollover4.ogg")
-	let sfx_default = new Audio("../public/sfx/Audio/switch33.ogg")
+	// = - = - = - = - = COOKIE DEBUG = - = - = - = - =
+	
+	/*
+	function delete_cookie( name, path, domain ) {
+		if( getCookie( name ) ) {
+			document.cookie = name + "=" +
+			((path) ? ";path="+path:"")+
+			((domain)?";domain="+domain:"") +
+			";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+		}
+	}
 
-	sfx_dialog.volume = 0.1
-	sfx_dialog_confirm.volume = 0.1
-	sfx_dialog_cancel.volume = 0.1
-	sfx_power_loop.volume = 0.1
-	sfx_default.volume = 0.1
-	jlptRoll.volume = 0.07 
-	clickSfx.volume = 0.1
-	bgm.volume = 0.1
-	bgm.loop = true
+	delete_cookie("MUSIC")
 
+	*/
 
-	$( document ).ready(function() {
-		$('.grid_transi').addClass('transi_in')
-	});
+	/*
+	
+	function deleteAllCookies() {
+		var cookies = document.cookie.split(";");
+
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i];
+			var eqPos = cookie.indexOf("=");
+			var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+			document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		}
+	}
+
+	deleteAllCookies()
+	
+	console.log(document.cookie)
+
+	*/
+
+	// = - = - = - = - = - = - = - = - =
+
+	let bgmPlaying = false
+	let bgmPlayed = false
+	
+	$('.grid_transi').addClass('transi_in')
+
+	PlayIntro()
 
 	/* INTRO */
 
 	function PlayIntro() {
 
-		/*if (getCookie("SEEN-INTRO") !== "v1" || getCookie("pref-FORCEINTRO") === "on") {*/
-		$("#notLanding").addClass("back")
-		$("#landing").addClass("destroyed")
-		$("#intro").css("display", "block");
-		$("#pageContain").addClass("anim-fast");
-		$("#pageContain").addClass("hidden");
-		setTimeout(function() {
-		  $("#pageContain").removeClass("anim-fast");
-		  $("#pageContain").addClass("anim-slow");
-		  $("#intro").addClass("playing");
-		}, 1);
-	  
-	  
-		 
-		setTimeout(function() {
-		  TypeIntroMotto();
-		}, 3000);
+		if (getCookie("SEEN-INTRO") !== "v1" || getCookie("pref-FORCEINTRO") === "on") {
+			$("#intro").css("display", "block")
+			$("#pageContain").addClass("anim-fast")
+			$("#pageContain").addClass("hidden")
+			setTimeout(function() {
+				$("#pageContain").removeClass("anim-fast")
+				$("#pageContain").addClass("anim-slow")
+				$("#intro").addClass("playing")
+			}, 1)
 		
-		$("body").css("background", "none");
+		
+			
+			setTimeout(function() {
+				TypeIntroMotto()
+			}, 3000)
+			
+			$("body").css("background", "none")
 
-		setTimeout(function() {
-		  $("#intro").addClass("destroyed");
-		  $("#pageContain").removeClass("hidden");
-		  window.scrollTo(0, 0);
-		}, 3644);
-		setTimeout(function() {
-		  $("#pageContain").removeClass("anim-slow");
-		  $("#intro").remove();
-		  bgm.play()
-		  /*setCookie("SEEN-INTRO", "v1", Date.now() + (365*24*60*60*1000))*/
-	  
-		}, 4644);
-	  }
+			setTimeout(function() {
+				$("#intro").addClass("destroyed")
+				$("#pageContain").removeClass("hidden")
+				window.scrollTo(0, 0)
+			}, 3644)
+
+			setTimeout(function() {
+				$("#pageContain").removeClass("anim-slow")
+				$("#intro").remove()
+				setCookie("SEEN-INTRO", "v1", Date.now() + (365*24*60*60*1000))
+		
+			}, 4644);
+		} else {
+			$("body").css("background", "none")
+		}
+
+	
+	}
 
 	function TypeIntroMotto() {
 		var text = "∃世界$ƒ(夢) = 現実"
@@ -321,9 +322,6 @@
 	}
 
 
-
-
-
 	/* MUSIC */ 
 
 	function ready(err,loop){
@@ -332,78 +330,7 @@
 		}
 		  loop.play();
 	  }
-	  
-	function checkAllow(allowAudio){
-		if (allowAudio == 0) {
-			PlayIntro()
-			
-		} else {
-			PlayIntro()
-		}
-	}
-
-	function playIntroSfx(){
-		introSfx.currentTime = 0
-		introSfx.play()
-		landing.style.visibility = 'hidden'
-		landing.style.opacity = 0
-	  
-		one.style.visibility = 'visible'
-		one.style.opacity = 1
-		one.style.animation = 'type-w 1s steps(44)'
-	  
-		setTimeout(function() {
-		  two.style.visibility = 'visible'
-		  two.style.opacity = 1
-		  two.style.animation = 'type-w 1s steps(44)'
-	  
-		  setTimeout(function(){
-			loopify("../public/sfx/jamLess.wav",ready)
-		  },2950)
-		}, 800)
-	  
-	  
-		setTimeout(function() {
-		  document.body.style.backgroundColor = '#000'
-	  
-		  content.style.visibility = 'visible'
-		  content.style.opacity = 1
-		  one.style.color = '#fff'
-		  two.style.color = '#fff'
-		  setInterval(function() {
-			fireflies();
-		  }, 450);
-		}, 1750)
-	  }
-
-	function playIntroNoSfx(){
-		landing.style.visibility = 'hidden'
-		landing.style.opacity = 0
-	  
-		one.style.visibility = 'visible'
-		one.style.opacity = 1
-		one.style.animation = 'type-w 3.5s steps(44)'
-	  
-		setInterval(function() {
-		  two.style.visibility = 'visible'
-		  two.style.opacity = 1
-		  two.style.animation = 'type-w 3s steps(44)'
-		}, 1000)
-	  
-		setInterval(function() {
-		  document.body.style.backgroundColor = '#000'
-	  
-		  content.style.visibility = 'visible'
-		  content.style.opacity = 1
-		  one.style.color = '#fff'
-		  two.style.color = '#fff'
-		  setInterval(function() {
-			fireflies();
-		  }, 450);
-		}, 1750)
-	  }
 	
-
 	function playShiri(){
 		$('#homeHUD').fadeOut(400);
 		$("#difficultyShiri").fadeIn(400);
@@ -427,8 +354,8 @@
 	
 	$("#n4").on({
 		mouseenter: function () {
-			jlptRoll.currentTime = 0;
-			jlptRoll.play()
+			sfx_hover.currentTime = 0;
+			sfx_hover.play()
 			$("#main-bg").css("background-position","50% 75%")
 			$("#main-bg").css("filter","hue-rotate(80deg)")
 		},
@@ -440,8 +367,8 @@
 
 	$("#n5").on({
 		mouseenter: function () {
-			jlptRoll.currentTime = 0;
-			jlptRoll.play()
+			sfx_hover.currentTime = 0;
+			sfx_hover.play()
 			$("#main-bg").css("background-position","bottom")
 			$("#main-bg").css("filter","none")
 		},
@@ -474,8 +401,46 @@
 		}
 	})
 
-	$("#n5, #n4, #loginContain, #clipRegiContainer, #footerleft, #footerRight").on("click", () => clickSfx.play())
+	if(getCookie("SFX" == "yes")){
+		$("#n5, #n4, #loginContain, #clipRegiContainer, #footerleft, #footerRight").on("click", () => sfx_click.play())
+	}	
+
+
+	/*=-=- Messy, could be done better -=-=*/
+
+	updateBGM_btn()
+
+	function updateBGM_btn(){
+		if(bgmPlaying){
+		$("#playBGM").text("うるさい")
+		$("#playBGM").unbind().on("click", function(){
+			music_loop.volume(0)
+			bgmPlaying = false
 	
+			updateBGM_btn()
+		})
+		} else {
+			$("#playBGM").text("ＢＧＭ ⯈")
+			if(getCookie("pref-AUDIO") == "all"){
+				$("#playBGM").unbind().on("click", function() {
+					if (bgmPlayed){
+						music_loop.volume(0.1*music_volume)
+					} else {
+						playMusic(0.1, "Oltanis")
+
+						bgmPlayed = true
+					}
+					
+					bgmPlaying = true
+
+					updateBGM_btn()
+				})
+			} 
+		}
+	}
+
+	/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
 
 	function randomIntFromInterval(min, max) { 
 		min = Math.ceil(min);
@@ -497,40 +462,45 @@
 
 	$(document).ready(function() {
 		$("#header-knobs_preferences").on("click", function() {
-			sfx_dialog.play();
-			$("#preferences-wrapper").removeClass("hidden");
-		});
+			sfx_dialog.play()
+			$("#preferences-wrapper").removeClass("hidden")
+		})
 
 		$("#preferences-close").click(function() {
-			sfx_dialog_confirm.play();
-			$("#preferences-wrapper").addClass("hidden");
-		});
+			sfx_dialog_confirm.play()
+			$("#preferences-wrapper").addClass("hidden")
+		})
 
 		$("#preferences-wrapper").click(function(e) {
-			if ($(e.target).attr("id") !== "preferences-wrapper") { return; }
-			sfx_dialog_cancel.play();
-			$("#preferences-wrapper").addClass("hidden");
+			if ($(e.target).attr("id") !== "preferences-wrapper") { return }
+			sfx_dialog_cancel.play()
+			$("#preferences-wrapper").addClass("hidden")
+		})
+
+		$("#allowAudio-off").click(function() {
+			setCookie("pref-AUDIO", "none", Date.now() + (365*24*60*60*1000))
+			updateAudio()
 		});
 
-		$("#preferences_replay-intro").click(function() {
-			setCookie("SEEN-INTRO", "no", Date.now() + (365*24*60*60*1000));
-			window.location = "index.ejs";
-		});
+		$("#allowAudio-on").click(function() {
+			setCookie("pref-AUDIO", "all", Date.now() + (365*24*60*60*1000))
+			updateAudio()
+		})
 
-		 $("#animations-none").click(function() {
-			setCookie("pref-SCAN", "none", Date.now() + (365*24*60*60*1000));
-			updateScanlinesOF();
-		});
-		$("#animations-light").click(function() {
-			setCookie("pref-SCAN", "light", Date.now() + (365*24*60*60*1000));
-			updateScanlinesOF();
-		});
+		updateAudio()
+
+		$("#animations-none").click(function() {
+			setCookie("pref-SCAN", "none", Date.now() + (365*24*60*60*1000))
+			console.log(document.cookie)
+			updateScanlinesOF()
+		})
 		$("#animations-all").click(function() {
-			setCookie("pref-SCAN", "all", Date.now() + (365*24*60*60*1000));
-			updateScanlinesOF();
-		});
+			setCookie("pref-SCAN", "all", Date.now() + (365*24*60*60*1000))
+				console.log(document.cookie)
+			updateScanlinesOF()
+		})
 
-		updateScanlinesOF();
+		updateScanlinesOF()
 
 		///////////////////////
 
@@ -571,36 +541,6 @@
 
 		///////////////////////
 
-		$("#marquee-never").click(function() {
-			setCookie("pref-MARQUEE", "never", Date.now() + (365*24*60*60*1000));
-			updateMarquee();
-		});
-		$("#marquee-home").click(function() {
-			setCookie("pref-MARQUEE", "home", Date.now() + (365*24*60*60*1000));
-			updateMarquee();
-		});
-		$("#marquee-always").click(function() {
-			setCookie("pref-MARQUEE", "always", Date.now() + (365*24*60*60*1000));
-			updateMarquee();
-		});
-
-		updateMarquee();
-
-		///////////////////////
-
-		$("#s404-on").click(function() {
-			setCookie("pref-S404", "on", Date.now() + (365*24*60*60*1000));
-			updateS404();
-		});
-		$("#s404-off").click(function() {
-			setCookie("pref-S404", "ff", Date.now() + (365*24*60*60*1000));
-			updateS404();
-		});
-
-		updateS404();
-
-		///////////////////////
-
 		$("#forceintro-on").click(function() {
 			setCookie("pref-FORCEINTRO", "on", Date.now() + (365*24*60*60*1000));
 			updateForceIntro();
@@ -613,46 +553,64 @@
 		updateForceIntro();
 
 		///////////////////////
+	
+	})
 
-		$("#altbgm-on").click(function() {
-			setCookie("pref-ALTBGM", "on", Date.now() + (365*24*60*60*1000));
-			updateAltBGM();
-
-			if (window.location.pathname === "index.html") {
-				fadeAway(200);
-				setTimeout(function() {
-					playMusic(0.5, "home-alt");
-				}, 250);
-			}
-		});
-		$("#altbgm-off").click(function() {
-			setCookie("pref-ALTBGM", "off", Date.now() + (365*24*60*60*1000));
-			updateAltBGM();
-
-			if (window.location.pathname === "index.html") {
-				fadeAway(200);
-				setTimeout(function() {
-					playMusic(0.5, "home");
-				}, 250);
-			}
-		});
-
-		updateAltBGM();
-	});
+	function updateAudio(){
+		switch (getCookie("pref-AUDIO")) {
+			case "all":
+				$("#n5, #n4, #loginContain, #clipRegiContainer, #footerleft, #footerRight").on("click", () => sfx_click.play())
+				if (("#allowAudio-off.selected").length){
+					$("#allowAudio-off").removeClass("selected")
+				}
+				$("#allowAudio-on").addClass("selected")
+				$("#playBGM").removeClass("disabled")
+				$("#sfx_volume").removeClass("disabled")
+				break
+			case "none":
+				$("#n5, #n4, #loginContain, #clipRegiContainer, #footerleft, #footerRight").unbind("click", () => sfx_click.play())
+				if (("#allowAudio-off.selected").length){
+					$("#allowAudio-on").removeClass("selected")
+				}
+				$("#allowAudio-off").addClass("selected")
+				if(bgmPlaying){
+					music_loop.volume(0)
+					bgmPlaying = false
+					updateBGM_btn()
+				}
+				$("#playBGM").addClass("disabled")
+				$("#sfx_volume").addClass("disabled")
+				break
+			default:
+				setCookie("pref-AUDIO", "all", Date.now() + (365*24*60*60*1000))
+				$("#allowAudio-on").addClass("selected")
+				updateAudio()
+				break
+		}
+	}
 
 	function updateScanlinesOF() {
 		switch (getCookie("pref-SCAN")) {
 			case "all":
+				if (("#animations-none.selected").length){
+					$("#animations-none").removeClass("selected")
+				}
+				$("#animations-all").addClass("selected")
 				$("html").removeClass("no-anim")
 				$("html").removeClass("no-scanlines")
 				$("#scanlines_opacity").removeClass("disabled")
 				break
 			case "none":
+				if (("#animations-all.selected").length){
+					$("#animations-all").removeClass("selected")
+				}
+				$("#animations-none").addClass("selected")
 				$("html").addClass("no-anim")
 				$("html").addClass("no-scanlines")
 				$("#scanlines_opacity").addClass("disabled")
 				break
 			default:
+				$("#animations-all").addClass("selected")
 				setCookie("pref-SCAN", "all", Date.now() + (365*24*60*60*1000))
 				updateScanlinesOF()
 				break
@@ -682,34 +640,6 @@
 		}
 	}
 
-	function updateMarquee() {
-		switch (getCookie("pref-MARQUEE")) {
-			case "always":
-				$("#preference_marquee p").text("Always show marquee");
-				$("#marquee-always").addClass("selected");
-				$("html").removeClass("no-marquee");
-				break;
-			case "home":
-				$("#preference_marquee p").text("Only show marquee on home page");
-				$("#marquee-home").addClass("selected");
-				if (window.location.pathname === "index.html") {
-					$("html").removeClass("no-marquee");
-				} else {
-					$("html").addClass("no-marquee");
-				}
-				break;
-			case "never":
-				$("#preference_marquee p").text("Never show marquee");
-				$("#marquee-never").addClass("selected");
-				$("html").addClass("no-marquee");
-				break;
-			default:
-				setCookie("pref-MARQUEE", "always", Date.now() + (365*24*60*60*1000));
-				updateMarquee();
-				break;
-		}
-	}
-
 	function updateScanlines(updateSliders = false) {
 		if (getCookie("pref-SLOPAC") === "") {
 			setCookie("pref-SLOPAC", 0.75, Date.now() + (365*24*60*60*1000));
@@ -725,32 +655,19 @@
 		}
 	}
 
-	function updateS404() {
-		switch (getCookie("pref-S404")) {
-			case "on":
-				$("#preference_simple404 p").text("For if you see 404s, etc. often. On");
-				$("#s404-on").addClass("selected");
-				break;
-			case "off":
-				$("#preference_simple404 p").text("For if you see 404s, etc. often. Off");
-				$("#s404-off").addClass("selected");
-				break;
-			default:
-				setCookie("pref-S404", "off", Date.now() + (365*24*60*60*1000));
-				updateS404();
-				break;
-		}
-	}
+
 
 	function updateForceIntro() {
 		switch (getCookie("pref-FORCEINTRO")) {
 			case "on":
-				$("#preference_forceintro p").text("On");
-				$("#forceintro-on").addClass("selected");
+				$("#preference_forceintro p").text("On")
+				$("#forceintro-on").addClass("selected")
+				$("#forceintro-off").removeClass("selected")
 				break;
 			case "off":
 				$("#preference_forceintro p").text("Off");
 				$("#forceintro-off").addClass("selected");
+				$("#forceintro-on").removeClass("selected")
 				break;
 			default:
 				setCookie("pref-FORCEINTRO", "off", Date.now() + (365*24*60*60*1000));
@@ -759,22 +676,6 @@
 		}
 	}
 
-	function updateAltBGM() {
-		switch (getCookie("pref-ALTBGM")) {
-			case "on":
-				$("#preference_altbgm p").text("On");
-				$("#altbgm-on").addClass("selected");
-				break;
-			case "off":
-				$("#preference_altbgm p").text("Off");
-				$("#altbgm-off").addClass("selected");
-				break;
-			default:
-				setCookie("pref-ALTBGM", "off", Date.now() + (365*24*60*60*1000));
-				updateAltBGM();
-				break;
-		}
-	}
 
 
 	String.prototype.hashCode = function() {
