@@ -20,6 +20,17 @@
 
   <style>
 
+    @keyframes boo {
+      from {
+        opacity: 0;
+        /*transform: scale(0);*/
+      }
+      to {
+        opacity: 1;
+        /*transform: scale(1);*/
+      }
+    }
+
     :root {
       --fruityTooty: linear-gradient(90deg, rgb(255, 248, 85) 0.04%, rgb(70, 227, 183) 100.04%);
       --tinder:  linear-gradient(285.49deg, rgb(245, 55, 249) -14.61%, rgb(247, 190, 43) 106.06%);
@@ -89,7 +100,6 @@
     }
 
     .card-content{
-      backface-visibility: hidden;
       text-align: center;
       margin: 0;
       position: absolute;
@@ -186,17 +196,27 @@
       transform: rotate(120deg);
     }
 
-
-
-    .back{
-      position: absolute;
-      top: 20%;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: 100px; 
-      transform: rotateY(180deg);
+    .front {
+      animation: boo 0.3s linear 0s 1 normal;
     }
+
+
+    .back {
+      position: absolute;
+      top: 50%; right: 50%;
+      transform: translate(50%,-50%);
+      opacity: 0;
+    }
+
+    .card:hover .back {
+      animation: boo 0.3s linear 0s 1 normal;
+      opacity: 1;
+    }
+
+    .card:hover .front {
+      opacity: 0;
+    }
+
 
     .topCard-container{
       margin-top: 5vh;
@@ -527,56 +547,6 @@ $( document ).ready(function() {
       }
     }
   }
-
-
-  var card = document.querySelectorAll(".card")
-  var topCard = document.querySelectorAll(".topCard")
-  var playing = false
-
-  if(card){
-    
-    card.forEach(div => div.addEventListener('mouseover', function() {
-      if(playing)
-        return;
-
-      playing = true;
-      anime({
-        targets: div,
-        /* scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}], */
-        easing: 'easeInOutSine',
-        duration: 300,
-        complete: function(anim){
-          playing = false
-        }
-      })
-    }))
-  }
-
-  if(topCard){
-    topCard.forEach(div => div.addEventListener('mouseover', function() {
-      if(playing)
-        return;
-
-      playing = true;
-      anime({
-        targets: div,
-        /* scale: [{value: 1}, {value: 1.4}, {value: 1, delay: 250}], */
-        easing: 'easeInOutSine',
-        duration: 300,
-        complete: function(anim){
-          playing = false
-        }
-      })
-    }))
-  }
-
-  
-
-
-
-
-
-
 
 </script>
 
