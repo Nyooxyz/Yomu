@@ -51,6 +51,17 @@
     #card-container {
       width: 90%;
       margin: auto;
+      margin-top: 5rem;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      justify-content: center;   
+
+      align-content: center;    
+    }
+
+    #card-container-old {
+      width: 90%;
+      margin: auto;
       margin-top: 10;
       display: flex;
       flex-direction: column;   
@@ -63,18 +74,40 @@
 
     .card {
       position: relative;
-      height: 20rem;
-      width: 20rem;
+      height: 12rem;
+      width: 12rem;
     }
 
 
-    .card:nth-child(2n) {
-      margin-left: 25rem;
+    .card:nth-child(n+7) {
+      margin-left: 16rem;
     }
+
+    .card:nth-child(n+13) {
+      margin-left: 0;
+    }
+
+    .card:nth-child(n+19) {
+      margin-left: 16rem;
+    }
+
+    .card:nth-child(n+25) {
+      margin-left: 0;
+    }
+
+    .card:nth-child(n+31) {
+      margin-left: 16rem;
+    }
+
+    .card:nth-child(n+37) {
+      margin-left: 0;
+    }
+    
+
+  
+    
 
     .card:nth-child(4n) .kanji-smol {
-      font-size: 40px;
-      line-height: 48px;
       -webkit-text-fill-color: transparent;
       background: var(--chilly);
       font-family: "yasashisa";
@@ -82,8 +115,6 @@
     }
 
     .card:nth-child(3n) .kanji-smol {
-      font-size: 40px;
-      line-height: 48px;
       -webkit-text-fill-color: transparent;
       background: var(--tinder);
       font-family: "yasashisa";
@@ -91,8 +122,6 @@
     }
 
     .card:nth-child(2n) .kanji-smol {
-      font-size: 40px;
-      line-height: 48px;
       -webkit-text-fill-color: transparent;
       background: var(--depression);
       font-family: "yasashisa";
@@ -102,6 +131,7 @@
     .card-content{
       text-align: center;
       margin: 0;
+      width: 10rem;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -118,9 +148,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      transform-style: preserve-3d;
+      transform: rotate(30deg);
     }
+    
 
     .hex-container:before{
 			content: '';
@@ -299,8 +329,8 @@
     }
 
     .kanji-smol {
-      font-size: 40px;
-      line-height: 48px;
+      font-size: 30px;
+      line-height: 38px;
       -webkit-text-fill-color: transparent;
       background: var(--fruityTooty);
       font-family: "yasashisa";
@@ -353,6 +383,7 @@
       font-size: 3em;
       display: flex;
       justify-content: center;
+      margin-top: 5rem;
   
       overflow: hidden;
     }

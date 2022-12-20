@@ -331,7 +331,7 @@ app.get('/collection/home', isAuth, (req, res) => {
 app.get('/collection/n4', isAuth, (req, res) => {
   connection.query("SELECT * FROM jlpt.n4 LIMIT 0, 1622", (err, result, fields) => {
     if (err) throw err;
-    const resPerPages = 28
+    const resPerPages = 42
 
     const numOfResults = result.length
     const numOfPages = Math.ceil(numOfResults / resPerPages)
@@ -377,7 +377,7 @@ app.get('/collection/n4', isAuth, (req, res) => {
 app.get('/collection/n5', isAuth, (req, res) => {
   connection.query("SELECT * FROM jlpt.n5", (err, result, fields) => {
     if (err) throw err;
-    const resPerPages = 28
+    const resPerPages = 42
 
     const numOfResults = result.length
     const numOfPages = Math.ceil(numOfResults / resPerPages)
