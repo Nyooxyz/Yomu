@@ -709,7 +709,7 @@ var counter // 10 will  run it every 100th of a second
 var initialMillis
 var timerEL = document.getElementById("timer")
 var countdown = document.getElementById("countdown")
-const freezeTime = true
+const freezeTime = false
 
 function countdownTimer(){
     if (countdownT <= 1000 && countdownT > 0) {
@@ -718,7 +718,9 @@ function countdownTimer(){
         countdownT = countdownT - (current - initialMillis)
         initialMillis = current
         return
-    } else if (countdownT <= 0) {
+    }  
+    
+    if (countdownT <= 0) {
         updateProblem()
         countdown.style.display = "none"
         $(".content").removeClass("tokiWoTomare")
@@ -727,22 +729,24 @@ function countdownTimer(){
         initialMillis = Date.now()
         counter = setInterval(timer, 1)
         return
-    } else {
-    var current = Date.now()
+    } 
 
-    countdownT = countdownT - (current - initialMillis)
-    initialMillis = current
+  var current = Date.now()
+
+  countdownT = countdownT - (current - initialMillis)
+  initialMillis = current
     
-    displayCountdown(countdownT)
-    }
-    
+  displayCountdown(countdownT)
 }
 
 
 function timer() {
+
   if (freezeTime){
     return
-  } else if (count <= 1000 * 60 && count > 0) {  //  end of game
+  } 
+  
+  if (count <= 1000 * 60 && count > 0) {  //  end of game
         timerEL.style.color = 'red'
         var current = Date.now()
     
@@ -750,20 +754,22 @@ function timer() {
         initialMillis = current
         displayCount(count)
         return
-    } else if (count <= 0) {
+    }
+    
+  if (count <= 0) {
       clearInterval(counter)
       arrToTab()
       scoreMenu()
       timerEL.style.display = "none"
       return
-    } else {
-
-    var current = Date.now()
-    
-    count = count - (current - initialMillis)
-    initialMillis = current
-    displayCount(count)
     }
+
+  var current = Date.now()
+  
+  count = count - (current - initialMillis)
+  initialMillis = current
+  displayCount(count)
+
 }
 
 function displayCount(count) {
@@ -773,14 +779,12 @@ function displayCount(count) {
   let minutes = (res - seconds) / 60
 
   timerEL.innerHTML =
-      minutes + ':' + seconds  + "<span id='ms'>" +  milliseconds + "</span>"
+      minutes + ':' + res % 60  + "<span id='ms'>" +  milliseconds + "</span>"
 }
 
 function displayCountdown(count) {
     let res = Math.floor(count / 1000)
-    let milliseconds = count.toString().substring(3,5)
     let seconds = res % 60
-    let minutes = (res - seconds) / 60
   
     countdown.innerHTML = seconds
   }
@@ -813,12 +817,13 @@ $('.restartButton').on('click', function () {
   timerEL.style.display = "block";
 });
 
-/*displayCountdown(countdownT)*/
+displayCountdown(countdownT)
 initialMillis = Date.now();
 counter = setInterval(countdownTimer, 1);
 displayCount(initial)
 
 
+/* -- Rank calculations -- */
 
 
 function accCalc(){

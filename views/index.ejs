@@ -8,7 +8,9 @@
 　　z  
 　＜⌒／ヽ-､_＿_  
 ／＜_/＿＿＿＿／  
-￣￣￣￣￣￣￣νύξ-->
+￣￣￣￣￣￣￣νύξ
+tottemo sankyuuuuuuuuu
+-->
 
   <!-- meta tags -->
   <meta charset="UTF-8">
@@ -86,51 +88,116 @@
 
 						<div class="outlineLeft">
 							<h1 id="intro_motto"></h1>
-							<h1 id="motto">∃世界 <br>ƒ(夢) = 現実</h1>
+							<h1 id="motto">Three <span style="color:orange;">ca</span><span style="color: black;">li</span><span style="color:white;">co</span> steps <br> At the time</h1>
 						</div>
 
 					</div>
 				</div>
 
 				<div id="headerSqueeze">
-					<div class="header-knob header-knob-text right-hand" id="header-knobs_preferences">PREFERENCES</div>
-					<div class="header-knob header-knob-text right-hand" id="playBGM"></div>
-					<div class="header-knob header-knob-text right-hand" id="無作為"></div>
+
+					
+					<div class="header-knob header-knob-text right-hand"><span>></span><span id="playBGM"></span></div>
+
+					<div class="header-knob header-knob-text right-hand" id="header-knobs_preferences"><span>></span><span>Settings</span></div>
+
+					<div id="無作為"> </div>
+
 				</div>
 
 			</div>
 
+			<div class="spacer">
+				<div class="mask"></div>
+				<div class="masker"></div>
+				<span><h2>間隔</h2></span>
+				<span id="か"><i>か</i></span>
+				<span><h5>んかく</h5></span>
+			</div>
+			<div id="nichijou" class="outline">
+	
+				<div id="nichi-tests">
+					<h2>Current level: N5</h2>
+					<h3>Tests</h3>
 
-			<div id="main">
-				<div id="mainGame" class="outline">
+					<div class="tests-container">
+					
+						<button class="n4-btn">
+						<span>N4</span>
+						</button>
+
+						<button class="n3-btn">
+						<span>N3</span>
+						</button>
+
+						<button class="n2-btn">
+						<span>N2</span>
+						</button>
+
+						<button class="n1-btn">
+						<span>N1</span>
+						</button>
+			
+						
+					</div>
+				
+				</div>
+
+				<div id="shiritori" class="outline">
 					<div id="main-bg"></div>
 					<div id="n5" onclick="hrefing('/game?jlpt=n5')">【JLPT <b style="color: lime">5</b>】</div>
 					<div id="n4" onclick="hrefing('/game?jlpt=n4')">【JLPT <b style="color: orange">4</b>】</div>
-					<div id="anki"><b>安気</b></div>
 				</div>
+
+				<div id="nichi-main">
+
+					<div class='clock'>
+						<span class='time'></span>
+						<h2>until reset</h2>
+            		</div>
+
+					<div class="nichi-play">
+
+						<button class="nichiPlay pulse">START</button>
+					
+					</div>
+
+				</div>
+
+				<div class="nichi-count">20</div>
 			</div>
 
-			<div id="footer">
-				<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
-					<div id="idkyet" class="outline">
-						<div id="kuroTitle" class="txtPanelBubble">
-							<a class="txtPanelHira" id="kuroKanj"><b>光</b></a>
-							<a class="txtPanelRoma" id="kuroRoma"><b>Hikari</b></a>
-						</div>
-					</div>
-				</div>
+			<div class="spacer">
+				<div class="mask"></div>
+				<div class="masker"></div>
+				<span><h2>理解</h2></span>
+				<span id="り"><i>り</i></span>
+				<span><h5>かい</h5></span>
+			</div>
+
+			<div id="rikai">
+
+				<div class="collection">
+					<button class="collection-btn pulse-collec" onclick="hrefing('/collection/home')">Collection</button>
+				</div>			
 			
-				<div id="footerRight" class="panelLeft" onclick="hrefing('/collection/home')">
-					<div class="clipCollection outline">
-						<div id="collectionBG"></div>
-						<div id="collectionTitle" class="txtPanelBubble">
-							<a class="txtPanelHira" id="collectionKata"><b>コレクション</b></a>
-							<a class="txtPanelRoma" id="collectionRoma"><b>Collection</b></a>
-						</div>
+			</div>
+
+			<div class="spacer">
+				<div class="mask"></div>
+				<div class="masker"></div>
+				<span><h2>擦る</h2></span>
+				<span id="こ"><i>こ</i></span>
+				<span><h5>する</h5></span>
+			</div>
+			
+			<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
+				<div id="idkyet" class="outline">
+					<div id="kuroTitle" class="txtPanelBubble">
+						<a class="txtPanelHira" id="kuroKanj"><b>光</b></a>
+						<a class="txtPanelRoma" id="kuroRoma"><b>Hikari</b></a>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -302,7 +369,7 @@
 	}
 
 	function TypeIntroMotto() {
-		var text = "∃世界$ƒ(夢) = 現実"
+		var text = "Three calico steps$At the time"
 		for (var i = 0; i < text.length; i++) {
 			(function(index) {
 				setTimeout(function() {
@@ -420,7 +487,7 @@
 			updateBGM_btn()
 		})
 		} else {
-			$("#playBGM").text("ＢＧＭ ⯈")
+			$("#playBGM").text("BGM ⯈")
 			if(getCookie("pref-AUDIO") == "all"){
 				$("#playBGM").unbind().on("click", function() {
 					if (bgmPlayed){
@@ -698,6 +765,58 @@
 
 		$("#x-pseudo-" + hash).html(elem + " { " + property + ": " + value + "; }");
 	}
+
+
+	// NICHIJOU COUNTDOWN
+
+
+	function Time(){
+		var now = new Date();
+		this.hour =  now.getHours();
+		this.minute =  now.getMinutes();
+		this.second =  now.getSeconds();
+	};
+
+
+	Time.prototype.display = function(){
+			var hr = this.hour;
+			var sec = this.second;
+			var min = this.minute;
+
+			hr = 24 - hr;
+			min = 60 - min;
+			sec = 60 - sec;
+
+			if (sec < 10)
+				sec = '0'+ sec;
+
+			if (min < 10)
+				 min = '0'+ min;
+
+			return ''+hr+' : '+min+' : '+sec+''    
+	}
+
+	function display(disp){
+		var time = new Time();
+		return time.display(disp);
+	}
+
+	//Clock Object
+		var clockInterval;
+		var clock = new Object();
+		clock.display = function(){
+			var time = new Time();
+			return time.display();
+		}
+
+		clock.update = function(){
+			$('.time').text(clock.display()+'');
+			clockInterval = setTimeout(clock.update, 500);
+		}
+
+		clock.update();
+
+
 
 
 </script>
