@@ -1,4 +1,4 @@
-.page_transi {
+/*.page_transi {
     width: 100%;
     height: 100%;
     display: grid;
@@ -34,5 +34,33 @@
 @keyframes blocks_fadeIn {
     0%   {border-width: 60px;}
     100% {border-width: 0px;}
-}
+}*/
+
+
   
+@keyframes grow {
+    0% {
+      width: 20px;
+      height: 20px;
+    }
+    100% {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .transi {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .square {
+    background-color: black;
+    animation: grow 2s ease-in-out;
+    animation-fill-mode: forwards;
+    background-color: black;
+  }

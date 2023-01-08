@@ -20,9 +20,27 @@ const { builtinModules } = require('module');
 const e = require('express');
 var kuromoji = require("kuromoji");
 const puppeteer = require('puppeteer');
+const { Console } = require('console');
 var path = []
 var japTxt = ""
 let dontTransi = false
+let userJlpt = 5
+
+function fuzzing(ivl){
+  // Calculate the maximum amount of fuzz to add, which is 20% of the interval
+  const maxFuzz = ivl * 0.2;
+  
+  // Generate a random number between 0 and the maximum fuzz value
+  const fuzz = Math.random() * maxFuzz;
+  
+  // Calculate the lower and upper bounds for the interval by subtracting and adding
+  // half of the fuzz value
+  const lowerBound = ivl - fuzz / 2;
+  const upperBound = ivl + fuzz / 2;
+  
+  // Return the interval with the fuzz applied
+  return Math.random() * (upperBound - lowerBound) + lowerBound;
+}
 
 
 if (app.get("env") === "production") {
@@ -247,16 +265,6 @@ function checkLogin(req, res, next) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* --                                                ROUTES                                                                -- */
 
 
@@ -265,8 +273,19 @@ app.get('/', checkLogin, (req, res) => {
     if (err) throw err;
     const numOfResults = result.length
     const startId = 0
-    
-    res.render('index.ejs',{logged : loggedin, db : result, numOfResults, startId})
+
+    if (loggedin) {
+      connection.query("SELECT COUNT(*) FROM user.userdeck WHERE user_id=?",[req.user.id], (err, cardTotal, fields) => {
+        if (err) throw err
+        
+        res.render('index.ejs',{logged : loggedin, db : result, numOfResults, startId, cardTotal: cardTotal[0]['COUNT(*)'], userJlpt})
+      })
+    } else {
+      res.render('index.ejs',{logged : loggedin, db : result, numOfResults, startId, userJlpt})
+    }
+
+
+         
   })
 })
 
@@ -301,6 +320,77 @@ app.get('/game', checkLogin, (req, res) => {
     })
   }
   
+})
+
+app.get('/daily', checkLogin, (req, res) => {
+  connection.query("SELECT word_id, kanj, hira FROM user.userdeck WHERE user_id=?", [req.user.id], (err, deck, fields) => {
+    if (err) throw err
+
+    res.render('daily.ejs',{logged : loggedin, db : deck})
+  })
+})
+
+app.get('/deckupdate', checkLogin, (req, res) => {
+
+  let curJlpt = req.user.userJlpt
+
+  // Check if there are cards to review today, stores them into reviewCards
+  connection.query("SELECT word_id FROM user.collections WHERE user_id=? AND (state = 'review' AND (DAY(DATE(next_review)) <= DAY(DATE(CURRENT_TIMESTAMP)))) ORDER BY RAND() LIMIT 10",[req.user.id], (err, reviewCards, fields) => {
+    if (err) throw err;
+    
+    // Extract the word_id values from the reviewCards array
+    const reviewCardsIds = reviewCards.map(row => row.word_id);
+    console.log(reviewCardsIds)
+    
+    // Build a list of values to be passed to the IN operator
+    const inList = reviewCardsIds.length > 0 ? `(${reviewCardsIds.join(',')})` : '(-1)';
+    console.log(inList)
+
+    // Stores id of review or master cards to then filter the next query (will need 10 new cards)
+    connection.query("SELECT word_id FROM user.collections WHERE user_id=? AND (state = 'review' OR state = 'master')",[req.user.id], (err, reviewORmaster, fields) => {
+      if (err) throw err;
+
+      const reviewORmasterIds = reviewORmaster.map(row => row.word_id);
+      const inListOR = reviewORmasterIds.length > 0 ? `(${reviewORmasterIds.join(',')})` : '(-1)';
+
+      connection.query(`SELECT * FROM jlpt.n? WHERE word_id NOT IN ${inListOR} ORDER BY RAND() LIMIT 10`, [curJlpt], (err, newCards, fields) => {
+        if (err) throw err;
+
+        connection.query(`SELECT * FROM jlpt.n? WHERE word_id IN ${inList}`,[curJlpt], (err, allCards, fields) => {
+          if (err) throw err;
+
+          // merge the 2 arrays (the review cards array with the new cards one)
+          Array.prototype.push.apply(allCards,newCards);
+          let cardTotal = allCards.length
+
+          connection.query(`SELECT * FROM user.userdeck WHERE user_id = ?`,[req.user.id], (err, deckLength, fields) => {
+            if (err) throw err;
+
+
+            if (deckLength.length === 0){
+         
+              for (let i = 0; i < cardTotal; i++){
+                connection.query(`INSERT INTO user.userdeck (user_id,word_id,kanj,hira) VALUES (?,?,?,?)`,[req.user.id,allCards[i].word_id,allCards[i].kanj,allCards[i].hira], (err, allCards, fields) => {
+                  if (err) throw err;
+                })
+              }
+            }else{
+              
+              connection.query('SET SQL_SAFE_UPDATES = 0;DELETE FROM user.userdeck WHERE user_id = ?;SET SQL_SAFE_UPDATES = 1;', [req.user.id], (error, results, fields) => {
+                if (error) throw error;
+              })
+              for (let i = 0; i < cardTotal; i++){
+                connection.query(`INSERT INTO user.userdeck (user_id,word_id,kanj,hira) VALUES (?,?,?,?)`,[req.user.id,allCards[i].word_id,allCards[i].kanj,allCards[i].hira], (err, allCards, fields) => {
+                  if (err) throw err;
+                })
+              }
+            }
+          })
+          res.send('Values overwritten');
+        })
+      })    
+    })
+  })    
 })
 
 app.get('/login', isNotAuth, (req, res) => {
@@ -449,11 +539,21 @@ app.get('/logout', (req, res, next) => {
 
 
 
+app.get('/islearning',(req,res) => {
+  connection.query('SELECT state FROM user.collections WHERE word_id=? AND user_id=?', [req.query.id,req.user.id], function(error, results, fields) {
+    if (error) throw error
+    console.log("state = "+results[0].state)
+    res.send(results)
+  })
+})
 
-
-
-
-
+app.get('/isnew',(req,res) => {
+  connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+    if (error) throw error
+    console.log("nb = "+results.length)
+    res.send(results.length == 0)
+  })
+})
 
 
 
@@ -564,7 +664,7 @@ app.post('/send', checkLogin, (req,res,next)=>{
         })
       }
       else {
-        connection.query('INSERT INTO user.collections (user_id,word_id,count) VALUES (?,?,1)', [req.user.id,req.body.id], function(error, results, fields){
+        connection.query('INSERT INTO user.collections (user_id,word_id,count,state,next_review,ease,ivl) VALUES (?,?,1,"learning","0000-00-00 00:00:00",2.5,0)', [req.user.id,req.body.id], function(error, results, fields){
           if (error) 
           {
               console.log("Error Insert");
@@ -582,6 +682,163 @@ app.post('/send', checkLogin, (req,res,next)=>{
   res.end();
 
 })
+
+app.post('/again', checkLogin, (req,res)=>{
+
+  if (loggedin) {    
+    connection.query('INSERT INTO user.collections (user_id,word_id,count,state,next_review,ease,ivl) VALUES (?,?,0,"learning",DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE),2.5,0.0007)', [req.user.id,req.body.id], function(error, results, fields){
+      if (error) throw error
+      console.log("posted: "+ req.body.id)
+    })
+  }   
+})
+
+app.post('/good', checkLogin, (req,res)=>{
+
+  if (loggedin) {
+    connection.query('INSERT INTO user.collections (user_id,word_id,count,state,next_review,ease,ivl) VALUES (?,?,1,"learning",DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE),2.5,0.007)', [req.user.id,req.body.id], function(error, results, fields){
+      if (error) throw error
+      console.log("posted: "+ req.body.id)
+    })
+  }
+})
+
+app.post('/easy', checkLogin, (req,res)=>{
+
+  if (loggedin) {
+    connection.query('INSERT INTO user.collections (user_id,word_id,count,state,next_review,ease,ivl) VALUES (?,?,1,"review", DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 4 DAY),2.5,4)', [req.user.id,req.body.id], function(error, results, fields){
+      if (error) throw error
+      console.log("posted: "+ req.body.id)
+    })
+  }
+
+})
+
+
+
+app.put('/dropword', checkLogin, (req,res,next)=>{
+
+  if (loggedin) {
+    connection.query('SET SQL_SAFE_UPDATES = 0;DELETE FROM user.userdeck WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;', [req.user.id,req.body.id], function(error, results, fields) {
+      if (error) throw error
+      console.log("deleted: "+req.body.id)
+    })
+  }
+})
+
+
+
+app.put('/good', checkLogin, (req,res)=>{
+
+  if (loggedin) {
+    connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+      if (error) throw error
+         
+      
+        switch (results[0].state) {
+          case 'learning':
+            connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 DAY), state = 'review', ivl = 1.0 WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+              if (error) throw error
+              
+            })
+          case 'review':
+            // new ivl
+            console.log(req.body.id+' ivl: '+results[0].ivl)
+            let easedIVL = (results[0].ivl)*(results[0].ease)
+            let fuzzedIVL = Math.round(fuzzing(easedIVL))
+            console.log("fuzz: "+fuzzedIVL)
+     
+            let query = `SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? DAY), ivl=? WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`;
+            let sql = mysql.format(query, [fuzzedIVL,fuzzedIVL,req.user.id,req.body.id]);
+            console.log(sql);
+
+
+            connection.query('SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? DAY), ivl=? WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;', [fuzzedIVL,fuzzedIVL,req.user.id,req.body.id], function(error, results, fields){
+              if (error) throw error
+                
+            })
+          case 'relearning':
+            // new ivl
+            console.log('ivl: '+results[0].ivl)
+            let newIVL = fuzzing(results[0].ivl*0.2)
+
+            if (newIVL < 1) newIVL = 1
+
+            connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? MINUTE), ivl=?, state = 'review' WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [newIVL,newIVL,req.user.id,req.body.id], function(error, results, fields){
+              if (error) throw error
+              
+            })
+        }
+    })
+  }
+})
+
+app.put('/again', checkLogin, (req,res)=>{
+
+  if (loggedin) {
+    connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+      if (error) throw error
+          
+      switch (results[0].state) {
+        case 'learning':
+          console.log("learning")
+          connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 MINUTE) WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+            if (error) throw error
+            
+          })
+        case 'review':
+          connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 MINUTE), state = "relearning", ease = 2.3 WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+            if (error) throw error
+            
+          })
+        case 'relearning':
+          connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE) WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+            if (error) throw error
+            
+          })
+      }
+     
+    })
+  }
+})
+
+
+app.put('/easy', checkLogin, (req,res)=>{
+
+  if (loggedin) {
+    connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+      if (error) throw error
+          
+      
+        switch (results[0].state) {
+          case 'learning':
+            connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = (DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 DAY)), state = "review", ivl = 1.0 WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
+              if (error) throw error
+              
+            })
+          case 'review':
+            // new ivl
+            let easedIVL = results[0].ivl*results[0].ease*1.5
+            let fuzzedIVL = Math.round(fuzzing(easedIVL))
+
+            connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL ? DAY), ease = 2.65, ivl = ? WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [fuzzedIVL,fuzzedIVL,req.user.id,req.body.id], function(error, results, fields){
+              if (error) throw error
+              
+            })
+          case 'relearning':
+            connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review =  DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 4 DAY), ivl=4 WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [newIVL,req.user.id,req.body.id], function(error, results, fields){
+              if (error) throw error
+              
+            })
+        }
+    })
+  }
+})
+
+
+
+
+
 
 
 /* --                                                SERVER                                                                -- */

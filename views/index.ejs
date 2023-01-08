@@ -158,13 +158,14 @@ tottemo sankyuuuuuuuuu
 
 					<div class="nichi-play">
 
-						<button class="nichiPlay pulse">START</button>
+						<button class="nichiPlay pulse" onclick="hrefing('/daily?jlpt=<%=userJlpt %>')">START</button>
 					
 					</div>
 
 				</div>
-
-				<div class="nichi-count">20</div>
+				<% if (logged) { %>
+				<div class="nichi-count"><%=cardTotal %></div>
+				<% } %>
 			</div>
 
 			<div class="spacer">
@@ -190,15 +191,15 @@ tottemo sankyuuuuuuuuu
 				<span id="こ"><i>こ</i></span>
 				<span><h5>する</h5></span>
 			</div>
-			
-			<div id="footerLeft" class="panelRight" onclick="hrefing('/kuro')">
-				<div id="idkyet" class="outline">
-					<div id="kuroTitle" class="txtPanelBubble">
-						<a class="txtPanelHira" id="kuroKanj"><b>光</b></a>
-						<a class="txtPanelRoma" id="kuroRoma"><b>Hikari</b></a>
-					</div>
-				</div>
-			</div>
+
+			<div id="kosuru">
+
+				<div class="scraper">
+						<button class="scraper-btn pulse-scraper" onclick="hrefing('/kuro')">Scraper</button>
+				</div>	
+
+			</div>		
+						
 		</div>
 	</div>
 
@@ -258,6 +259,15 @@ tottemo sankyuuuuuuuuu
 					<div class="switch-option negative" id="forceintro-off">⊘</div><div class="switch-option positive" id="forceintro-on">◯</div>
 				</div>
 			</div>
+			<div class="preference" id="preference_snow">
+				<div class="explanation">
+					<h2>snow?</h2>
+					<p>for hot choco and cpu</p>
+				</div>
+				<div class="switch cur-action">
+					<div class="switch-option negative" id="snowless">⊘</div><div class="switch-option positive" id="snowy">◯</div>
+				</div>
+			</div>
 			<div class="preference" id="preference_you">
 				<div class="explanation">
 					<h2>Being great</h2>
@@ -272,7 +282,35 @@ tottemo sankyuuuuuuuuu
 	</div>
 </div>
 
-<div class="page_transi"><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div></div>
+<!--<div class="page_transi"><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div><div class="grid_transi"></div></div>-->
+
+<div class="transi">
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+</div>
 
 
 <script src="public/js/jquery.js"></script>
@@ -280,6 +318,7 @@ tottemo sankyuuuuuuuuu
 <script src="public/js/cookies.js"></script>
 <script src="public/js/howler.min.js"></script>
 <script src="public/js/sfx.js"></script>
+<script src="public/js/snowstorm.js"></script>
 
 <script>
 
@@ -445,29 +484,6 @@ tottemo sankyuuuuuuuuu
 		}
 	})
 
-
-	$("#collectionTitle").on({
-		mouseenter: function () {
-			$("#collectionKata").css("line-height","60px")
-			$("#collectionRoma").css("display","block")
-		},
-		mouseleave: function () {
-			$("#collectionKata").css("line-height","80px")
-			$("#collectionRoma").css("display","none")
-		}
-	})
-
-	$("#kuroTitle").on({
-		mouseenter: function () {
-			$("#kuroKanj").css("line-height","60px")
-			$("#kuroRoma").css("display","block")
-		},
-		mouseleave: function () {
-			$("#kuroKanj").css("line-height","80px")
-			$("#kuroRoma").css("display","none")
-		}
-	})
-
 	if(getCookie("SFX" == "yes")){
 		$("#n5, #n4, #loginContain, #clipRegiContainer, #footerleft, #footerRight").on("click", () => sfx_click.play())
 	}	
@@ -620,6 +636,17 @@ tottemo sankyuuuuuuuuu
 		updateForceIntro();
 
 		///////////////////////
+
+		$("#snowless").click(function() {
+			setCookie("pref-snow", "snowless", Date.now() + (365*24*60*60*1000));
+			updateSnowStorm();
+		});
+		$("#snowy").click(function() {
+			setCookie("pref-snow", "snowy", Date.now() + (365*24*60*60*1000));
+			updateSnowStorm();
+		});
+
+		updateSnowStorm();
 	
 	})
 
@@ -743,6 +770,25 @@ tottemo sankyuuuuuuuuu
 		}
 	}
 
+	function updateSnowStorm() {
+		switch (getCookie("pref-snow")) {
+			case "snowless":
+				$("#snowless").addClass("selected")
+				$("#snowy").removeClass("selected")
+				snowStorm.stop()
+				break;
+			case "snowy":
+				$("#snowy").addClass("selected");
+				$("#snowless").removeClass("selected")
+				snowStorm.start()
+				break;
+			default:
+				setCookie("pref-snow", "snowless", Date.now() + (365*24*60*60*1000));
+				updateSnowStorm();
+				break;
+		}
+	}
+
 
 
 	String.prototype.hashCode = function() {
@@ -783,7 +829,7 @@ tottemo sankyuuuuuuuuu
 			var sec = this.second;
 			var min = this.minute;
 
-			hr = 24 - hr;
+			hr = 23 - hr;
 			min = 60 - min;
 			sec = 60 - sec;
 
@@ -815,6 +861,39 @@ tottemo sankyuuuuuuuuu
 		}
 
 		clock.update();
+
+
+	// misc 
+
+	// data
+
+	function dailyReset() {
+		var currentDate = new Date()
+
+		// Get the day of the month for the current date
+		var currentDay = currentDate.getDate()
+
+		// Get the day of the month from the previous page load (if available)
+		var previousDay = localStorage.getItem('previousDay')
+
+		
+
+		if (currentDay != previousDay) {
+			$.get('/deckupdate')
+
+			// Update the stored value for the day of the month
+			localStorage.setItem('previousDay', currentDay)
+			
+		}
+	}
+	
+
+	// Run the resetSomething function when the page loads
+  	<% if (logged) {%>
+	window.onload = dailyReset
+	<% } %>
+	
+
 
 
 
