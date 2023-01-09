@@ -285,99 +285,88 @@ $( document ).ready(function() {
 
   // Check first if card is in the collection
   console.log("after ans: "+state.id)
-  $.get('/isnew', { id: state.id }).then(data => {
-    console.log("after isnew: "+data)
 
-  
+  $.get('/isnew', { id: state.id }, data => {
+
     if (data) {
+      $.post('/good', { id: state.id });
+      addAnki();
 
-      // create the record for the card in the collection
-      $.post('/good', { id: state.id }).then( () => {
-        console.log("in true "+state.id)
-  
-        rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
-        deck.shift()
+      console.log("new card: "+state.id)
 
-        if (deck.length != 0){
-          console.log("updating problem..")
-          updateProblem()
+      rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
+      deck.shift()
 
-        } else {
-        
-          resetGame()
-          content.style.display = "none"
+      if (deck.length != 0) {
+        console.log("updating problem..")
+        updateProblem()
+
+      } else {
+        resetGame()
+        content.style.display = "none"
+      }
+    } else {
+
+      fetch('/good', {
+        method: 'PUT',
+        body: JSON.stringify({ id: state.id }),
+        headers: {
+          'Content-Type': 'application/json'
         }
       })
-
-
-
-    } else {
-      console.log("in else: "+data)
-      // update the card
-      $.ajax({
-        url: '/good',
-        type: 'PUT',
-        data: { id: state.id }
+      .then(response => {
+        console.log("response: ", response)
+        console.log('after ajax');
+        return $.get('/islearning', { id: state.id });
       })
-        .done(function(data) {
-          console.log('after ajax');
-          $.get('/islearning', { id: state.id }).then(data => {
-            console.log("datawhat: "+data)
-            console.log("datawhat: "+data[0])
-            if(data[0].state == 'learning'){
-              addAnki()
+      .then(data => {
+        console.log("datawhat: "+data)
+        console.log("datawhat: "+data[0].state)
+        if (data[0].state == 'learning') {
+          addAnki();
 
-              console.log("id3: "+state.id)
-  
-              rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
-              deck.shift()
+          console.log("id3: "+state.id)
 
-              if (deck.length != 0){
-                console.log("updating problem..")
-                updateProblem()
+          rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
+          deck.shift()
 
-              } else {
-              
-                resetGame()
-                content.style.display = "none"
-              }
+          if (deck.length != 0) {
+            console.log("updating problem..")
+            updateProblem()
 
-            }else{
-
-              $.ajax({
-                url: '/dropword',
-                type: 'PUT',
-                data: { id: state.id }
-              })
-                .done(function(data) {
-                  console.log('Request completed successfully!');
-                  console.log("id3: "+state.id)
-                  console.log("data2: "+data)
-  
-                  rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
-                  deck.shift()
-
-                  if (deck.length != 0){
-                    console.log("updating problem..")
-                    updateProblem()
-
-                  } else {
-                  
-                    resetGame()
-                    content.style.display = "none"
-                  }
-                })
-                .fail(function(error) {
-                  console.log('Request failed: ' + error);
-                })
+          } else {
+            resetGame()
+            content.style.display = "none"
+          }
+        } else {
+          return fetch('/dropword', {
+            method: 'PUT',
+            body: JSON.stringify({ id: state.id }),
+            headers: {
+              'Content-Type': 'application/json'
             }
           })
-        })
-        .fail(function(error) {
-          console.log('Request failed: ' + error);
-        })
+          .then( () => {
+            console.log('Request completed successfully!')
+
+            rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
+            deck.shift()
+
+            if (deck.length != 0) {
+              console.log("updating problem..")
+              updateProblem()
+            } else {
+              resetGame()
+              content.style.display = "none"
+            }
+          }) 
+        }
+      })
+      .catch(error => {
+        console.log('Request failed: ' + error);
+      });
     }
-  }) 
+  })
  }
 
  function wrongAns(){

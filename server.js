@@ -21,6 +21,7 @@ const e = require('express');
 var kuromoji = require("kuromoji");
 const puppeteer = require('puppeteer');
 const { Console } = require('console');
+const { send } = require('process');
 var path = []
 var japTxt = ""
 let dontTransi = false
@@ -548,6 +549,8 @@ app.get('/islearning',(req,res) => {
 })
 
 app.get('/isnew',(req,res) => {
+
+  console.log("inside new")
   connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.query.id], function(error, results, fields) {
     if (error) throw error
     console.log("id = "+req.query.id)
@@ -725,6 +728,7 @@ app.put('/dropword', checkLogin, (req,res,next)=>{
       console.log("deleted: "+req.body.id)
     })
   }
+  res.send("200 OK")
 })
 
 
@@ -775,6 +779,7 @@ app.put('/good', checkLogin, (req,res)=>{
         }
     })
   }
+  res.send("200 OK")
 })
 
 app.put('/again', checkLogin, (req,res)=>{
@@ -808,6 +813,7 @@ app.put('/again', checkLogin, (req,res)=>{
      
     })
   }
+  res.send("200 OK")
 })
 
 
@@ -844,6 +850,7 @@ app.put('/easy', checkLogin, (req,res)=>{
         }
     })
   }
+  res.send("200 OK")
 })
 
 
