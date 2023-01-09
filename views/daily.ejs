@@ -266,7 +266,6 @@ $( document ).ready(function() {
  function handleSubmit(e){
    e.preventDefault()
    $("#jin-pop").addClass("hidden")
-   state.i++
 
 
      // RIGHT ANSWER --                                                              
@@ -285,16 +284,35 @@ $( document ).ready(function() {
  function rightAns(){
 
   // Check first if card is in the collection
-  $.get('/isnew', { id: state.id }, data => {
-     console.log("isnew: "+data)
+  console.log("after ans: "+state.id)
+  $.get('/isnew', { id: state.id }).then(data => {
+    console.log("after isnew: "+data)
+
   
     if (data) {
 
       // create the record for the card in the collection
-      $.post('/good', { id: state.id })
+      $.post('/good', { id: state.id }).then( () => {
+        console.log("in true "+state.id)
+  
+        rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
+        deck.shift()
+
+        if (deck.length != 0){
+          console.log("updating problem..")
+          updateProblem()
+
+        } else {
+        
+          resetGame()
+          content.style.display = "none"
+        }
+      })
+
+
 
     } else {
-
+      console.log("in else: "+data)
       // update the card
       $.ajax({
         url: '/good',
@@ -302,48 +320,64 @@ $( document ).ready(function() {
         data: { id: state.id }
       })
         .done(function(data) {
-          console.log('Request completed successfully!');
+          console.log('after ajax');
+          $.get('/islearning', { id: state.id }).then(data => {
+            console.log("datawhat: "+data)
+            console.log("datawhat: "+data[0])
+            if(data[0].state == 'learning'){
+              addAnki()
+
+              console.log("id3: "+state.id)
+  
+              rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
+              deck.shift()
+
+              if (deck.length != 0){
+                console.log("updating problem..")
+                updateProblem()
+
+              } else {
+              
+                resetGame()
+                content.style.display = "none"
+              }
+
+            }else{
+
+              $.ajax({
+                url: '/dropword',
+                type: 'PUT',
+                data: { id: state.id }
+              })
+                .done(function(data) {
+                  console.log('Request completed successfully!');
+                  console.log("id3: "+state.id)
+                  console.log("data2: "+data)
+  
+                  rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
+                  deck.shift()
+
+                  if (deck.length != 0){
+                    console.log("updating problem..")
+                    updateProblem()
+
+                  } else {
+                  
+                    resetGame()
+                    content.style.display = "none"
+                  }
+                })
+                .fail(function(error) {
+                  console.log('Request failed: ' + error);
+                })
+            }
+          })
         })
         .fail(function(error) {
           console.log('Request failed: ' + error);
         })
-
-
-      $.get('/islearning', { id: state.id }, data => {
-
-        if(data[0].state == 'learning'){
-          addAnki()
-
-        }else{
-
-          $.ajax({
-            url: '/dropword',
-            type: 'PUT',
-            data: { id: state.id }
-          })
-            .done(function(data) {
-              console.log('Request completed successfully!');
-            })
-            .fail(function(error) {
-              console.log('Request failed: ' + error);
-            })
-        }
-      })  
     }
   }) 
-  
-  rightWords.innerHTML += "<li>"+ state.kanj + "</li>"
-  deck.shift()
-  console.log("updating problem..")
-
-  if (deck.length != 0){
-    updateProblem()
-
-  } else {
-  
-    resetGame()
-    content.style.display = "none"
-  }
  }
 
  function wrongAns(){

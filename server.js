@@ -548,9 +548,10 @@ app.get('/islearning',(req,res) => {
 })
 
 app.get('/isnew',(req,res) => {
-  connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.body.id], function(error, results, fields) {
+  connection.query('SELECT * FROM user.collections WHERE user_id=? AND word_id=?', [req.user.id,req.query.id], function(error, results, fields) {
     if (error) throw error
-    console.log("nb = "+results.length)
+    console.log("id = "+req.query.id)
+    console.log("res = "+results.length)
     res.send(results.length == 0)
   })
 })
@@ -741,6 +742,7 @@ app.put('/good', checkLogin, (req,res)=>{
               if (error) throw error
               
             })
+            break;
           case 'review':
             // new ivl
             console.log(req.body.id+' ivl: '+results[0].ivl)
@@ -757,6 +759,7 @@ app.put('/good', checkLogin, (req,res)=>{
               if (error) throw error
                 
             })
+            break;
           case 'relearning':
             // new ivl
             console.log('ivl: '+results[0].ivl)
@@ -768,6 +771,7 @@ app.put('/good', checkLogin, (req,res)=>{
               if (error) throw error
               
             })
+            break;
         }
     })
   }
@@ -786,16 +790,20 @@ app.put('/again', checkLogin, (req,res)=>{
             if (error) throw error
             
           })
+          break;
         case 'review':
           connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 MINUTE), state = "relearning", ease = 2.3 WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
             if (error) throw error
             
           })
+          break;
         case 'relearning':
           connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 10 MINUTE) WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [req.user.id,req.body.id], function(error, results, fields){
             if (error) throw error
             
           })
+          break;
+          
       }
      
     })
@@ -816,6 +824,7 @@ app.put('/easy', checkLogin, (req,res)=>{
               if (error) throw error
               
             })
+            break;
           case 'review':
             // new ivl
             let easedIVL = results[0].ivl*results[0].ease*1.5
@@ -825,11 +834,13 @@ app.put('/easy', checkLogin, (req,res)=>{
               if (error) throw error
               
             })
+            break;
           case 'relearning':
             connection.query(`SET SQL_SAFE_UPDATES = 0;UPDATE user.collections SET next_review =  DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 4 DAY), ivl=4 WHERE user_id=? AND word_id=?;SET SQL_SAFE_UPDATES = 1;`, [newIVL,req.user.id,req.body.id], function(error, results, fields){
               if (error) throw error
               
             })
+            break;
         }
     })
   }
